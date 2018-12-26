@@ -1,5 +1,5 @@
 <?php
-    include 'data.php';
+    /*include 'data.php';
     function conectar($servidor, $usuario, $clave, $BD){
         $conexion = mysqli_connect($servidor, $usuario, $clave, $BD);
         return $conexion;
@@ -45,5 +45,9 @@
         $datos = mysqli_fetch_array($resultado);
         $pass_Crypted = $datos['clave'];
         validar($pass, $pass_Crypted);
-    }
+    }*/
+	
+	$nombre = $_POST['Nom_User'];
+    $pass = $_POST['passwd'];
+	echo "<h1>".$nombre."<br/>".$pass."</h1>"
 ?>

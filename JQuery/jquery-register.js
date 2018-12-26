@@ -3,6 +3,18 @@ $(document).ready(function(){
     /*
     ** En el momento en el que haga click al boton se lanzara el código
     */
+	
+	var enviar = function(passwd, email, Nom_User){
+		/*
+		** Crea un formulario y lo envía al PHP de registro
+		*/
+		var formulario = $("<form method='POST' action='../../PHP/Sessions/Sign_Up.php' >"+
+		"<input type='hidden' name='Nom_User' value='"+Nom_User+"'>"+
+		"<input type='hidden' name='email' value='"+email+"'>"+
+		"<input type='hidden' name='passwd' value='"+passwd+"'>"+"</form>");
+		$('body').append(formulario);
+		$(formulario).submit();
+	}
     $("#send").click(function(){
         
         /*
@@ -12,9 +24,6 @@ $(document).ready(function(){
         var passwd2 = $("#passwd2").val();
         var email = $("#email").val();
         var Nom_User = $("#nombre_user").val();
-        
-        console.log(Nom_User);
-        console.log(email);
         
         /*
         ** comprobamos si las contraseñas coinciden, si no, mostramos un alert
@@ -44,15 +53,7 @@ $(document).ready(function(){
                     ** Comprobamos la longitud del nombre de usuario
                     */
                     if(Nom_User.length >= 2 && Nom_User.length <= 20){
-                        $.post("registrar.asp",
-                                {
-                                    passwd: passwd1,
-                                    email: email,
-                                    nom_usu: Nom_User
-                                },
-                        function(data, status){
-                            alert("Data: " + data + "\nStatus: " + status);
-                        });
+						enviar(passwd1, email, Nom_User);
                     }
                     else{
                         if(Nom_User.length > 20){

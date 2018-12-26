@@ -1,36 +1,33 @@
 <?php
     include 'data.php';
     function conectar($servidor, $usuario, $clave, $BD){
-        $conexion = mysqli_connect($servidor, $usuario, $clave, $BD);
+        $conexion = mysqli_connect($servidor, $usuario, "", $BD);
         return $conexion;
     }
 
-    function comprobarDatos ($nombre, $clave, $clave2){
+    function comprobarDatos ($nombre, $clave, $email){
         $ok = true;
-        if ($nombre == "" || $nombre == " " || $clave == "" || $clave == " "){
+        if ($nombre == "" || $nombre == " " || $clave == "" || $email == " "){
             echo "LOS DATOS ESTÁN INCOMPLETOS";
             $ok = false;
             return $ok;
         }
-
-        if ($clave != $clave2){
-            echo "LAS CLAVES NO COINCIDEN";
-            $ok = false;
-        }
         return $ok;
     }
     
-    function introducirDatos($nombre, $clave, $conexion){
+    function introducirDatos($nombre, $clave, $email, $conexion){
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $clave = mysqli_real_escape_string($conexion,$clave);
         $clave = password_hash($clave, PASSWORD_DEFAULT);
-        $sql = "INSERT INTO usuarios
-                VALUES('".$nombre."','".$clave."')";
-        $result = mysqli_query($conexion,$sql);
-        if($result){
+        $query1 = "INSERT INTO personas
+                VALUES('".$nombre."','".$clave."');";
+		$query2 = "INSERT INTO usuarios
+                VALUES('".$nombre."','prueba','".$clave."',NULL,'Pub','".$email."',NULL,0);";
+        $sql1 = mysqli_query($conexion,$query1);
+		$sql2 = mysqli_query($conexion,$query2);
+        if($sql1 && $sql2){
             echo "EL USUARIO SE HA REGISTRADO CORRECTAMENTE";
-            echo $clave;
-            header("Location: ./register.html");
+            header("Location: ../../HTML/html/register.html");
             return;
         }
         else {
@@ -39,18 +36,18 @@
         }
     }
 
-    $nombre = $_POST['nombre'];
-    $clave1 = $_POST['clave'];
-    $clave2 = $_POST['clave2'];
+    $nombre = $_POST['Nom_User'];
+    $clave = $_POST['passwd'];
+	$email = $_POST['email'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
     if(!$conexion){
            echo "Error al conectar con la base de datos <br/>";
            echo "error de depuración " . mysqli_connect_error() . "<br/>";
            echo "errorno de depuración " . mysqli_connect_errno() . "<br/>";
     }
-    $datosOk = comprobarDatos ($nombre, $clave1, $clave2);
+    $datosOk = comprobarDatos ($nombre, $clave, $email);
     if (!$datosOk){
-        header("Location: ./register.html");
+        header("Location: ../../HTML/html/register.html");
     }
-    introducirDatos($nombre, $clave1, $conexion);
+    introducirDatos($nombre, $clave, $email, $conexion);
 ?>

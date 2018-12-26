@@ -33,7 +33,7 @@
         </style>
     </head>
     <body>
-        <script src="../../jquery/jquery-register.js"></script>
+        <script src="../../jquery/jquery-login.js"></script>
         <nav class="navbar navbar-expand-sm bg-dark">
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav mr-auto">
@@ -46,26 +46,18 @@
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xs-12 col-md-8 bg-white mt-5 col-rounded">
-                    <div class="form-group mt-3">
-                        <label for="email">Correo Electrónico:</label>
-                        <input type="email" class="form-control" id="email" >
-                    </div>
                     <div class="form-group">
                         <label for="nombre_user">Nombre de Usuario:</label>
                         <input type="text" class="form-control" id="nombre_user" maxlength="20">
                     </div>
                     <div class="form-group">
-                        <label for="passwd1">Contraseña:</label>
-                        <input type="password" class="form-control" id="passwd1">
+                        <label for="passwd">Contraseña:</label>
+                        <input type="password" class="form-control" id="passwd">
                     </div>
-                    <div class="form-group">
-                        <label for="passwd2">Confirmar Contraseña:</label>
-                        <input type="password" class="form-control" id="passwd2">
+					<div class="alert alert-danger" id="alerta_passwd" style="display: none">
+                        <strong>¡Atención!</strong> Algunos valores están incompletos.
                     </div>
-                    <div class="alert alert-danger" id="alerta_passwd" style="display: none">
-                        <strong>¡Atención!</strong> Ambas contraseñas deben coincidir para poder crear su usuario.
-                    </div>
-                    <button class="btn btn-primary mb-3" style='padding-left:30px; padding-right: 30px;' id="send">Enviar</button>
+                    <button class="btn btn-primary mb-3" style='padding-left:30px; padding-right: 30px;' id="send">Iniciar Sesión</button>
                 </div>
             </div>
         </div>
