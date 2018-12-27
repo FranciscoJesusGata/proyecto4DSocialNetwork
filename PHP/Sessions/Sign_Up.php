@@ -33,7 +33,7 @@
         $query1 = "INSERT INTO personas
                 VALUES('".$nombre."','".$clave."');";
 		$query2 = "INSERT INTO usuarios
-                VALUES('".$nombre."','prueba','".$clave."',NULL,'Pub','".$email."',NULL,0);";
+                VALUES('".$nombre."','prueba',NULL,NULL,'Pub','".$email."',NULL,0);";
         $sql1 = mysqli_query($conexion,$query1);
 		$sql2 = mysqli_query($conexion,$query2);
         if($sql1 && $sql2){
