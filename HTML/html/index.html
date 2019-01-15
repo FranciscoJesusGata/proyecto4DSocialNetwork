@@ -35,36 +35,10 @@
     </head>
     <body>
         <script src="../../jquery/jquery-index.js"></script>
-        <nav class="navbar navbar-expand-sm bg-dark">
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item spacer">
-                        <img  height="40px" width="40px" src="../img/1480688210_Hacker.ico"/>
-                    </li>
-                    <li class="nav-item spacer">
-                    
-                    </li>
-                    <li class="nav-item dropdown">
-                        <button class="btn dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-                            <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-primary">4</span>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Mensaje 1</a>
-                            <a class="dropdown-item" href="#">Mensaje 2</a>
-                            <a class="dropdown-item" href="#">Mensaje 3</a>
-                            <a class="dropdown-item" href="#">Mensaje 4</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn spacer">Link 2</button>
-                    </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="Buscar usuario" placeholder="Buscar usuario" aria-label="Buscar usuario">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i>&nbsp;Buscar</button>
-                </form>
-            </div>
-        </nav>
+        <div id="navbar"></div>
+        <script>
+        $("#navbar").load("navbar.html");
+        </script>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xs-12 col-md-8 bg-white mt-5 col-rounded">
@@ -77,18 +51,18 @@
                     <p class="text-center">biografía</p>
                 </div>
             </div>
-            
+
             <div class="row justify-content-center mb-5">
                 <div class="col-md-8 bg-white mt-5 col-rounded">
                     <div class="row">
                         <div class="col-md-4">
                             <label class="ml-3 mt-3">followers: <span id="followers">30</span></label>
                         </div>
-                        
+
                         <div class="col-md-4 text-center">
                             <label class="ml-3 mt-3">followed by: diegogamer747, Qr20, linker271...</label>
                         </div>
-                    
+
                         <div class="col-md-4 text-right">
                             <label class="ml-3 mt-3">following: <span id="following">12</span></label>
                         </div>
