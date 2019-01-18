@@ -2,15 +2,14 @@
 <html>
     <head>
         <meta charset="ISO-8851-1">
-        <title>4D Social Network</title>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="../../Resources/jquery-3.3.1.min.js"></script>
-        <script src="../../jquery/jquery-register.js"></script>
+        <title>Twitergram</title>
         <link rel="stylesheet" href="../../Resources/fontawesome-free-5.5.0-web/css/all.css">
         <link rel="stylesheet" href="../../Resources/bootstrap-4.1.3/css/bootstrap.min.css">
         <script src="../../Resources/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="../../Resources/jquery-3.3.1.min.js"></script>
         <script src="../../Resources/popper.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
         <style>
@@ -34,15 +33,11 @@
         </style>
     </head>
     <body>
-        <nav class="navbar navbar-expand-sm bg-dark">
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item spacer">
-                        <img  height="40px" width="40px" src="../img/1480688210_Hacker.ico"/>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <script src="../../jquery/jquery-register.js"></script>
+        <div id="navbar"></div>
+        <script>
+        $("#navbar").load("navbar.html");
+        </script>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xs-12 col-md-8 bg-white mt-5 col-rounded">
