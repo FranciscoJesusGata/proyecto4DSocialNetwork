@@ -1,16 +1,12 @@
 <?php
-    include 'data.php';
-	
+    
+    include '../Querys/Conectar.php';
+
 	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
 		header('Location: ../../HTML/html/login.html');
 		return;
 	}
-	
-    function conectar($servidor, $usuario, $clave = "", $BD){
-        $conexion = mysqli_connect($servidor, $usuario, $clave, $BD);
-        return $conexion;
-    }
-
+    
     function recibirDatos($nombre, $conexion){
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $sql = "SELECT *
@@ -26,15 +22,21 @@
         }
     }
     
-    function validar($pass, $pass_Crypted){
+    function validar($pass, $pass_Crypted, $nombre){
         $acceso = password_verify($pass, $pass_Crypted);
         if ($acceso){
+            iniciarSesion($nombre);
             header('Location: ../../html/html/index.html');
             return;
         }
         else{
             echo "CONTRASEÑA INCORRECTA";
         }
+    }
+
+    function iniciarSesion($nombre){
+        session_start();
+        $_SESSION['N_Usuario'] = $nombre;
     }
     
     $nombre = $_POST['Nom_User'];
@@ -50,6 +52,6 @@
     if ($resultado){
         $datos = mysqli_fetch_array($resultado);
         $pass_Crypted = $datos['Contrasenia'];
-        validar($pass, $pass_Crypted);
+        validar($pass, $pass_Crypted, $nombre);
     }
 ?>
