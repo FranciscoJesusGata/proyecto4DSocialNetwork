@@ -34,15 +34,10 @@
     </head>
     <body>
         <script src="../../jquery/jquery-login.js"></script>
-        <nav class="navbar navbar-expand-sm bg-dark">
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item spacer">
-                        <img  height="40px" width="40px" src="../img/1480688210_Hacker.ico"/>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <div id="navbar"></div>
+        <script>
+        $("#navbar").load("navbar.html");
+        </script>
         <div class="container-fluid">
             <div class="row justify-content-center">
                 <div class="col-xs-12 col-md-8 bg-white mt-5 col-rounded">
