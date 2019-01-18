@@ -1,5 +1,21 @@
+$.ajax({
+    type: "POST",
+    url: "/projectSocialNetwork/PHP/Sessions/Session_Exists.php",
+    data: {action: "ejecutar"},
+    async: true,
+    dataType: "html",
+    success: function(data){
+                if (data == "yes"){
+                    window.location.replace("../../HTML/html/index.html");
+                }
+            },
+    error: function(){
+        console.log("error");
+    }
+});
+
 $(document).ready(function(){
-    
+
     /*
     ** En el momento en el que haga click al boton se lanzara el código
     */
