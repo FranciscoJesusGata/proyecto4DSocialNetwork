@@ -1,12 +1,12 @@
 <?php
-    
+
     include '../Querys/Conectar.php';
 
 	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
 		header('Location: ../../HTML/html/login.html');
 		return;
 	}
-    
+
     function recibirDatos($nombre, $conexion){
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $sql = "SELECT *
@@ -21,12 +21,12 @@
             return $result;
         }
     }
-    
+
     function validar($pass, $pass_Crypted, $nombre){
         $acceso = password_verify($pass, $pass_Crypted);
         if ($acceso){
             iniciarSesion($nombre);
-            header('Location: ../../html/html/index.html');
+            header('Location: ../../html/html/inicio.html');
             return;
         }
         else{
@@ -38,7 +38,7 @@
         session_start();
         $_SESSION['N_Usuario'] = $nombre;
     }
-    
+
     $nombre = $_POST['Nom_User'];
     $pass = $_POST['passwd'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
