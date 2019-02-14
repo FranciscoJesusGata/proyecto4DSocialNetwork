@@ -15,6 +15,38 @@ $.ajax({
 });
 
 $(document).ready(function(){
+    /*
+    ** Imprime un error si el usuario que se intentó resgistrarse ya existía o ya se estaba utilizando esa dirección
+       de correo
+    */
+    function errorUsuarioExistente(){
+        $.ajax({
+            type: "POST",
+            url: "/projectSocialNetwork/PHP/Sessions/Session_Exists.php",
+            data: {action: "error"},
+            async: true,
+            dataType: "html",
+            success: function(data){
+                        console.log(data);
+                        if (data == "usuario"){
+                            var html = "<div class='alert alert-danger' id='error_registro'>"
+                            html+="<strong>Error: </strong> Ya existe un usuario con ese nombre de usuario"
+                            html+="</div>";
+                            $("#alerta_passwd").after(html);
+                        } else if (data == "email"){
+                            var html = "<div class='alert alert-danger' id='error_registro'>"
+                            html+="<strong>Error: </strong> Ya hay un usuario asociado a esa cuenta de correo"
+                            html+="</div>";
+                            $("#alerta_passwd").after(html);
+                        }
+                    },
+            error: function(){
+                console.log("error");
+            }
+        });
+    }
+
+    errorUsuarioExistente();
 
     /*
     ** En el momento en el que haga click al boton se lanzara el código
@@ -30,7 +62,8 @@ $(document).ready(function(){
 		"<input type='hidden' name='passwd' value='"+passwd+"'>"+"</form>");
 		$('body').append(formulario);
 		$(formulario).submit();
-	}
+    }
+
     $("#send").click(function(){
         
         /*
