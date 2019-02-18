@@ -16,22 +16,43 @@
         <link rel="stylesheet" href="../../Resources/css/index.css">
     </head>
     <body>
-      <div class="col-sm-2 sidenav" style="height: 100%;">
+      <script src="../../JQuery/jquery-index.js"></script>
+      <div class="fondo" id="fondo">
+        <div class="efecto">
+          &nbsp;
+        </div>
       </div>
       <section>
+        <div class="col-sm-2 sidenav bg-white col-rounded mr-2 float-right" style="height: 90vh; margin-top: 5vh">
+          <form>
+            <div class="form-group">
+              <label for="user">Nombre de usuario:</label>
+              <input type="text" class="form-control" id="user">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Contraseña:</label>
+              <input type="password" class="form-control" id="pwd">
+            </div>
+            <button class="btn btn-primary" onclick="login">Iniciar Sesión</button>
+          </form>
+          <br/>
+          <br/>
+          ¿no tienes una cuenta?
+          <a href="register.html"><button class="btn btn-primary">Regístrate</button></a>
+        </div>
+        <h1 class="text-center display-4 title">4D</h1>
+        <li class="text-center mt-3 list1">
+          Una red diseñada para evitar a los Stalkers
+        </li>
+        <li class="text-center mt-3 list2">
+          El único dueño de tu información eres tú
+        </li>
+        <li class="text-center mt-3 list3">
+          Tus secretos están a salvo aquí
+        </li>
+        <li class="text-center mt-3 list4">
+          Comunicate con otros usuarios sin miedo a que te espien
+        </li>
       </section>
-      <h1 class="text-center display-4 title">4D</h1>
-      <li class="text-center mt-3 list1">
-        Una red diseñada para evitar a los Stalkers
-      </li>
-      <li class="text-center mt-3 list2">
-        El único dueño de tu información eres tú
-      </li>
-      <li class="text-center mt-3 list3">
-        Tus secretos están a salvo aquí
-      </li>
-      <li class="text-center mt-3 list4">
-        Comunicate con otros usuarios sin miedo a que te espien
-      </li>
     </body>
 </html>
