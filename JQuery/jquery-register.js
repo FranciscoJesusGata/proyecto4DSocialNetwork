@@ -6,7 +6,7 @@ $.ajax({
     dataType: "html",
     success: function(data){
                 if (data == "yes"){
-                    window.location.replace("../../HTML/html/index.html");
+                    window.location.replace("../../HTML/html/inicio.html");
                 }
             },
     error: function(){
@@ -51,7 +51,7 @@ $(document).ready(function(){
     /*
     ** En el momento en el que haga click al boton se lanzara el código
     */
-	
+
 	var enviar = function(passwd, email, Nom_User){
 		/*
 		** Crea un formulario y lo envía al PHP de registro
@@ -65,7 +65,7 @@ $(document).ready(function(){
     }
 
     $("#send").click(function(){
-        
+
         /*
         ** insertamos los valores del formulario en unas variables
         */
@@ -73,13 +73,13 @@ $(document).ready(function(){
         var passwd2 = $("#passwd2").val();
         var email = $("#email").val();
         var Nom_User = $("#nombre_user").val();
-        
+
         /*
         ** comprobamos si las contraseñas coinciden, si no, mostramos un alert
         */
         if(passwd1 == passwd2){
             $("#alerta_passwd").slideUp();
-            
+
             /*
             ** comprobamos la longitud de las contraseñas
             */
@@ -87,17 +87,17 @@ $(document).ready(function(){
                 swal("Error", "tu contraseña debe contener mas de 7 caracteres", "warning");
             }
             else{
-                
+
                 /*
                 ** Creamos una expresión regular para comprobar el Email. si al comparar el email
                 ** con la expresión no coincide, significa que el email no es correcto
                 */
-                
+
                 //Me he tirado unas horas configurando el RegExp, pero lo he logrado, el filtro funciona
 
-                var filtro = new RegExp("[A-Za-z0-9!#$%&'*+/=? ^_`{|}~-]+@[A-Za-z0-9]+[.]+[a-z0-9]{2,6}?");
+                var filtro = new RegExp("[A-Za-z0-9!#$%&'*+/=? .^_`{|}~-]+@[A-Za-z0-9]+[.]+[a-z0-9]{2,6}?");
                 if (filtro.test(email)) {
-                    
+
                     /*
                     ** Comprobamos la longitud del nombre de usuario
                     */
