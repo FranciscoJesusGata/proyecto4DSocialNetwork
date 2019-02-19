@@ -6,7 +6,7 @@ $.ajax({
     dataType: "html",
     success: function(data){
                 if (data == "yes"){
-                    window.location.replace("../../HTML/html/index.html");
+                    window.location.replace("../../HTML/html/inicio.html");
                 }
             },
     error: function(){
@@ -17,11 +17,11 @@ $.ajax({
 $(document).ready(function(){
 
     document.getElementsByTagName("html")[0].style.visibility = "visible";
-    
+
     /*
     ** En el momento en el que haga click al boton se lanzara el código
     */
-	
+
 	var enviar = function(passwd, Nom_User){
 		/*
 		** Crea un formulario y lo envía al PHP de registro
@@ -32,9 +32,9 @@ $(document).ready(function(){
 		$('body').append(formulario);
 		$(formulario).submit();
 	}
-	
+
     $("#send").click(function(){
-        
+
         /*
         ** Insertamos los valores del formulario en unas variables
         */
