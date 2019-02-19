@@ -1,5 +1,4 @@
-body
-{
+body{
   margin: 0;
   padding: 0;
   background: linear-gradient(to right, #0072ff, #ff0058);
@@ -9,10 +8,29 @@ body
 
   /***** Este codigo comentado nos permite *****/
   /***** cambiar el color de fondo         *****/
-
+  
   /*animation-name: backg;
   animation-duration: 15s;
   animation-iteration-count: infinite;*/
+}
+
+.btn-outline-primary{
+  border-color: #92dce5;
+  color: #92dce5;
+}
+
+.btn-outline-primary:hover{
+  background-color: #1b5299;
+  border-color: #1b5299;
+}
+
+#boton_registro{
+  position: absolute;
+  bottom: 60px;
+}
+
+#blanco form{
+  margin-top: 30px;
 }
 
 /***** Creamos el triangulo cristalino *****/
@@ -83,8 +101,8 @@ section:before
 /***** Efecto del titulo *****/
 @keyframes titulo {
   0% {margin-top: -20%}
-  75% {margin-top:25%}
-  100% {margin-top: 20%}
+  75% {margin-top:15%}
+  100% {margin-top: 10%}
 }
 
 /***** Efecto de la lista *****/
