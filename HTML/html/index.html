@@ -5,7 +5,7 @@
         <title>4D Social Network</title>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="../../Resources/jquery-3.3.1.min.js"></script>
-
+        <script src="../../JQuery/jquery-index.js"></script>
         <link rel="stylesheet" href="../../Resources/fontawesome-free-5.5.0-web/css/all.css">
         <link rel="stylesheet" href="../../Resources/bootstrap-4.1.3/css/bootstrap.min.css">
         <script src="../../Resources/bootstrap-4.1.3/js/bootstrap.min.js"></script>
@@ -16,14 +16,13 @@
         <link rel="stylesheet" href="../../Resources/css/index.css">
     </head>
     <body>
-      <script src="../../JQuery/jquery-index.js"></script>
       <div class="fondo" id="fondo">
         <div class="efecto">
           &nbsp;
         </div>
       </div>
       <section>
-        <div class="col-sm-2 sidenav bg-white col-rounded mr-2 float-right" style="height: 90vh; margin-top: 5vh">
+        <div id="blanco" class="col-sm-2 sidenav bg-white col-rounded mr-2 float-right" style="height: 90vh; margin-top: 5vh;">
           <form>
             <div class="form-group">
               <label for="user">Nombre de usuario:</label>
@@ -33,24 +32,24 @@
               <label for="pwd">Contraseña:</label>
               <input type="password" class="form-control" id="pwd">
             </div>
-            <button class="btn btn-primary" onclick="login">Iniciar Sesión</button>
           </form>
-          <br/>
-          <br/>
-          ¿no tienes una cuenta?
-          <a href="register.html"><button class="btn btn-primary">Regístrate</button></a>
+          <button id="iniciar_S" class="btn btn-outline-primary" onclick="login()">Iniciar Sesión</button>
+          <div id="boton_registro">
+            <p>¿No tienes cuenta aún?</p>
+            <a href="register.html"><button class="btn btn-outline-primary">Regístrate</button></a>
+          </div>
         </div>
-        <h1 class="text-center display-4 title">4D</h1>
-        <li class="text-center mt-3 list1">
-          Una red diseñada para evitar a los Stalkers
+        <h1 class="text-center display-4 title" style="font-size: 100px">4D</h1>
+        <li class="text-center mt-3 list1" style="font-size: 20px; list-style-type: none;">
+          Una red diseñada para evitar acosos
         </li>
-        <li class="text-center mt-3 list2">
+        <li class="text-center mt-3 list2" style="font-size: 20px; list-style-type: none;">
           El único dueño de tu información eres tú
         </li>
-        <li class="text-center mt-3 list3">
+        <li class="text-center mt-3 list3" style="font-size: 20px; list-style-type: none;">
           Tus secretos están a salvo aquí
         </li>
-        <li class="text-center mt-3 list4">
+        <li class="text-center mt-3 list4" style="font-size: 20px; list-style-type: none;">
           Comunicate con otros usuarios sin miedo a que te espien
         </li>
       </section>
