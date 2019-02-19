@@ -21,6 +21,7 @@
     //Comprobación de que el usuario que intenta registrarse ya existe. En caso de que exista devolverá true y
     //creará un parámetro de sesión para indiciar que mensaje de error debe mostrarse.
     function usuarioExiste ($nombre,$email,$conexion){
+        session_start();
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $email = mysqli_real_escape_string($conexion,$email);
         $query= "SELECT Nombre_Usuario, Correo
@@ -29,12 +30,12 @@
                     OR Correo = '".$email."'";
         $resultado = mysqli_query($conexion, $query);
         $datos = mysqli_fetch_array($resultado);
-        
-        if($datos == $nombre){
+        if($datos['Nombre_Usuario'] == $nombre){
             $_SESSION['errorRegistro'] = "usuario";
             return true;
-        }else if{
-            $_SESSION['errorRegistro'] = "usuario";
+        }else if($datos['Correo'] == $email){
+            echo "<br> Correo";
+            $_SESSION['errorRegistro'] = "email";
             return true;
         }else{
             return false;
@@ -88,11 +89,25 @@
             /* echo "Error al conectar con la base de datos <br/>";
             echo "error de depuración " . mysqli_connect_error() . "<br/>";
             echo "errorno de depuración " . mysqli_connect_errno() . "<br/>"; <~ Solo para pruebas */
-            echo "<h1>Lo sentimos</h1> <br/> <h3>Nuestros servicios estan caídos, intentá registrarte más tarde.</h3>"
+            echo "<h1>Lo sentimos</h1> <br/> <h3>Nuestros servicios estan caídos, intentá registrarte más tarde.</h3>";
     }
     $datosOk = comprobarDatos ($nombre, $clave, $email);
+    $existe = usuarioExiste ($nombre,$email,$conexion);
+    echo $nombre;
+    echo $clave;
+    echo $email;
     if (!$datosOk){
         header("Location: ../../HTML/html/register.html");
+        return;
+    }else{
+        if(!$existe){
+            echo "introduce";
+            introducirDatos($nombre, $clave, $email, $conexion);
+            header("Location: ../../HTML/html/login.html");
+        }else{
+            echo "<br>el usuario existe";
+            header("Location: ../../HTML/html/register.html");
+            return;
+        }
     }
-    introducirDatos($nombre, $clave, $email, $conexion);
 ?>
