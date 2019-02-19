@@ -3,9 +3,8 @@
     include '../Querys/Conectar.php';
 
   	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
-  		//header('Location: ../../HTML/html/index.html');
-      echo "El nombre de usuario o la contraseña están en blanco"
-  		exit;
+        echo "No han llegado los datos";
+        exit;
   	}
 
     function recibirDatos($nombre, $conexion){
@@ -27,9 +26,8 @@
         $acceso = password_verify($pass, $pass_Crypted);
         if ($acceso){
             iniciarSesion($nombre);
-            //header('Location: ../../html/html/inicio.html');
-            echo "correct"
-            return;
+            echo "correct";
+            exit;
         }
         else{
             echo "Usuario o contraseña incorrectas";
@@ -45,10 +43,11 @@
     $pass = $_POST['passwd'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
     if(!$conexion){
-           echo "Error al conectar con la base de datos <br/>";
-           echo "error de depuración " . mysqli_connect_error() . "<br/>";
-           echo "errorno de depuración " . mysqli_connect_errno() . "<br/>";
-           exit;
+        /*echo "Error al conectar con la base de datos <br/>";
+        echo "error de depuración " . mysqli_connect_error() . "<br/>";
+        echo "errorno de depuración " . mysqli_connect_errno() . "<br/>";*/
+        echo "Error al conectar con la base de datos";
+        exit;
     }
     $resultado = recibirDatos($nombre, $conexion);
     if ($resultado){
