@@ -1,12 +1,13 @@
 <?php
-    
+
     include '../Querys/Conectar.php';
 
-	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
-		header('Location: ../../HTML/html/login.html');
-		return;
-	}
-    
+  	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
+  		//header('Location: ../../HTML/html/index.html');
+      echo "El nombre de usuario o la contraseña están en blanco"
+  		exit;
+  	}
+
     function recibirDatos($nombre, $conexion){
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $sql = "SELECT *
@@ -14,23 +15,24 @@
                 WHERE Nombre_Usuario = '".$nombre."'";
         $result = mysqli_query($conexion,$sql);
         if(!$result || $result == ""){
-            echo "NO SE ENCUENTRA A ESTE USUARIO";
+            echo "Usuario o contraseña incorrectas";
             return false;
         }
         else{
             return $result;
         }
     }
-    
+
     function validar($pass, $pass_Crypted, $nombre){
         $acceso = password_verify($pass, $pass_Crypted);
         if ($acceso){
             iniciarSesion($nombre);
-            header('Location: ../../html/html/index.html');
+            //header('Location: ../../html/html/inicio.html');
+            echo "correct"
             return;
         }
         else{
-            echo "CONTRASEÑA INCORRECTA";
+            echo "Usuario o contraseña incorrectas";
         }
     }
 
@@ -38,7 +40,7 @@
         session_start();
         $_SESSION['N_Usuario'] = $nombre;
     }
-    
+
     $nombre = $_POST['Nom_User'];
     $pass = $_POST['passwd'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
