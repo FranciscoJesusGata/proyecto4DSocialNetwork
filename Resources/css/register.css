@@ -1,0 +1,30 @@
+body{
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #0072ff, #ff0058);
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+section
+{
+  top: 20vh;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: white;
+
+  opacity: 0.1;
+
+  clip-path: polygon(0% 0, 0 100%, 100% 100%);
+}
+.spacer{
+    margin-right: 5px;
+    margin-left: 5px;
+}.col-rounded{
+    border-radius: 10px;
+}
+.col-border{
+    border-color: black;
+    border-width: 5px;
+}

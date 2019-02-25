@@ -26,11 +26,21 @@ $(document).ready(function(){
 		/*
 		** Crea un formulario y lo envía al PHP de registro
 		*/
-		var formulario = $("<form method='POST' action='../../PHP/Sessions/Login.php' >"+
-		"<input type='hidden' name='Nom_User' value='"+Nom_User+"'>"+
-		"<input type='hidden' name='passwd' value='"+passwd+"'>"+"</form>");
-		$('body').append(formulario);
-		$(formulario).submit();
+    $("#fondo").show();
+    $.post("../../PHP/Sessions/Login.php",
+    {
+      Nom_User: Nom_User,
+      passwd: passwd,
+    },
+    function(data, status){
+      $("#fondo").hide();
+      if(data != "correct"){
+        swal("Error", data, "error")
+      }
+      else{
+        window.location.href = "inicio.html"
+      }
+    })
 	}
 
     $("#send").click(function(){
@@ -38,10 +48,10 @@ $(document).ready(function(){
         /*
         ** Insertamos los valores del formulario en unas variables
         */
-        var passwd = $("#passwd").val();
+        var Passwd = $("#passwd").val();
         var Nom_User = $("#nombre_user").val();
-        if(Nom_User.length && passwd.length > 0){
-			enviar(passwd, Nom_User);
+        if(Nom_User.length > 0 && Passwd.length > 0){
+			enviar(Passwd, Nom_User);
         }
         else{
 			$("#alerta_passwd").slideDown();
