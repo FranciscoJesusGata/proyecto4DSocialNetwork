@@ -1,41 +1,50 @@
+$.ajax({
+  type: "POST",
+  url: "/projectSocialNetwork/PHP/Sessions/Session_Exists.php",
+  data: {action: "ejecutar"},
+  async: true,
+  dataType: "html",
+  success: function(data){
+              if (data == "yes"){
+                  window.location.replace("../../HTML/html/inicio.html");
+              }
+          },
+  error: function(){
+      console.log("error");
+  }
+});
+
 $(document).ready(function(){
+  $("#alerta_passwd").hide();
   $("#fondo").hide();
 })
 
 function login() {
   var user = $("#user").val();
   var pwd = $("#pwd").val();
-  if(user == "" || pwd == ""){
-    if($("#datosVacios").length <= 0){
-      $("<p id='datosVacios' style='color: red; margin-top: 5px;'>Rellena los datos para poder iniciar sesión</p>").insertAfter("#iniciar_S");
-    }
-  }else{
-    $("#datosVacios").remove();
-    $("#fondo").removeAttr("display");
-    $.ajax({
-      type: "post",
-      url: "../../PHP/Sessions/Login.php",
-      data: {Nom_User: user, passwd: pwd},
-      dataType: "html",
-      success: function (response) {
-        $("#fondo").hide();
-        if(response != "correct"){
-          swal("Error", response, "error")
-        }
-        else{
-          window.location.href = "inicio.html"
-        }
-        console.log(response);
+  if(user.length < 1 || pwd.length < 1){
+    if($("#alerta_passwd").is(":hidden")){
+          $("#alerta_passwd").toggle("slow");  
       }
-    });
+  }else{
+      if(!$("#alerta_passwd").is(":hidden")){
+          $("#alerta_passwd").toggle("slow");
+      }
+      $("#fondo").removeAttr("display");
+      $.ajax({
+          type: "post", 
+          url: "../../PHP/Sessions/Login.php",
+          data: {Nom_User: user, passwd: pwd},
+          dataType: "html",
+          success: function (response) {
+              $("#fondo").hide();
+              if(response != "correct"){
+                  swal("Error", response, "error");
+              }
+              else{
+                  window.location.href = "inicio.html";
+              }
+          }
+      });
   }
-/*function(data, status){
-$("#fondo").hide();
-  if(data != "correct"){
-    swal("Error", data, "error")
-  }
-  else{
-    window.location.href = "inicio.html"
-  }
-}*/
 }
