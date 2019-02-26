@@ -45,10 +45,11 @@
     $pass = $_POST['passwd'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
     if(!$conexion){
-           echo "Error al conectar con la base de datos <br/>";
-           echo "error de depuración " . mysqli_connect_error() . "<br/>";
-           echo "errorno de depuración " . mysqli_connect_errno() . "<br/>";
-           exit;
+        /*echo "Error al conectar con la base de datos <br/>";
+        echo "error de depuración " . mysqli_connect_error() . "<br/>";
+        echo "errorno de depuración " . mysqli_connect_errno() . "<br/>";*/
+        echo "Error al conectar con la base de datos";
+        exit;
     }
     $resultado = recibirDatos($nombre, $conexion);
     if ($resultado){
