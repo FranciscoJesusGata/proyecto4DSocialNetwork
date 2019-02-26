@@ -3,8 +3,9 @@
     include '../Querys/Conectar.php';
 
   	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
-        echo "No han llegado los datos";
-        exit;
+  		//header('Location: ../../HTML/html/index.html');
+      echo "El nombre de usuario o la contraseña están en blanco";
+  		exit;
   	}
 
     function recibirDatos($nombre, $conexion){
@@ -26,8 +27,9 @@
         $acceso = password_verify($pass, $pass_Crypted);
         if ($acceso){
             iniciarSesion($nombre);
+            //header('Location: ../../html/html/inicio.html');
             echo "correct";
-            exit;
+            return;
         }
         else{
             echo "Usuario o contraseña incorrectas";

@@ -1,14 +1,10 @@
 body{
-  margin: 0;
-  padding: 0;
   background: linear-gradient(to right, #0072ff, #ff0058);
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
+  background-size: auto;
 
   /***** Este codigo comentado nos permite *****/
   /***** cambiar el color de fondo         *****/
-  
+
   /*animation-name: backg;
   animation-duration: 15s;
   animation-iteration-count: infinite;*/
@@ -26,38 +22,28 @@ body{
 
 #boton_registro{
   position: absolute;
-  bottom: 60px;
+  bottom: 7vh;
 }
 
-#blanco form{
-  margin-top: 30px;
-}
 
 /***** Creamos el triangulo cristalino *****/
 section
 {
+  top: 20vh;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  transform-style: preserve-3d;
-  transform: perspective(1000px);
-}
-section:before
-{
-  position: absolute;
-  content: "";
-  top: 10vh;
-  left: 0;
-  border-top: 100vh solid transparent;
-  border-left: 100vh solid white;
+  width: 100%;
+  background: white;
+
   opacity: 0.1;
+
+  clip-path: polygon(0% 0, 0 100%, 100% 100%);
 }
 
 /****** Clase para el efecto del titulo ******/
 .title
 {
+  font-size: 100px;
   color: white;
   animation-fill-mode: forwards;
   animation-name: titulo;
@@ -96,6 +82,10 @@ section:before
   animation-name: list;
   animation-delay: 11s;
   animation-duration: 5s;
+}
+.list{
+  font-size: 20px;
+  list-style-type: none;
 }
 
 /***** Efecto del titulo *****/
