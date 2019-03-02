@@ -4,7 +4,7 @@
 
   	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
   		//header('Location: ../../HTML/html/index.html');
-      echo "El nombre de usuario o la contraseña están en blanco";
+        echo "El nombre de usuario o la contraseña están en blanco";
   		exit;
   	}
 

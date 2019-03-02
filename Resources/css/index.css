@@ -1,6 +1,7 @@
 body{
   background: linear-gradient(to right, #0072ff, #ff0058);
   background-size: auto;
+  overflow: hidden;
 
   /***** Este codigo comentado nos permite *****/
   /***** cambiar el color de fondo         *****/
@@ -8,6 +9,12 @@ body{
   /*animation-name: backg;
   animation-duration: 15s;
   animation-iteration-count: infinite;*/
+}
+/*Cuando la resolución sea propia de un móvil se puede hacer overflow*/
+@media only screen and (max-width: 600px) {
+  body {
+    overflow: visible;
+  }
 }
 
 .btn-outline-primary{

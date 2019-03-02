@@ -24,6 +24,8 @@
         }
         if ($action == "error"){
             $error_registro = user_exists();
+            $_SESSION = array();
+            session_destroy();
             echo $error_registro;
         }
     }

@@ -5,6 +5,7 @@ $.ajax({
     async: true,
     dataType: "html",
     success: function(data){
+                console.log(data);
                 if (data == "yes"){
                     window.location.replace("../../HTML/html/inicio.html");
                 }
@@ -32,7 +33,7 @@ function login() {
         if(!$("#alerta_passwd").is(":hidden")){
             $("#alerta_passwd").toggle("slow");
         }
-        $("#fondo").removeAttr("display");
+        $("#fondo").attr("display: block;");
         $.ajax({
             type: "post", 
             url: "../../PHP/Sessions/Login.php",
