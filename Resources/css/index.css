@@ -55,6 +55,9 @@ section
   animation-fill-mode: forwards;
   animation-name: titulo;
   animation-duration: 5s;
+  -webkit-text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.68);
+  -moz-text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.68);
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.68);
 }
 
 /***** Clase para los efectos de la lista *****/

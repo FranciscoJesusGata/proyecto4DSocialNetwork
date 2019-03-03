@@ -23,30 +23,26 @@
             </div>
         </div>
         <section>
-            <div id="navbar"></div>
-            <script>
-                $("#navbar").load("navbar.html");
-            </script>
-            <div class="container-fluid">
-                <h1 class="text-center display-4 title">4D</h1>
-                <div class="row justify-content-center">
-                    <div class="col-xs-12 col-md-5 bg-white mt-3 col-rounded">
-                        <p id="cartel">¡Bienvenido!</p>
-                        <div class="form-group row justify-content-center">
-                            <i class="fas fa-user" style="font-size: 40px; margin: 0px 10px 0px -50px"></i><input type="text" placeholder="Nombre de Usuario" class="form-control col-8" id="user" maxlength="20" style="height: 50px;">
-                        </div>
-                        <div class="form-group row justify-content-center" style="margin-top:50px;">
-                            <i class="fas fa-lock" style="font-size: 40px; margin-right: 10px; margin-left: -50px;"></i><input type="password" placeholder="Constraseña" class="form-control col-8" style="height:50px;" id="pwd">
-                        </div>
-                        <div class="alert alert-danger" id="alerta_passwd">
-                            <strong>¡Atención!</strong> Algunos valores están incompletos.
-                        </div>
-                        <div class="text-center" style="margin: 30px 0px 20px 0px;">
-                            <button class="btn btn-outline-primary mb-3" style='padding-left:30px; padding-right: 30px;' id="send" onclick="login()">Iniciar Sesión</button>
-                        </div>
+        </section>
+        <div class="container-fluid">
+            <h1 class="text-center display-4 title">4D</h1>
+            <div class="row justify-content-center">
+                <div class="col-xs-12 col-md-5 bg-white mt-3 col-rounded">
+                    <p id="cartel">¡Bienvenido!</p>
+                    <div class="form-group row justify-content-center">
+                        <i class="fas fa-user" style="font-size: 40px; margin: 0px 10px 0px -50px"></i><input type="text" placeholder="Nombre de Usuario" class="form-control col-8" id="user" maxlength="20" style="height: 50px;">
+                    </div>
+                    <div class="form-group row justify-content-center" style="margin-top:50px;">
+                        <i class="fas fa-lock" style="font-size: 40px; margin-right: 10px; margin-left: -50px;"></i><input type="password" placeholder="Constraseña" class="form-control col-8" style="height:50px;" id="pwd">
+                    </div>
+                    <div class="alert alert-danger" id="alerta_passwd">
+                        <strong>¡Atención!</strong> Algunos valores están incompletos.
+                    </div>
+                    <div class="text-center" style="margin: 30px 0px 20px 0px;">
+                        <button class="btn btn-outline-primary mb-3" style='padding-left:30px; padding-right: 30px;' id="send" onclick="login()">Iniciar Sesión</button>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </body>
 </html>
