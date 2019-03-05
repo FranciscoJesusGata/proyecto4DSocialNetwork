@@ -72,7 +72,6 @@ $(document).ready(function(){
             async: true,
             dataType: "html",
             success: function(data){
-                        console.log(data);
                         if (data == "usuario"){
                             var html = "<div class='alert alert-danger col-md-12' style='display: block; margin-top: 10px; margin-bottom: -5px;' id='error_registro'>"
                             html+="<strong>Error: </strong> Ya existe un usuario con ese nombre de usuario"
@@ -144,7 +143,6 @@ $(document).ready(function(){
 
         //Se comprueba que no falte ningún dato obligatorio
         if((Nom_User.length * passwd1.length * passwd2.length * email.length) > 0){
-            console.log(Nom_User.length * passwd1.length * passwd2.length * email.length);
             /*
             ** comprobamos si las contraseñas coinciden, si no, mostramos un alert
             */
@@ -173,9 +171,8 @@ $(document).ready(function(){
                         ** Comprobamos la longitud del nombre de usuario
                         */
                         if(Nom_User.length >= 2 && Nom_User.length <= 20){
-                            $("#registro").unbind( "submit", true );
+                            $("#registro").unbind( "submit", false );
                             $("#registro").submit();
-                            console.log("envia");
                         }
                         else{
                             if(Nom_User.length > 20){
