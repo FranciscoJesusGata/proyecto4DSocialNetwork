@@ -37,7 +37,7 @@ section
 
   opacity: 0.1;
 
-  clip-path: polygon(0% 0, 0 100%, 100% 100%);
+  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
 }
 
 /****** Clase para el efecto del titulo ******/
