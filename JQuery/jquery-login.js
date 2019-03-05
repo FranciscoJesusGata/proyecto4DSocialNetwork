@@ -5,7 +5,6 @@ $.ajax({
     async: true,
     dataType: "html",
     success: function(data){
-                console.log(data);
                 if (data == "yes"){
                     window.location.replace("../../HTML/html/main.html");
                 }
@@ -25,6 +24,10 @@ $(document).ready(function(){
 function login() {
     var user = $("#user").val();
     var pwd = $("#pwd").val();
+    var recordar = 0;
+    if ($("#recordar").is(":checked")){
+        recordar = 1;
+    }
     if(user.length < 1 || pwd.length < 1){
       if($("#alerta_passwd").is(":hidden")){
             $("#alerta_passwd").toggle("slow");
@@ -37,7 +40,7 @@ function login() {
         $.ajax({
             type: "post",
             url: "../../PHP/Sessions/Login.php",
-            data: {Nom_User: user, passwd: pwd},
+            data: {Nom_User: user, passwd: pwd, remember:recordar},
             dataType: "html",
             success: function (response) {
                 $("#fondo").hide();
