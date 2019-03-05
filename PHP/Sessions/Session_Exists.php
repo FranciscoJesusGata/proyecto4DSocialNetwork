@@ -3,6 +3,9 @@
         $exist = "no";
         if (isset($_SESSION['N_Usuario'])){
             $exist = "yes";
+        }else if (isset($_COOKIE["Sesion_4D"])){
+            $_SESSION['N_Usuario'];
+            $exist = "yes";
         }
         return $exist;
     }
@@ -24,8 +27,6 @@
         }
         if ($action == "error"){
             $error_registro = user_exists();
-            $_SESSION = array();
-            session_destroy();
             echo $error_registro;
         }
     }

@@ -39,10 +39,12 @@
     function iniciarSesion($nombre){
         session_start();
         $_SESSION['N_Usuario'] = $nombre;
+        setcookie("Sesion_4D",$nombre,0);
     }
 
     $nombre = $_POST['Nom_User'];
     $pass = $_POST['passwd'];
+    $recordar = $_POST['remember'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
     if(!$conexion){
         /*echo "Error al conectar con la base de datos <br/>";
