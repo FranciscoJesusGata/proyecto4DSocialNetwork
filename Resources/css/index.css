@@ -9,35 +9,18 @@ body{
   animation-duration: 15s;
   animation-iteration-count: infinite;*/
 }
-
-.btn-outline-primary{
-  border-color: #92dce5;
-  color: #92dce5;
-}
-
-.btn-outline-primary:hover{
-  background-color: #1b5299;
-  border-color: #1b5299;
-}
-
-#boton_registro{
-  position: absolute;
-  bottom: 7vh;
-}
-
-
 /***** Creamos el triangulo cristalino *****/
 section
 {
   top: 20vh;
-  position: absolute;
+  position: fixed;
   height: 80vh;
-  width: 50vh;
+  width: 40vh;
   background: white;
 
   opacity: 0.1;
 
-  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
+  clip-path: polygon(0vh 0, 0 80vh, 80vh 80vh);
 }
 
 /****** Clase para el efecto del titulo ******/

@@ -2,21 +2,21 @@ body{
   margin: 0;
   padding: 0;
   background: linear-gradient(to right, #0072ff, #ff0058);
-  width: 100%;
+  width: 120vh;
   min-height: 100vh;
   overflow: hidden;
 }
 section
 {
   top: 20vh;
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  position: fixed;
+  height: 80vh;
+  width: 50vh;
   background: white;
 
   opacity: 0.1;
 
-  clip-path: polygon(0% 0, 0 100%, 100% 100%);
+  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
 }
 .spacer{
     margin-right: 5px;

@@ -9,14 +9,14 @@ body{
 section
 {
   top: 20vh;
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  position: fixed;
+  height: 80vh;
+  width: 50vh;
   background: white;
 
   opacity: 0.1;
 
-  clip-path: polygon(0% 0, 0 100%, 100% 100%);
+  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
 }
 .title{
   font-size: 100px;
@@ -62,7 +62,7 @@ section
     justify-content: center;
     align-items: center;
   }
-  
+
   .efecto {
     position: absolute;
     top: 35vh;
@@ -74,9 +74,8 @@ section
     height: 120px;
     animation: spin 2s linear infinite;
   }
-  
+
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  
