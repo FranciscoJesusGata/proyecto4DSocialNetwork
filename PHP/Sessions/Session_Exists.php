@@ -4,8 +4,10 @@
         if (isset($_SESSION['N_Usuario'])){
             $exist = "yes";
         }else if (isset($_COOKIE["Sesion_4D"])){
-            $_SESSION['N_Usuario'];
-            $exist = "yes";
+            if($_COOKIE['Sesion_4D']!=null){
+                $_SESSION['N_Usuario'] = $_COOKIE["Sesion_4D"];
+                $exist = "yes";
+            }
         }
         return $exist;
     }
