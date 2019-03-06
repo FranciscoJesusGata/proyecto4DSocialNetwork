@@ -1,6 +1,7 @@
 body{
   background: linear-gradient(to right, #0072ff, #ff0058);
   background-size: auto;
+  overflow: hidden;
 
   /***** Este codigo comentado nos permite *****/
   /***** cambiar el color de fondo         *****/
@@ -9,6 +10,32 @@ body{
   animation-duration: 15s;
   animation-iteration-count: infinite;*/
 }
+<<<<<<< HEAD
+=======
+/*Cuando la resolución sea propia de un móvil se puede hacer overflow*/
+@media only screen and (max-width: 600px) {
+  body {
+    overflow: visible;
+  }
+}
+
+.btn-outline-primary{
+  border-color: #92dce5;
+  color: #92dce5;
+}
+
+.btn-outline-primary:hover{
+  background-color: #1b5299;
+  border-color: #1b5299;
+}
+
+#boton_registro{
+  position: absolute;
+  bottom: 7vh;
+}
+
+
+>>>>>>> 15d056c909dcf0e039a5ae133487a75b7a00c5ce
 /***** Creamos el triangulo cristalino *****/
 section
 {

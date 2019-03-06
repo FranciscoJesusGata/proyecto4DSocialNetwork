@@ -4,7 +4,7 @@
 
   	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
   		//header('Location: ../../HTML/html/index.html');
-      echo "El nombre de usuario o la contraseña están en blanco";
+        echo "El nombre de usuario o la contraseña están en blanco";
   		exit;
   	}
 
@@ -39,10 +39,12 @@
     function iniciarSesion($nombre){
         session_start();
         $_SESSION['N_Usuario'] = $nombre;
+        setcookie("Sesion_4D",$nombre,0);
     }
 
     $nombre = $_POST['Nom_User'];
     $pass = $_POST['passwd'];
+    $recordar = $_POST['remember'];
     $conexion = conectar($servidor, $usuario, $clave, $BD);
     if(!$conexion){
         /*echo "Error al conectar con la base de datos <br/>";
