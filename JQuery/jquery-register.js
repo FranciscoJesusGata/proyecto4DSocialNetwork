@@ -6,7 +6,7 @@ $.ajax({
     dataType: "html",
     success: function(data){
                 if (data == "yes"){
-                    window.location.replace("../../HTML/html/inicio.html");
+                    window.location.replace("../../HTML/html/main.html");
                 }
             },
     error: function(){
