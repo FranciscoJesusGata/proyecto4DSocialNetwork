@@ -2,8 +2,13 @@ body{
   margin: 0;
   padding: 0;
   background: linear-gradient(to right, #0072ff, #ff0058);
+<<<<<<< HEAD
+  width: 120vh;
+  min-height: 100vh;
+=======
   width: 100%;
   min-height: 80vh;
+>>>>>>> 15d056c909dcf0e039a5ae133487a75b7a00c5ce
   overflow: hidden;
 }
 
@@ -16,14 +21,14 @@ body{
 
 section{
   top: 20vh;
-  position: absolute;
-  height: 100%;
-  width: 100%;
+  position: fixed;
+  height: 80vh;
+  width: 50vh;
   background: white;
 
   opacity: 0.1;
 
-  clip-path: polygon(0% 0, 0 100%, 100% 100%);
+  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
 }
 #send{
   margin-top: 10px;

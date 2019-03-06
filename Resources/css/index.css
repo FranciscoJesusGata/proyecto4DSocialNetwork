@@ -10,6 +10,8 @@ body{
   animation-duration: 15s;
   animation-iteration-count: infinite;*/
 }
+<<<<<<< HEAD
+=======
 /*Cuando la resolución sea propia de un móvil se puede hacer overflow*/
 @media only screen and (max-width: 600px) {
   body {
@@ -33,18 +35,19 @@ body{
 }
 
 
+>>>>>>> 15d056c909dcf0e039a5ae133487a75b7a00c5ce
 /***** Creamos el triangulo cristalino *****/
 section
 {
   top: 20vh;
-  position: absolute;
+  position: fixed;
   height: 80vh;
-  width: 50vh;
+  width: 40vh;
   background: white;
 
   opacity: 0.1;
 
-  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
+  clip-path: polygon(0vh 0, 0 80vh, 80vh 80vh);
 }
 
 /****** Clase para el efecto del titulo ******/
