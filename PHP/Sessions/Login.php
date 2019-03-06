@@ -39,7 +39,7 @@
     function iniciarSesion($nombre){
         session_start();
         $_SESSION['N_Usuario'] = $nombre;
-        setcookie("Sesion_4D",$nombre,0);
+        setcookie("Sesion_4D",$nombre, strtotime( '+1 year' ),"/");
     }
 
     $nombre = $_POST['Nom_User'];
