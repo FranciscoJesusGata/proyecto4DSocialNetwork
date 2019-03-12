@@ -48,9 +48,17 @@
         $clave = password_hash($clave, PASSWORD_DEFAULT);
         //Creación de las carpetas de las fotos y vídeos que subirán los usuarios
         crearCarpetaDeUsuario($nombre);
-        $foto = guardarFoto($nombre);
-        $cabecera = guardarCabecera($nombre);
-        $tema = guardarTema($nombre);
+        $foto = NULL;
+        $cabecera = NULL;
+        $tema = NULL;
+        if(count($_FILES['foto']['name']) > 0){
+            $foto = guardarFoto($nombre);
+        }else if(count($_FILES['encabezado']['name']) > 0){
+            $cabecera = guardarCabecera($nombre);
+        }else if (count($_FILES['tema']['name'])  > 0){
+            $tema = guardarTema($nombre);
+        }
+        
         //Instrucción para introducir los datos en la tabla personas y usuarios
         $query1 = "INSERT INTO personas
                 VALUES('".$nombre."','".$clave."');";
