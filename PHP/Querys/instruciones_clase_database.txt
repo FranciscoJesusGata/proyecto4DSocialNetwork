@@ -1,0 +1,37 @@
+Funcionamiento:
+
+  1º incluir la clase
+      -include 'Database.php';
+  2º crear variable que contenga la clase
+      -$database = new Database;
+
+      Es preferible crear la variable debajo del include
+
+
+  Ya está operativo.
+  Recuerda pasar a las funciones la variable que contiene la clase
+  (en este caso es $database)
+
+
+  IMPORTANTE
+  Es necesario escapar las variables que se introduzcan a la petición sql
+  ya que esta clase no tiene la capacidad de hacerlo automáticamente
+
+
+  opciones:
+
+  opcion 1: hacer una consulta y obtener el resultado
+      -$datos = $database->get_data($sql);
+      obtienes el resultado de la petición desencapsulado
+
+  opcion 2: hacer una consulta ignorando el resultado
+      -$database->send_data($sql);
+      no devuelve nada
+
+  opcion 4: obtener la conexión a la base de datos
+      -$conexion = $database->db_conection;
+      devuelve la conexión a la base de datos
+
+  opcion 5: cerrar la conexión con la base de recibirDatos
+      -$database->end_of_connection();
+      no devuelve nada

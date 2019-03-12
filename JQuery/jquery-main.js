@@ -1,7 +1,7 @@
 
 $.ajax({
     type: "POST",
-    url: "/projectSocialNetwork/PHP/Sessions/Session_Exists.php",
+    url: "../../PHP/Sessions/Session_Exists.php",
     data: {action: "ejecutar"},
     async: true,
     dataType: "html",
@@ -14,7 +14,7 @@ $.ajax({
         console.log("error");
     }
 });
-console.log("hi");
+
 function togleTarget(target){
     $("#com" + target).slideToggle();
 };
@@ -43,7 +43,26 @@ function send(target){
 
     $("#comment" + target).append(html);
 };
-$(document).ready(function(){
 
+function change_Img(input) {
+    
+    if (input.files && input.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        $('#img_display').attr('src', e.target.result);
+        $('#img_display').css('display','inline-block');
+    }
+
+    reader.readAsDataURL(input.files[0]);
+    }
+}
+
+$(document).ready(function(){
     document.getElementsByTagName("html")[0].style.visibility = "visible";
+
+
+    $("#img1").change(function () {
+        change_Img(this);
+    });
 });
