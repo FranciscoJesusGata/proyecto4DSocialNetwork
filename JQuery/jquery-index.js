@@ -1,6 +1,6 @@
 $.ajax({
   type: "POST",
-  url: "/projectSocialNetwork/PHP/Sessions/Session_Exists.php",
+  url: "../../PHP/Sessions/Session_Exists.php",
   data: {action: "ejecutar"},
   async: true,
   dataType: "html",
