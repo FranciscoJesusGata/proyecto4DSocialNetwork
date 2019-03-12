@@ -1,6 +1,6 @@
 <?php
-
-    include '../Querys/Conectar.php';
+    include '../Querys/Database.php';
+    $database = new Database;
 
   	if(!isset($_POST['Nom_User']) || !isset($_POST['passwd'])){
   		//header('Location: ../../HTML/html/index.html');
@@ -8,12 +8,12 @@
   		exit;
   	}
 
-    function recibirDatos($nombre, $conexion){
-        $nombre = mysqli_real_escape_string($conexion,$nombre);
+    function recibirDatos($nombre, $database){
+        $nombre = mysqli_real_escape_string($database->db_conection,$nombre);
         $sql = "SELECT *
                 FROM personas
                 WHERE Nombre_Usuario = '".$nombre."'";
-        $result = mysqli_query($conexion,$sql);
+        $result = $database->get_data($sql);
         if(!$result || $result == ""){
             echo "Usuario o contraseña incorrectas";
             return false;
@@ -23,12 +23,13 @@
         }
     }
 
-    function validar($pass, $pass_Crypted, $nombre){
+    function validar($pass, $pass_Crypted, $nombre, $database){
         $acceso = password_verify($pass, $pass_Crypted);
         if ($acceso){
             iniciarSesion($nombre);
             //header('Location: ../../html/html/inicio.html');
             echo "correct";
+            $database->end_of_connection();
             return;
         }
         else{
@@ -45,18 +46,18 @@
     $nombre = $_POST['Nom_User'];
     $pass = $_POST['passwd'];
     $recordar = $_POST['remember'];
-    $conexion = conectar($servidor, $usuario, $clave, $BD);
-    if(!$conexion){
+    $ok = $database->conexion();
+
+    if($ok == "error"){
         /*echo "Error al conectar con la base de datos <br/>";
         echo "error de depuración " . mysqli_connect_error() . "<br/>";
         echo "errorno de depuración " . mysqli_connect_errno() . "<br/>";*/
         echo "Error al conectar con la base de datos";
         exit;
     }
-    $resultado = recibirDatos($nombre, $conexion);
+    $resultado = recibirDatos($nombre, $database);
     if ($resultado){
-        $datos = mysqli_fetch_array($resultado);
-        $pass_Crypted = $datos['Contrasenia'];
-        validar($pass, $pass_Crypted, $nombre);
+        $pass_Crypted = $resultado['Contrasenia'];
+        validar($pass, $pass_Crypted, $nombre, $database);
     }
 ?>
