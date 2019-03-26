@@ -21,7 +21,23 @@ function checkSesionNavbar (){
   });
 }
 
+function checkNotificaciones(){
+  $.ajax({
+    type: "POST",
+    url: "/projectSocialNetwork/PHP/Querys/Notificaciones.php",
+    data: {adv: false},
+    async: true,
+    dataType: "html",
+    success: function(data){
+                if(data != 0){
+                  $("#count-not").text(data)
+                }
+            },
+  });
+}
+
 checkSesionNavbar();
+checkNotificaciones();
 
 $("#cerrarSesionNavbar").click(function (){
   window.location.href = "../../PHP/Sessions/Logout.php";
