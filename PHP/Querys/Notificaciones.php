@@ -44,4 +44,6 @@
     echo "Error al hacer la peticion";
   }
 
+  $database->end_of_connection();
+
 ?>
