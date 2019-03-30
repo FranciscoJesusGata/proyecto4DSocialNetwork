@@ -56,6 +56,7 @@
         return "error";
       }
       $data = $this->query($conexion, $sql);
+      return $data;
     }
 
   }
