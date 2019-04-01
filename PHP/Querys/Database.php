@@ -54,6 +54,7 @@
         return "error";
       }
       $data = $this->query($this->db_conection, $sql);
+      return $data;
     }
 
   }
