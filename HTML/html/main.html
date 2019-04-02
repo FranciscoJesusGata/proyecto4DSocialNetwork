@@ -33,7 +33,7 @@
     </div>
     <div class="container-fluid">
       <div class="row justify-content-center">
-        <div class="col-xl-3 col-md-4 col-6 bg-white mx-2 mb-5 col-rounded h-25" style="max-height: 100%;">
+        <div class="col-xl-3 col-md-4 col-6 bg-white mx-2 mb-5 col-rounded h-25 d-lg-block d-sm-none" style="max-height: 100%;">
             <img src="../img/cool-arma-3-wallpaper-28766-29484-hd-wallpapers.jpg"
                       class="rounded-circle my-3 mx-auto d-block" width="150vh" height="150vh">
             <div class="container-fluid text-center">
@@ -56,27 +56,34 @@
             </div>
         </div>
 
-        <div class="col-xl-8 col-md-7 mx-2 col-10 bg-white col-rounded">
+        <div class="col-xl-8 col-md-7 col-sm-12 col-xs-12 bg-white col-rounded">
           <br>
           <div class="form">
-            <form id="publicar" method="POST" enctype="multipart/form-data">
+            <form id="publicar" method="POST">
               <div class="form-group">
                 <textarea class="form-control" id="post" form="publicar" name="post" style="resize: none" rows="3" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
               </div>
-              <input type="submit" id="sendPost" class="btn btn-primary" value="Publicar">
+              <input type="submit" id="sendPost" class="btn btn-primary" value="Publicar" disabled="true">
               <input type="file" style="display: none;" class="form-control" name="foto" id="img1" accept="image/png, image/jpeg">
               <button type="button" class="btn btn-secundary" id="fakebtn1" onclick="$('#img1').click();">Subir imagen</button>
+              <select class="form-control d-inline-block col-xl-2 col-md-2 col-sm-3 float-right ml-1" name="tiempo" id="tiempo">
+                <option selected="selected" value="MINUTE">Minutos</option>
+                <option value="HOUR">Horas</option>
+                <option value="DAY">Días</option>
+                <option id="month" value="MONTH">Meses</option>
+              </select>
+              <input type="number" class="form-control d-inline-block col-1 float-right" value="5" min="1" max="30" name="cantidad" id="cantidad">
               <img id="img_display" class ="rounded ml-1" src="#" style="display:none; height: 10vh; width: 10vh;">
             </form>
-          </div>
-          <hr>
+          </div><br>
+          <hr class="w-100">
           <div class="col-12 mb-3 col-rounded">
             <img height="40px" width="40px" src="../img/arma-3-diver-logo-widescreen-wallpaper.jpg" class="rounded-circle">
             <label>diegogamer747</label>
-            <hr/>
+            <span class="row"></span>
             <p>I think that my commander won´t give me a rise after that<button class="btn float-right"><i class="far fa-heart"></i></button></p>
             <img class="col-rounded" width="50%" src="../img/107410_screenshots_20171229093054_1.jpg">
-            <hr/>
+            <hr class="w-100">
             <div class="col" id="comment1">
               <div class="col-md-12">
                   <img height="40px" width="40px" src="../img/user.jpg" class="rounded-circle">

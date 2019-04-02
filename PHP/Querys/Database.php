@@ -46,22 +46,21 @@
 
     /*enviar petición a la base de datos y obtener resultado*/
     public function get_data($sql){
-      $conexion = $this->db_conection;
-      if ($conexion == "null") {
+      if ($this->db_conection == null) {
         return "error";
       }
-      $data = $this->query($conexion, $sql);
+      $data = $this->query($this->db_conection, $sql);
       $final_data = $this->fetch_array($data);
       return $final_data;
     }
 
     /*enviar petición a la base de datos SIN obtener resultado*/
     public function send_data($sql){
-      $conexion = $this->db_conection;
-      if ($conexion == "null") {
+      if ($this->db_conection == null) {
         return "error";
       }
-      $data = $this->query($conexion, $sql);
+      $data = $this->query($this->db_conection, $sql);
+      return $data;
     }
 
   }

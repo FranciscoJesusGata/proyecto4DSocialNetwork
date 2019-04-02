@@ -64,5 +64,29 @@ $(document).ready(function(){
 
     $("#img1").change(function () {
         change_Img(this);
+        if($("#img1").attr("src") == "#"){
+        $("#sendPost").attr("disabled",true);
+        }else{
+            $("#sendPost").attr("disabled",false);
+        }
     });
+
+    $("#post").keyup(function () { 
+        if(!$.trim($("#post").val())){
+            $("#sendPost").attr("disabled",true);
+        }else{
+            $("#sendPost").attr("disabled",false);
+        }
+    });
+
+    $("#tiempo").on("change", function(){
+        if($("#tiempo").val() == "MONTH"){
+            if($("#cantidad").val() > 12){
+                $("#cantidad").val("12");
+            }
+            $("#cantidad").attr("max", "12");
+        }else{
+            $("#cantidad").attr("max", "30");
+        }
+    })
 });

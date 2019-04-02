@@ -7,15 +7,18 @@
             <li class="nav-item mr-3">
 
             </li>
-            <li class="nav-item dropdown conSesionIniciada mr-3">
-                <button class="btn dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-                    <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-primary">4</span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                </div>
-            </li>
             <li class="nav-item mr-3">
                 <button class="btn spacer conSesionIniciada">Link 2</button>
+            </li>
+            <li class="nav-item dropdown conSesionIniciada mr-3">
+                <button class="btn dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+                    <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-primary" id="count-not"></span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="notification-list">
+                  <a href="notificaciones.html" class="dropdown-item"> Avanzado</a>
+                  <a href="mensajes.html" class="dropdown-item" id="msg"><span class="badge badge-primary" id="msg-span"></span> Mensajes</a>
+                  <a href="peticiones.html" class="dropdown-item" id="seg"><span class="badge badge-primary" id="seg-span"></span> Peticiones</a>
+                </div>
             </li>
         </ul>
         <a href="login.html" class="sinSesionIniciada"><button class="btn" type="button">Iniciar Sesion</button></a>
