@@ -1,12 +1,129 @@
 <?php
   include 'Database.php';
   $database = new Database;
-  // TODO: query para obtener los ultimos 3 Mensajes
-  function get3LastMessages($nombre, $database){
-    $sql="SELECT * FROM mensajes WHERE F_Lectura IS NULL AND Id_Receptor = '".$nombre."'";
+  session_start();
+
+  function getLastMessages($nombre, $database){
+    $return = array();
+    for ($i=0; $i < 3 ; $i++) {
+      $sql="SELECT * FROM mensajes WHERE F_Lectura IS NULL AND Id_Receptor = '".$nombre."'";
+      $data = $database->get_data($sql);
+      echo json_encode($data);
+      array_push($return, $data[$i]);
+    }
+
+    return $return;
   }
-  // TODO: query para obtener las ultimas peticiones de seguimiento
-  // TODO: query para obtener las 5 ultimas publicaciones
-  // TODO: query para automatizar lista(Amonestaciones, peticiones, mensajes,
-  //       publicaciones con denuncias)
+
+  function getLastPeticiones($nombre, $database)
+  {
+    $return = array();
+    for ($i=0; $i < 3 || $i < count($data); $i++) {
+      $sql = "SELECT * FROM seguir WHERE Nombre_Seguido = '".$nombre."' AND F_Inidio IS NULL";
+      $data = $database->get_data($sql);
+      array_push($return, $data[$i]);
+    }
+    return $return;
+  }
+
+  function getLastPublicaciones($nombre, $database)
+  {
+    $return = array();
+    for ($i=0; $i < 10 || $i < count($data); $i++) {
+      $sql = "SELECT * FROM seguir WHERE Nombre_Seguido = '".$nombre."' AND F_Inidio IS NULL";
+      $data = $database->get_data($sql);
+      array_push($return, $data[$i]);
+    }
+    return $data['num'];
+  }
+
+  function getCountPeticiones($nombre, $database){
+    $sql = "SELECT count(Nombre_Usuario) AS num FROM seguir WHERE Nombre_seguido = '".$nombre."' AND F_Inicio is NULL";
+    $data = $database->get_data($sql);
+
+    return $data['num'];
+  }
+
+  function getCountMensajes($nombre, $database){
+    $sql = "SELECT count(Id_M) AS num FROM mensajes WHERE Id_Receptor = '".$nombre."' AND F_Lectura is NULL";
+    $data = $database->get_data($sql);
+
+    return $return;
+  }
+
+  function getCountMeGusta($nombre, $database){
+    $sql1 = "SELECT count(Nombre_Usuario) AS num FROM me_gusta_p WHERE Nombre_seguido = '".$nombre."'";
+    $sql2 = "SELECT count(Nombre_Usuario) AS num FROM me_gusta_c WHERE Nombre_seguido = '".$nombre."'";
+    $data1 = $database->get_data($sql1);
+    $data2 = $database->get_data($sql2);
+
+    $return = $data1['num'] + $data2['num'];
+
+    return $data['num'];
+  }
+
+  function getCountPublicaciones($nombre, $database){
+    $sql = "SELECT count(Id_P) AS num FROM publicaciones WHERE Nombre_seguido = '".$nombre."'";
+    $data = $database->get_data($sql);
+
+    return $data['num'];
+  }
+
+  function getCountComentarios($nombre, $database){
+    $sql = "SELECT count(Id_C) AS num FROM seguir WHERE Nombre_seguido = '".$nombre."'";
+    $data = $database->get_data($sql);
+
+    return $data['num'];
+  }
+
+  function controller($nombre, $database, $type){
+    switch ($type) {
+      case 'AdvMsg':
+        $data = getLastMessages($nombre, $database);
+        break;
+      case 'AdvSeg':
+        $data = getLastPeticiones($nombre, $database);
+        break;
+      case 'AdvPub':
+        $data = getLastPublicaciones($nombre, $database);
+        break;
+      case 'Pet':
+        $data = getCountPeticiones($nombre, $database);
+        break;
+      case 'mg':
+        $data = getCountMeGusta($nombre, $database);
+        break;
+      case 'Msg':
+        $data = getCountMensajes($nombre, $database);
+        break;
+      case 'Com':
+        $data = getCountComentarios($nombre, $database);
+        break;
+      case 'Pub':
+        $data = getCountPublicaciones($nombre, $database);
+        break;
+    }
+
+    $database->end_of_connection();
+
+    return $data;
+  }
+
+//----------------------------------------------------------------------------//
+
+  if (isset($_POST['type'])) {
+    $nombre = $_SESSION['N_Usuario'];
+    $type = $_POST['type'];
+    $ok = $database->conexion();
+
+    if($ok == "error"){
+        echo "Error al conectar con la base de datos";
+    }else {
+      $result = controller($nombre, $database, $type);
+      echo json_encode($result);
+    }
+
+  } else{
+    echo "Error al hacer la peticion";
+  }
 ?>

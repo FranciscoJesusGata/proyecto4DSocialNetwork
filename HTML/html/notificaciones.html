@@ -29,31 +29,99 @@
           <h2 class="display-4 text-center">Notificaciones</h2>
       </div>
       <div class="row">
-        <!-- TODO: utilizar este div para mostras los tres primeros mensajes -->
-        <div class="col-12 col-md-6" id="msg">
-          <table class="table table-hover table-bordered">
+        <div class="col-12 col-md-6 table-wrapper-scroll-y my-custom-scrollbar" id="msg">
+          <table class="table table-borderless">
             <thead>
-              Mensajes
+              <tr>
+                <th class="text-center">Mensajes</th>
+              </tr>
             </thead>
-            <tbody>
-              
+            <tbody id="AdvMsg">
+              <tr>
+                <td><div>Esto es el mensaje numero 1</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el mensaje numero 2</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el mensaje numero 3</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el mensaje numero 4</div></td>
+
+              </tr>
             </tbody>
           </table>
         </div>
         <!-- TODO: automatizar la lista, se recomienda usar <span></span> -->
         <div class="col-12 col-md-6 mt-3">
-          Peticiones de amistad: 2
+          Peticiones de amistad: <span id="seg">2</span>
           <br>
-          Mensajes recibidos: 1
+          Mensajes recibidos: <span id="msg">1</span>
           <br>
-          Amonestaciones: 0
+          Total de Me Gusta: <span id="mg">20</span>
           <br>
-          Publicaciones con denuncias: 2
+          Publicaciónes: <span id="pub">20</span>
+          <br>
+          Comentarios: <span id="com">20</span>
         </div>
       </div>
-      <!-- TODO: añadir lista de peticiones de seguimiento, mostrar tres -->
-      <!-- TODO: mostrar lista con los likes y los dislikes de las últimas
-                 publicaciones y comentarios, mostrar 5 -->
+      <div class="row">
+        <div class="col-12 col-md-6 table-wrapper-scroll-y my-custom-scrollbar" id="msg">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th class="text-center">petición de seguimiento</th>
+              </tr>
+            </thead>
+            <tbody id="AdvSeg">
+              <tr>
+                <td><div>Esto es el mensaje de petición de seguimiento numero 1</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el mensaje de petición de seguimiento numero 2</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el mensaje de petición de seguimiento numero 3</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el mensaje de petición de seguimiento numero 4</div></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-12 col-md-6 table-wrapper-scroll-y my-custom-scrollbar" id="msg">
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th class="text-center">Publicaciónes</th>
+              </tr>
+            </thead>
+            <tbody id="AdvPub">
+              <tr>
+                <td><div>Esto es el último post</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el penúltimo</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el antepenúltimo</div></td>
+              </tr>
+              <tr>
+                <td><div>Esto es el ... ¿anteantepenúltimo post?</div></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
     </div>
     <script src="../../JQuery/jquery-noti.js"></script>
   </body>

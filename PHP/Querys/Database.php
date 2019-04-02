@@ -30,7 +30,13 @@
     /*fetch array*/
     private function fetch_array($data){
       $result = mysqli_fetch_array($data);
-      return $result;
+      $return = array();
+      array_push($return, $result);
+      while ($result) {
+        array_push($return, $result);
+        $result = mysqli_fetch_array($data);
+      }
+      return return;
     }
 
     /*close conexion*/
