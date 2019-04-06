@@ -29,14 +29,16 @@
 
     /*fetch array*/
     private function fetch_array($data){
-      $return = array();
       $result = mysqli_fetch_array($data);
-      array_push($return, $result);
-      while ($return) {
-        $result = mysqli_fetch_array($data);
-        array_push($return, $result);
+      $return = array();
+      for($i = 0; $result ; $i++){
+        $return[$i]=$result;
+        $result = mysqli_fetch_array($data); 
       }
-      return $result;
+      if(count($return) == 1){
+        $return = $return[0];
+      }
+      return $return;
     }
 
     /*close conexion*/

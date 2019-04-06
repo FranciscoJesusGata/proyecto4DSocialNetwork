@@ -36,7 +36,20 @@
         $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
         $query1 = "SELECT id_P FROM publicaciones ORDER BY id_P DESC LIMIT 1";
         $id0 = $database->get_data($query1);
-            $id0 = $id0[0];
+            $done1 = publicarTexto($database, $conexion, $nombre, $post, $cantidad, $tiempo);
+            if($foto != NULL){
+                $id = $id0 + 1;
+                publicarFoto($database, $conexion,$foto,$id);
+            } else {
+                echo "No hay foto";
+                exit;
+            }
+    }
+
+    function publicarComentario($comentario, $database, $conexion, $foto, $id_P){
+        $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
+        $query1 = "SELECT id_P FROM publicaciones ORDER BY id_P DESC LIMIT 1";
+        $id0 = $database->get_data($query1);
             $done1 = publicarTexto($database, $conexion, $nombre, $post, $cantidad, $tiempo);
             if($foto != NULL){
                 $id = $id0 + 1;
