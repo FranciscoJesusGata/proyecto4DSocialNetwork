@@ -29,16 +29,15 @@
       &nbsp;
     </section>
     <div class="col-12 my-3">
-      &nbsp
+      &nbsp;
     </div>
     <div class="container-fluid">
       <div class="row justify-content-center">
         <div class="col-xl-3 col-md-4 col-6 bg-white mx-2 mb-5 col-rounded h-25 d-lg-block d-sm-none" style="max-height: 100%;">
-            <img src="../img/cool-arma-3-wallpaper-28766-29484-hd-wallpapers.jpg"
-                      class="rounded-circle my-3 mx-auto d-block" width="150vh" height="150vh">
+            <img id="fotoPerfil" src="#" class="rounded-circle my-3 mx-auto d-block" width="150vh" height="150vh">
             <div class="container-fluid text-center">
-              <h4><label id="alias" class="text-center">Wolf</label></h4>
-              <label id="nomUser" class="text-center mt-auto">Wolf747</label>
+              <h4><label id="alias" class="text-center"></label></h4>
+              <label id="nomUser" class="text-center mt-auto"></label>
               <table class="table mt-3 mb-1">
                 <thead>
                   <tr>
@@ -48,15 +47,15 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td id="following">12</td>
-                    <td id="followers">12</td>
+                    <td id="following">0</td>
+                    <td id="followers">0</td>
                   </tr>
                 </tbody>
               </table>
             </div>
         </div>
 
-        <div class="col-xl-8 col-md-7 col-sm-12 col-xs-12 bg-white col-rounded">
+        <div class="col-xl-8 col-md-7 col-sm-12 col-xs-12 bg-white col-rounded mb-5">
           <br>
           <div class="form">
             <form id="publicar" method="POST">
@@ -66,7 +65,7 @@
               <input type="submit" id="sendPost" class="btn btn-primary" value="Publicar" disabled="true">
               <input type="file" style="display: none;" class="form-control" name="foto" id="img1" accept="image/png, image/jpeg">
               <button type="button" class="btn btn-secundary" id="fakebtn1" onclick="$('#img1').click();">Subir imagen</button>
-              <select class="form-control d-inline-block col-xl-2 col-md-2 col-sm-3 float-right ml-1" name="tiempo" id="tiempo">
+              <select class="form-control d-inline-block col-xl-2 col-md-3 col-sm-3 float-right ml-1" name="tiempo" id="tiempo">
                 <option selected="selected" value="MINUTE">Minutos</option>
                 <option value="HOUR">Horas</option>
                 <option value="DAY">Días</option>
@@ -77,18 +76,43 @@
             </form>
           </div><br>
           <hr class="w-100">
-          <div class="col-12 mb-3 col-rounded">
-            <img height="40px" width="40px" src="../img/arma-3-diver-logo-widescreen-wallpaper.jpg" class="rounded-circle">
-            <label>diegogamer747</label>
-            <span class="row"></span>
-            <p>I think that my commander won´t give me a rise after that<button class="btn float-right"><i class="far fa-heart"></i></button></p>
-            <img class="col-rounded" width="50%" src="../img/107410_screenshots_20171229093054_1.jpg">
-            <hr class="w-100">
+          <div id="posts" class="col-12 mb-3 col-rounded">
+            <div class="w-100 d-block">
+              <div class = "col-12 mb-3 ml-0">
+                <img height="50px" width="50px" src="../img/arma-3-diver-logo-widescreen-wallpaper.jpg" class="rounded-circle mr-1">
+                <label style="font-size: 20px">diegogamer747</label>
+              </div>
+              <div>
+                <div class="col-1 float-right mt-0 d-block">
+                  <button id="like" class="btn btn btn-outline-dark float-right"> 0 <i class="far fa-heart"></i></button>
+                  <button id="comment" class="btn btn btn-outline-dark float-right mt-1" onclick="togleTarget(1);"> 0 <i class="far fa-comment"></i>
+                </div>
+                <div class="mt-0 col-11">
+                  <p style="font-size: 18px;">I think that my commander won´t give me a rise after that</p>
+                  <img class="col-rounded" width="60%" src="../img/107410_screenshots_20171229093054_1.jpg">
+                </div>
+              </div>
+              <hr class="w-100">
+              <div class="col" id="buttons1">
+                <div class="col-md-12" id="com1" style="display: none;">
+                  <textarea class="form-control" id="textarea1"></textarea>
+                  <br/>
+                  <button class="btn btn-primary mr-3" onclick="send(1);" id="button1">Enviar</button>
+                  <button type="button" class="btn btn-secundary" id="fakebtn1" onclick="$('#img1').click();">Subir imagen</button>
+                  <input type="file" style="display:none;" id="img1" value="null" name="file"/>
+                  <hr class="w-100">
+                </div>
+              </div>
+            </div>
             <div class="col" id="comment1">
+                <div class="col-1 float-right mt-1 d-block">
+                    <button id="like" class="btn btn btn-outline-dark float-right"> 0 <i class="far fa-heart"></i></button>
+                    <button id="comment" class="btn btn btn-outline-dark float-right mt-1" onclick="togleTarget(1);"> 0 <i class="far fa-comment"></i>
+                </div>
               <div class="col-md-12">
                   <img height="40px" width="40px" src="../img/user.jpg" class="rounded-circle">
                   <label>linker271</label>
-                  <p class="mt-3 mb-3">XD<button class="btn float-right"><i class="far fa-heart"></i></button></p>
+                  <p class="mt-3 mb-3">XD</p>
               </div>
             </div>
             <div class="col" id="buttons1">
