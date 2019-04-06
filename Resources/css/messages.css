@@ -1,0 +1,96 @@
+body{
+    background: linear-gradient(to right, #0072ff, #ff0058);
+    background-size: auto;
+  }
+  
+  section
+  {
+    top: 20vh;
+    position: fixed;
+    height: 120vh;
+    width: 50vh;
+    background: white;
+  
+    opacity: 0.1;
+  
+    clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
+  }
+  
+  .col-rounded{
+      border-radius: 10px;
+  }
+  .m-notification{
+      border-radius: 500px;
+      height: 20px;
+      width: 20px;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 20px;
+      font-size: 15px;
+  }
+  .messageIzq{
+    width: fit-content;
+    height: fit-content;
+    margin-left: 5px;
+  }
+  .messageDer{
+    width: fit-content;
+    height: fit-content;
+    margin-right: 5px;
+  }
+
+  .messageIzq::before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+
+    left: 17px;
+    margin-top: 0px;
+
+    border-top: 5.7px solid transparent;
+    border-bottom: 5.7px solid transparent;
+
+    border-right: 5.7px solid #dee2e6;
+  }
+  .messageIzq::after{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+
+    left: 18px;
+    margin-top: -28px;
+
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+
+    border-right: 4.4px solid white;
+  }
+  .messageDer::before{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+
+    right: 17px;
+
+    border-top: 5.7px solid transparent;
+    border-bottom: 5.7px solid transparent;
+
+    border-left: 5.7px solid #dee2e6;
+  }
+  .messageDer::after{
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+
+    right: 19px;
+    margin-top: -28px;
+
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+
+    border-left: 4.4px solid white;
+  }
