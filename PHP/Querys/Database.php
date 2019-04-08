@@ -30,7 +30,15 @@
     /*fetch array*/
     private function fetch_array($data){
       $result = mysqli_fetch_array($data);
-      return $result;
+      $return = array();
+      for($i = 0; $result ; $i++){
+        $return[$i]=$result;
+        $result = mysqli_fetch_array($data); 
+      }
+      if(count($return) == 1){
+        $return = $return[0];
+      }
+      return $return;
     }
 
     /*close conexion*/
@@ -54,6 +62,7 @@
         return "error";
       }
       $data = $this->query($this->db_conection, $sql);
+      return $data;
     }
 
   }
