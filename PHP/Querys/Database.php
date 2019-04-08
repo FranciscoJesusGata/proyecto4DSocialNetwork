@@ -32,9 +32,13 @@
 
       $return = array();
       $result = mysqli_fetch_array($data);
-      while ($result) {
-        array_push($return, $result);
+      $return = array();
+      for($i = 0; $result ; $i++){
+        $return[$i]=$result;
         $result = mysqli_fetch_array($data);
+      }
+      if(count($return) == 1){
+        $return = $return[0];
       }
       return $return;
     }
@@ -60,6 +64,7 @@
         return "error";
       }
       $data = $this->query($this->db_conection, $sql);
+      return $data;
     }
 
   }

@@ -24,7 +24,7 @@ function checkSesionNavbar (){
 function checkNotificaciones(){
   $.ajax({
     type: "POST",
-    url: "/projectSocialNetwork/PHP/Querys/Notificaciones.php",
+    url: "../../PHP/Querys/Notificaciones.php",
     data: {adv: "msg"},
     async: false,
     dataType: "",
@@ -58,7 +58,7 @@ function checkPeticionesSeguimiento(){
 function checkCountNotificaciones(){
   $.ajax({
     type: "POST",
-    url: "/projectSocialNetwork/PHP/Querys/Notificaciones.php",
+    url: "../../PHP/Querys/Notificaciones.php",
     data: {adv: "total"},
     async: false,
     dataType: "html",
