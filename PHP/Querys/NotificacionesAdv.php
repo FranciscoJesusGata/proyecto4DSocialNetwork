@@ -5,10 +5,9 @@
 
   function getLastMessages($nombre, $database){
     $return = array();
-    for ($i=0; $i < 3 ; $i++) {
-      $sql="SELECT * FROM mensajes WHERE F_Lectura IS NULL AND Id_Receptor = '".$nombre."'";
-      $data = $database->get_data($sql);
-      echo json_encode($data);
+    $sql="SELECT * FROM mensajes WHERE F_Lectura IS NULL AND Id_Receptor = '".$nombre."'";
+    $data = $database->get_data($sql);
+    for ($i=0; $i <= 3 && $i < count($data); $i++) {
       array_push($return, $data[$i]);
     }
 
@@ -18,23 +17,32 @@
   function getLastPeticiones($nombre, $database)
   {
     $return = array();
-    for ($i=0; $i < 3 || $i < count($data); $i++) {
-      $sql = "SELECT * FROM seguir WHERE Nombre_Seguido = '".$nombre."' AND F_Inidio IS NULL";
-      $data = $database->get_data($sql);
+    $sql = "SELECT * FROM seguir WHERE Nombre_Seguido = '".$nombre."' AND F_Inicio IS NULL";
+    $data = $database->get_data($sql);
+    for ($i=0; $i <= 3 && $i < count($data); $i++) {
       array_push($return, $data[$i]);
     }
     return $return;
   }
 
+  function getUserImg($nombre, $database)
+  {
+    $user = $_POST['user'];
+    $return = array();
+    $sql = "SELECT Foto FROM usuarios WHERE Nombre_Usuario = '".$nombre."'";
+    $data = $database->get_data($sql);
+    return $data;
+  }
+
   function getLastPublicaciones($nombre, $database)
   {
     $return = array();
-    for ($i=0; $i < 10 || $i < count($data); $i++) {
-      $sql = "SELECT * FROM seguir WHERE Nombre_Seguido = '".$nombre."' AND F_Inidio IS NULL";
-      $data = $database->get_data($sql);
+    $sql = "SELECT * FROM seguir WHERE Nombre_Seguido = '".$nombre."' AND F_Inidio IS NULL";
+    $data = $database->get_data($sql);
+    for ($i=0; $i <= 10 && $i < count($data); $i++) {
       array_push($return, $data[$i]);
     }
-    return $data['num'];
+    return $return;
   }
 
   function getCountPeticiones($nombre, $database){
@@ -90,6 +98,9 @@
       case 'Pet':
         $data = getCountPeticiones($nombre, $database);
         break;
+      case 'ImgUsr':
+        $data = getUserImg($nombre, $database);
+        break;
       case 'mg':
         $data = getCountMeGusta($nombre, $database);
         break;
@@ -104,14 +115,12 @@
         break;
     }
 
-    $database->end_of_connection();
-
     return $data;
   }
 
 //----------------------------------------------------------------------------//
 
-  if (isset($_POST['type'])) {
+  if (isset($_POST['type']) && isset($_SESSION['N_Usuario'])) {
     $nombre = $_SESSION['N_Usuario'];
     $type = $_POST['type'];
     $ok = $database->conexion();
@@ -126,4 +135,6 @@
   } else{
     echo "Error al hacer la peticion";
   }
+
+  $database->end_of_connection();
 ?>

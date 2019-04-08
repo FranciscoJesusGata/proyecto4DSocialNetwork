@@ -7,9 +7,9 @@
 
     include '../Querys/Conectar.php';
     include 'Handle_Files.php';
-    
+
     session_start();
-	
+
 	//Comprobación de que los datos no estan vacios
     function comprobarDatos ($nombre, $clave, $email){
         $ok = true;
@@ -38,12 +38,13 @@
             return true;
         }
     }
-    
+
     //Introducción de los datos en la base de datos
     function introducirDatos($alias, $nombre, $clave, $email, $biografia, $privacidad, $conexion){
 		//Escape de caracteres para evitar una inyección SQL
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $clave = mysqli_real_escape_string($conexion,$clave);
+				$biografia = mysqli_real_escape_string($conexion,$biografia);
 		//Encriptación de la clave
         $clave = password_hash($clave, PASSWORD_DEFAULT);
         //Creación de las carpetas de las fotos y vídeos que subirán los usuarios
@@ -51,23 +52,22 @@
         $foto = NULL;
         $cabecera = NULL;
         $tema = NULL;
-        if(count($_FILES['foto']['name']) > 0){
+        if(count($_FILES['foto']) > 0){
             $foto = guardarFoto($nombre);
-        }else if(count($_FILES['encabezado']['name']) > 0){
+        }else if(count($_FILES['encabezado']) > 0){
             $cabecera = guardarCabecera($nombre);
-        }else if (count($_FILES['tema']['name'])  > 0){
+        }else if (count($_FILES['tema'])  > 0){
             $tema = guardarTema($nombre);
         }
-        
+
         //Instrucción para introducir los datos en la tabla personas y usuarios
-        $query1 = "INSERT INTO personas
-                VALUES('".$nombre."','".$clave."');";
-		$query2 = "INSERT INTO usuarios
-                VALUES('".$nombre."','".$alias."','".$biografia."','".$cabecera."','".$privacidad."','".$email."','".$foto."','".$tema."',0,NULL);";
+        $query1 = "INSERT INTO personas VALUES('".$nombre."','".$clave."');";
+				$query2 = "INSERT INTO usuarios VALUES('".$nombre."','".$alias."','".$biografia."','".$cabecera."','".$privacidad."','".$email."','".$foto."','".$tema."',0,NULL);";
         $ok = usuarioExiste($nombre,$email,$conexion);
         if(!$ok){
             $sql1 = mysqli_query($conexion,$query1);
             $sql2 = mysqli_query($conexion,$query2);
+
             if($sql1 && $sql2){
                 header("Location: ../../HTML/html/login.html");
                 return;

@@ -57,7 +57,8 @@
     }
     $resultado = recibirDatos($nombre, $database);
     if ($resultado){
-        $pass_Crypted = $resultado['Contrasenia'];
+        echo json_encode($resultado["Contrasenia"]);
+        $pass_Crypted = $resultado["Contrasenia"];
         validar($pass, $pass_Crypted, $nombre, $database);
     }
 ?>

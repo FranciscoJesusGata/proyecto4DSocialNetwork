@@ -26,16 +26,16 @@
       switch ($advanced) {
         case 'msg':
           $data = getNumMensajes($nombre, $database);
-          echo $data['num'];
+          echo $data[0]['num'];
           break;
         case 'seg':
           $data = getPeticionesSeguimiento($nombre, $database);
-          echo $data['num'];
+          echo $data[0]['num'];
           break;
         case 'total':
           $data1 = getPeticionesSeguimiento($nombre, $database);
           $data2 = getNumMensajes($nombre, $database);
-          $data3 = $data1['num'] + $data2['num'];
+          $data3 = $data1[0]['num'] + $data2[0]['num'];
           echo $data3;
           break;
       }
