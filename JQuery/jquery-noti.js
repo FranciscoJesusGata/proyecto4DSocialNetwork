@@ -37,25 +37,27 @@ $(document).ready(function(){
         dataType: "html",
         success: function(result){
                     var data = jQuery.parseJSON(result)
+
                     if (typeof data !== 'undefined' && data.length > 0) {
                       var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje:<br/>";
-                        show += data[i]['Texto'];
-                        show += "</td></tr>";
-                      }
+                        for (var i = 0; i < data.length; i++) {
+                          show += "<tr><td> <span class='badge badge-pill badge-primary'>";
+                          show += data[i]['Id_Emisor'];
+                          show += "</span> ha escrito el siguiente mensaje:<br/>";
+                          show += "<div class='bg-info col-rounded'><div class='mx-2'>";
+                          show += data[i]['Texto'];
+                          show += "</div></div></td></tr>";
+                        }
                       $("#AdvMsg").html(show)
                     }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener los mensajes", "error");
             console.log("error");
         }
     });
   }
 
-  // TODO: Esperar a que curro termine con las publicaciones antes de ponerse con esto
   function AdvPub() {
     $.ajax({
         type: "POST",
@@ -64,23 +66,23 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    console.log(result);
                     var data = jQuery.parseJSON(result)
                     if (typeof data !== 'undefined' && data.length > 0) {
                       var show = "";
                       for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje: ";
+                        show += "<tr><td>Tu publicación ";
+                        show += "<div class='bg-info col-rounded'><div class='mx-2'>";
                         show += data[i]['Texto'];
-                        show += "</td></tr>";
+                        show += "</div></div>";
+                        show += " ha obtenido ";
+                        show += data[i]['num_mg'];
+                        show += " Me gusta</td></tr>";
                       }
-                      $("#AdvMsg").html(show)
-                      console.log(show);
-                      console.log(data);
+                      $("#AdvPub").html(show)
                     }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener las publicaciones", "error");
             console.log("error");
         }
     });
@@ -94,19 +96,21 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    var data = jQuery.parseJSON(result)
+                    var data = jQuery.parseJSON(result);
                     if (typeof data !== 'undefined' && data.length > 0) {
                       var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += "Tienes una petición de seguimiento de "
-                        show += data[i]['Id_Emisor'];
-                        show += "</td></tr>";
-                      }
+                        for (var i = 0; i < data.length; i++) {
+                          show += "<tr><td>";
+                          show += "Tienes una petición de seguimiento de "
+                          show += "<span class='badge badge-pill badge-primary'>"
+                          show += data[i]['Nombre_Usuario'];
+                          show += "</span></td></tr>";
+                        }
                       $("#AdvSeg").html(show)
                     }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener las peticiones de seguimiento", "error");
             console.log("error");
         }
     });
@@ -120,23 +124,14 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    console.log(result);
-                    var data = jQuery.parseJSON(result)
-                    if (typeof data !== 'undefined' && data.length > 0) {
-                      var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje: "
-                        show += data[i]['Texto'];
-                        show += "</td></tr>";
-                      }
-                      $("#AdvMsg").html(show)
-                      console.log(show);
-                      console.log(data);
+                    var data = jQuery.parseJSON(result);
+                    if (typeof data !== 'undefined' && data['num'] >= 0) {
+                      var show = "" + data[0];
+                      $("#msg").text(show);
                     }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener el número de mensajes", "error");
             console.log("error");
         }
     });
@@ -150,23 +145,14 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    console.log(result);
-                    var data = jQuery.parseJSON(result)
-                    if (typeof data !== 'undefined' && data.length > 0) {
-                      var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje: "
-                        show += data[i]['Texto'];
-                        show += "</td></tr>";
-                      }
-                      $("#AdvMsg").html(show)
-                      console.log(show);
-                      console.log(data);
-                    }
+                  var data = jQuery.parseJSON(result);
+                  if (typeof data !== 'undefined' && data['num'] >= 0) {
+                    var show = "" + data[0];
+                    $("#pub").text(show);
+                  }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener el número de publicaciones", "error");
             console.log("error");
         }
     });
@@ -180,23 +166,14 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    console.log(result);
-                    var data = jQuery.parseJSON(result)
-                    if (typeof data !== 'undefined' && data.length > 0) {
-                      var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje: "
-                        show += data[i]['Texto'];
-                        show += "</td></tr>";
-                      }
-                      $("#AdvMsg").html(show)
-                      console.log(show);
-                      console.log(data);
-                    }
+                  var data = jQuery.parseJSON(result);
+                  if (typeof data !== 'undefined' && data['num'] >= 0) {
+                    var show = "" + data[0];
+                    $("#com").text(show);
+                  }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener el número de comentarios", "error");
             console.log("error");
         }
     });
@@ -210,29 +187,20 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    console.log(result);
-                    var data = jQuery.parseJSON(result)
-                    if (typeof data !== 'undefined' && data.length > 0) {
-                      var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje: "
-                        show += data[i]['Texto'];
-                        show += "</td></tr>";
-                      }
-                      $("#AdvMsg").html(show)
-                      console.log(show);
-                      console.log(data);
-                    }
+                  var data = jQuery.parseJSON(result);
+                  if (typeof data !== 'undefined' && data >= 0) {
+                    var show = "" + data;
+                    $("#mg").text(show);
+                  }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener el número de me gusta", "error");
             console.log("error");
         }
     });
   }
 
-  function pet() {
+  function seg() {
     $.ajax({
         type: "POST",
         url: "../../PHP/Querys/NotificacionesAdv.php",
@@ -240,27 +208,24 @@ $(document).ready(function(){
         async: false,
         dataType: "html",
         success: function(result){
-                    console.log(result);
-                    var data = jQuery.parseJSON(result)
-                    if (typeof data !== 'undefined' && data.length > 0) {
-                      var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Id_Emisor'];
-                        show += " ha escrito el siguiente mensaje: "
-                        show += data[i]['Texto'];
-                        show += "</td></tr>";
-                      }
-                      $("#AdvMsg").html(show)
-                      console.log(show);
-                      console.log(data);
-                    }
+                  var data = jQuery.parseJSON(result);
+                  if (typeof data !== 'undefined' && data['num'] >= 0) {
+                    var show = "" + data[0];
+                    $("#seg").text(show);
+                  }
                 },
         error: function(){
+            swal("Error", "Se haproducido un error al tratar de obtener el número de peticiones de seguimiento", "error");
             console.log("error");
         }
     });
   }
   AdvMsg();
   AdvSeg();
+  AdvPub();
+  Msg();
+  pub();
+  com();
+  mg();
+  seg();
 })

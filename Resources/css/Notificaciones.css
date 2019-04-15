@@ -28,3 +28,6 @@ section
 .table-wrapper-scroll-y {
   display: block;
 }
+.bg-table{
+  background-color: #e4e4e4
+}

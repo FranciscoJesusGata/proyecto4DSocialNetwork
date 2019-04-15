@@ -32,7 +32,7 @@ function checkNotificaciones(){
                 if(data != "0"){
                   $("#msg-span").text(data);
                 } else{
-                  $("#msg").hide();
+                  $("#msgNav").hide();
                 }
             },
   });
@@ -49,7 +49,7 @@ function checkPeticionesSeguimiento(){
                 if(data != "0"){
                   $("#seg-span").text(data)
                 } else{
-                  $("#seg").hide();
+                  $("#segNav").hide();
                 }
             },
   });
