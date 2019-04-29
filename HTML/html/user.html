@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Administracion del usuario</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../../Resources/jquery-3.3.1.min.js"></script>
+    <!-- TODO: cambiar el jquery y crear uno especifico para esta página -->
+    <script src="../../JQuery/jquery-user.js"></script>
+    <link rel="stylesheet" href="../../Resources/fontawesome-free-5.5.0-web/css/all.css">
+    <link rel="stylesheet" href="../../Resources/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src="../../Resources/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="../../Resources/popper.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../../Resources/css/user.css">
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <script>
+        $("#navbar").load("navbar.html");
+    </script>
+    <div class="fondo" id="fondo">
+      <div class="efecto">
+        &nbsp;
+      </div>
+    </div>
+    <section>
+      &nbsp;
+    </section>
+    <div class="col-12 my-3">
+      &nbsp;
+    </div>
+    <div class="col-10 mx-auto bg-light col-rounded">
+      <div class="row">
+        <div class="col-12 mt-3">
+          <button type="button" class="btn" id="Cancelar">Cancelar <i class="fas fa-ban"></i></button>
+          <button type="button" class="btn btn-primary float-right" id="Guardar">guardar <i class="fas fa-check-circle"></i></button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="row">
+            <div class="mx-auto my-2">
+              <div class="no-padding-left mt-3 special-button-div">
+                <button class="special-button"><i class="fas fa-times"></i></button>
+              </div>
+              <div class="rounded-circle mx-auto text-center col-border" id="fotoPerfil" style="height:150px; width: 150px">
+              </div>
+              <input type="file" style="visibility: hidden; width: 1px">
+            </div>
+
+            <div class="container-fluid text-center form-group">
+              <label for="alias">Alias</label>
+              <input id="alias" class="text-center form-control"></input>
+              <br>
+              <label for="nomUser">Nombre del usuario</label>
+              <br>
+              <label id="nomUser" class="text-center mt-auto"></label>
+              <table class="table mt-3 mb-1">
+                <thead>
+                  <tr>
+                    <th>Following</th>
+                    <th>Followers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td id="following">0</td>
+                    <td id="followers">0</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <br>
+
+          <div class="col-12 mx-auto my-2">
+            <span>Encabezado:</span>
+            <div class="col-12 no-padding-left special-button-div">
+              <button class="special-button"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mx-auto text-center col-border col-rounded" id="Encabezado" style="height: 150px">
+            </div>
+            <input type="file" style="visibility: hidden; width: 1px">
+          </div>
+
+          <div class="col-12 mx-auto my-2">
+            <span>Tema:</span>
+            <div class="col-12 no-padding-left special-button-div">
+              <button class="special-button"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="mx-auto text-center col-border col-rounded" id="Tema" style="height: 150px">
+            </div>
+            <input type="file" style="visibility: hidden; width: 1px">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+                  <label for="biografia">Escribe sobre tí:</label>
+                  <textarea class="form-control" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Biografía" rows="6" name="biografia" id="biografia" style="resize: none;" maxlength="300"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="col-12 text-center">
+            <strong>Peticiones de seguimiento</strong>
+          </div>
+          <table class="table" id="peticiones">
+            <tr>
+              <td colspan="2">No hay ninguna petición de seguimiento</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

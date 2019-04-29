@@ -4,14 +4,14 @@
 
     function dataForMain ($conexion, $database){
         $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
-        $queryBasicData = "SELECT Nombre_Usuario, Alias, Foto
-        FROM usuarios
+        $queryBasicData = "SELECT * 
+        FROM usuarios 
         WHERE Nombre_Usuario = '".$nombre."'";
-        $queryFollowers = "SELECT COUNT(Nombre_Usuario) AS Seguidores
-        FROM seguir
+        $queryFollowers = "SELECT COUNT(Nombre_Usuario) AS Seguidores 
+        FROM seguir 
         WHERE Nombre_Seguido = '".$nombre."'";
-        $queryFollowing="SELECT COUNT(Nombre_Usuario) AS Seguidos
-        FROM seguir
+        $queryFollowing="SELECT COUNT(Nombre_Usuario) AS Seguidos 
+        FROM seguir 
         WHERE Nombre_Usuario = '".$nombre."'";
         $datos = $database->get_data($queryBasicData);
         $followers = $database->get_data($queryFollowers);
@@ -22,7 +22,7 @@
         }else{
             $follow=array_merge($followers,$following);
             $finaldata=array_merge($datos,$follow);
-            
+
             return $finaldata;
         }
     }
