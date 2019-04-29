@@ -162,8 +162,6 @@ $(document).ready(function(){
                     ** con la expresión no coincide, significa que el email no es correcto
                     */
 
-                    //Me he tirado unas horas configurando el RegExp, pero lo he logrado, el filtro funciona
-
                     var filtro = new RegExp("[A-Za-z0-9!#$%&'*+/=? .^_`{|}~-]+@[A-Za-z0-9]+[.]+[a-z0-9]{2,6}?");
                     if (filtro.test(email)) {
 

@@ -36,13 +36,13 @@ function guardarCabecera($nombre){
     $ext = pathinfo($_FILES['encabezado']['name'], PATHINFO_EXTENSION);
     $directorio = "../../HTML/img/".$nombre."/headerpic/";
     $i = 1;
-    $nombre_Cabecera = $directorio . $nombre . "_headerpic_".$i.".".$ext;
-    while (file_exists($nombre_Cabecera)){
+    $nombre_Cab = $directorio . $nombre . "_headerpic_".$i.".".$ext;
+    while (file_exists($nombre_Cab)){
         $i++;
-        $nombre_Cabecera = $directorio . $nombre . "_headerpic_".$i.".".$ext;
+        $nombre_Cab = $directorio . $nombre . "_headerpic_".$i.".".$ext;
     }
-    $subido = move_uploaded_file($_FILES['encabezado']['tmp_name'], $nombre_Cabecera);
-    return $nombre_Cabecera;
+    $subido = move_uploaded_file($_FILES['encabezado']['tmp_name'], $nombre_Cab);
+    return $nombre_Cab;
 }
 
 function guardarTema($nombre){
