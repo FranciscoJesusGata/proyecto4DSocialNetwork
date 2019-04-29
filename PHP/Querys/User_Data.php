@@ -9,10 +9,12 @@
         WHERE Nombre_Usuario = '".$nombre."'";
         $queryFollowers = "SELECT COUNT(Nombre_Usuario) AS Seguidores
         FROM seguir
-        WHERE Nombre_Seguido = '".$nombre."'";
+        WHERE Nombre_Seguido = '".$nombre."'
+        AND F_Fin IS NOT NULL";
         $queryFollowing="SELECT COUNT(Nombre_Usuario) AS Seguidos
         FROM seguir
-        WHERE Nombre_Usuario = '".$nombre."'";
+        WHERE Nombre_Usuario = '".$nombre."'
+        AND F_Fin IS NOT NULL";
         $datos = $database->get_data($queryBasicData);
         $followers = $database->get_data($queryFollowers);
         $following = $database->get_data($queryFollowing);
