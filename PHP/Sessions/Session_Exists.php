@@ -16,6 +16,7 @@
         if (isset($_SESSION['errorRegistro'])){
             //¿Hay ya una cuenta existente con ese nombre de usuario o ese correo?
             $val = $_SESSION['errorRegistro'];
+            unset($_SESSION['errorRegistro']);
         }
         return $val;
     }
