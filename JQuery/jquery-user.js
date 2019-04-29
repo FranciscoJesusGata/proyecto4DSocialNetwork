@@ -16,39 +16,6 @@ $.ajax({
 
 function getDataFromUser() {
 
-  $("#input_img_perfil").change(function () {
-      change_Img_Perfil(this);
-  });
-
-  $("#clear_img_perfil").click(function(){
-      $("#input_img_perfil").val('');
-      $('#img_perfil').removeAttr('src');
-      $('#icono').css('display','block');
-      $('#img_perfil').css('display','none');
-  });
-
-  $("#input_img_encabezado").change(function () {
-      change_Img_Encabezado(this);
-  });
-
-  $("#clear_img_encabezado").click(function(){
-      $("#input_img_encabezado").val('');
-      $('#img_encabezado').removeAttr('src');
-      $('#icono_e').css('display','block');
-      $('#img_encabezado').css('display','none');
-  });
-
-  $("#input_img_tema").change(function () {
-      change_Img_Tema(this);
-  });
-
-  $("#clear_img_tema").click(function(){
-      $("#input_img_tema").val('');
-      $('#img_tema').removeAttr('src');
-      $('#icono_t').css('display','block');
-      $('#img_tema').css('display','none');
-  });
-
   $.ajax({
       type: "POST",
       url: "../../PHP/Querys/User_Data.php",
@@ -246,6 +213,39 @@ function change_Img(input) {
 }
 
 $(document).ready(function(){
+
+    $("#input_img_perfil").change(function () {
+        change_Img_Perfil(this);
+    });
+
+    $("#clear_img_perfil").click(function(){
+        $("#input_img_perfil").val('');
+        $('#img_perfil').removeAttr('src');
+        $('#icono').css('display','block');
+        $('#img_perfil').css('display','none');
+    });
+
+    $("#input_img_encabezado").change(function () {
+        change_Img_Encabezado(this);
+    });
+
+    $("#clear_img_encabezado").click(function(){
+        $("#input_img_encabezado").val('');
+        $('#img_encabezado').removeAttr('src');
+        $('#icono_e').css('display','block');
+        $('#img_encabezado').css('display','none');
+    });
+
+    $("#input_img_tema").change(function () {
+        change_Img_Tema(this);
+    });
+
+    $("#clear_img_tema").click(function(){
+        $("#input_img_tema").val('');
+        $('#img_tema').removeAttr('src');
+        $('#icono_t').css('display','block');
+        $('#img_tema').css('display','none');
+    });
 
     loadAll();
     document.getElementsByTagName("html")[0].style.visibility = "visible";
