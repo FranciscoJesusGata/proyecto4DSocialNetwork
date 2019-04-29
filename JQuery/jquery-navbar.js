@@ -24,7 +24,7 @@ function checkSesionNavbar (){
 function checkNotificaciones(){
   $.ajax({
     type: "POST",
-    url: "/projectSocialNetwork/PHP/Querys/Notificaciones.php",
+    url: "../../PHP/Querys/Notificaciones.php",
     data: {adv: "msg"},
     async: false,
     dataType: "",
@@ -32,7 +32,7 @@ function checkNotificaciones(){
                 if(data != "0"){
                   $("#msg-span").text(data);
                 } else{
-                  $("#msg").hide();
+                  $("#msgNav").hide();
                 }
             },
   });
@@ -49,7 +49,7 @@ function checkPeticionesSeguimiento(){
                 if(data != "0"){
                   $("#seg-span").text(data)
                 } else{
-                  $("#seg").hide();
+                  $("#segNav").hide();
                 }
             },
   });
@@ -58,7 +58,7 @@ function checkPeticionesSeguimiento(){
 function checkCountNotificaciones(){
   $.ajax({
     type: "POST",
-    url: "/projectSocialNetwork/PHP/Querys/Notificaciones.php",
+    url: "../../PHP/Querys/Notificaciones.php",
     data: {adv: "total"},
     async: false,
     dataType: "html",

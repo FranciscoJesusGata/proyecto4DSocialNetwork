@@ -3,19 +3,31 @@ body{
   background-size: auto;
 }
 
-section
+/*section
 {
   top: 20vh;
   position: fixed;
-  height: 120vh;
+  height: 90vh;
   width: 50vh;
   background: white;
 
   opacity: 0.1;
 
   clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
-}
+}*/
 
 .col-rounded{
-    border-radius: 10px;
+    border-radius: 2vh;
+}
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 30vh;
+  overflow: auto;
+}
+.table-wrapper-scroll-y {
+  display: block;
+}
+.bg-table{
+  background-color: #e4e4e4
 }
