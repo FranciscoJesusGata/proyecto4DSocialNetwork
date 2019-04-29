@@ -7,9 +7,9 @@
 
     include '../Querys/Database.php';
     include 'Handle_Files.php';
-    
+
     session_start();
-	
+
 	//Comprobación de que los datos no estan vacios
     function comprobarDatos ($nombre, $clave, $email){
         $ok = true;
@@ -39,12 +39,13 @@
             }
         }
     }
-    
+
     //Introducción de los datos en la base de datos
     function introducirDatos($alias, $nombre, $clave, $email, $biografia, $privacidad, $conexion, $database){
 		//Escape de caracteres para evitar una inyección SQL
         $nombre = mysqli_real_escape_string($conexion,$nombre);
         $clave = mysqli_real_escape_string($conexion,$clave);
+				$biografia = mysqli_real_escape_string($conexion,$biografia);
 		//Encriptación de la clave
         $clave = password_hash($clave, PASSWORD_DEFAULT);
         //Creación de las carpetas de las fotos y vídeos que subirán los usuarios
@@ -64,7 +65,7 @@
             echo "tema";
             $tema = guardarTema($nombre);
         }
-        
+
         //Instrucción para introducir los datos en la tabla personas y usuarios
         $query1 = "INSERT INTO personas
                 VALUES('".$nombre."','".$clave."');";
@@ -75,10 +76,10 @@
             $sql1 = $database->send_data($query1);
             $sql2 = $database->send_data($query2);
             if($sql1 && $sql2){
-                //header("Location: ../../HTML/html/login.html");
-                //return;
+                header("Location: ../../HTML/html/login.html");
+                return;
             }
-           /* else{
+            else{
                 //En caso de que los datos no se hayan grabado en las dos tablas los elimina
                 echo mysqli_errno($conexion)." ".mysqli_error($conexion)."<br>";
                 $destruirCambios1 = "DELETE
@@ -93,15 +94,15 @@
                     $ok3 = mysqli_query($conexion, $destruirCambios2);
                 }
                 echo mysqli_errno($conexion)." ".mysqli_error($conexion);
-            }*/
-            //header("Location: ../../HTML/html/register.html");
+            }
+            header("Location: ../../HTML/html/register.html");
         }
         else {
-            echo "<h1>HUBO UN ERROR REGISTRANDO AL USUARIO</h1>"."<br/>".mysqli_error($conexion); //<~ Solo para pruebas
-            //header("Location: ../../HTML/html/register.html");
+            //echo "<h1>HUBO UN ERROR REGISTRANDO AL USUARIO</h1>"."<br/>".mysqli_error($conexion); //<~ Solo para pruebas
+            header("Location: ../../HTML/html/register.html");
             $_SESSION['errorRegistro'] = "<h1>¡Hubo un fallo!</h1> <br/> <h3>No te preocupes, estamos trabajando en ello</h3>";
             //Mensaje de error para el usuario
-            //return;
+            return;
         }
     }
 
@@ -122,21 +123,21 @@
     $conectar = $database->conexion();
     $conexion = $database->db_conection;
     if(!$conexion){
-        echo "Error al conectar con la base de datos <br/>";
+        /*echo "Error al conectar con la base de datos <br/>";
         echo "error de depuración " . mysqli_connect_error() . "<br/>";
-        echo "errorno de depuración " . mysqli_connect_errno() . "<br/>"; /*<~ Solo para pruebas */
+        echo "errorno de depuración " . mysqli_connect_errno() . "<br/>"; <~ Solo para pruebas */
         $_SESSION['errorRegistro'] = "conexion";
-        //header('Location: ../../HTML/html/register.html');
+        header('Location: ../../HTML/html/register.html');
         return;
     }
     $datosOk = comprobarDatos ($nombre, $clave, $email);
     $existe = usuarioExiste($nombre,$email,$conexion, $database);
     if (!$datosOk){
         $_SESSION['errorRegistro'] = "Los datos están vacios";
-        //header('Location: ../../HTML/html/register.html');
+        header('Location: ../../HTML/html/register.html');
         return;
     }else if($existe){
-        //header('Location: ../../HTML/html/register.html');
+        header('Location: ../../HTML/html/register.html');
     }else if(!$existe){
         introducirDatos($alias, $nombre, $clave, $email, $biografia, $privacidad, $conexion, $database);
     }

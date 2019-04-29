@@ -29,14 +29,27 @@
 
     /*fetch array*/
     private function fetch_array($data){
+
       $result = mysqli_fetch_array($data);
       $return = array();
       for($i = 0; $result ; $i++){
         $return[$i]=$result;
-        $result = mysqli_fetch_array($data); 
+        $result = mysqli_fetch_array($data);
       }
       if(count($return) == 1){
         $return = $return[0];
+      }
+      return $return;
+    }
+
+    /*fetch array para una cantidad desconocida de datos*/
+    private function fetch_array_uncknow($data){
+
+      $result = mysqli_fetch_array($data);
+      $return = array();
+      while ($result) {
+        array_push($return, $result);
+        $result = mysqli_fetch_array($data);
       }
       return $return;
     }
@@ -53,6 +66,17 @@
       }
       $data = $this->query($this->db_conection, $sql);
       $final_data = $this->fetch_array($data);
+      return $final_data;
+    }
+
+    /*enviar petición a la base de datos y obtener resultado, util cuando no sabes cuantos
+    datos vas a recibir*/
+    public function get_unknow_data($sql){
+      if ($this->db_conection == null) {
+        return "error";
+      }
+      $data = $this->query($this->db_conection, $sql);
+      $final_data = $this->fetch_array_uncknow($data);
       return $final_data;
     }
 

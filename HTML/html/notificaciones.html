@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Notificaciones</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../../Resources/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../../Resources/fontawesome-free-5.5.0-web/css/all.css">
+    <link rel="stylesheet" href="../../Resources/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src="../../Resources/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="../../Resources/popper.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../../Resources/css/Notificaciones.css">
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <script>
+        $("#navbar").load("navbar.html");
+    </script>
+    <section>
+      &nbsp;
+    </section>
+    <div class="col-12 my-3">
+      &nbsp;
+    </div>
+    <div class="col-10 col-lg-8 mx-auto bg-white mt-5 col-rounded">
+      <div class="col-12">
+          <h2 class="display-4 text-center">Notificaciones</h2>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="text-center"><strong>Mensajes</strong></div>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar bg-table col-rounded">
+            <table class="table table-borderless bg-table">
+              <tbody id="AdvMsg">
+                <tr>
+                  <td>No tienes ningún mensaje</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 mt-3">
+          Petición de seguimiento: <span id="seg" class="badge badge-primary">0</span>
+          <br>
+          Mensajes recibidos: <span id="msg" class="badge badge-primary">0</span>
+          <br>
+          Total de Me Gusta: <span id="mg" class="badge badge-primary">0</span>
+          <br>
+          Publicaciónes: <span id="pub" class="badge badge-primary">0</span>
+          <br>
+          Comentarios: <span id="com" class="badge badge-primary">0</span>
+        </div>
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-6">
+          <div class="text-center"><strong>Petición de seguimiento</strong></div>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar bg-table col-rounded">
+            <table class="table table-borderless bg-table">
+              <tbody id="AdvSeg">
+                <tr>
+                  <td>No tienes ninguna petición de seguimiento</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="text-center"><strong>Publicaciónes</strong></div>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar bg-table col-rounded">
+            <table class="table table-borderless bg-table">
+              <tbody id="AdvPub">
+                <tr>
+                  <td><div>No hay ninguna publicacion</div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+      <div class="row">
+        &nbsp;
+      </div>
+    </div>
+    <script src="../../JQuery/jquery-noti.js"></script>
+  </body>
+</html>
