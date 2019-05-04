@@ -20,6 +20,15 @@ function tratarDatosUser(datos){
     var Fotosrc = datos["Foto"];
     var Followers = datos["Seguidores"];
     var Following = datos["Seguidos"];
+    var Tema = datos["Tema"];
+
+    if(Tema == ""){
+      $("body").addClass('no-image-background');
+    } else {
+      $("#seccion-background").hide();
+      $("body").addClass('image-background');
+      $("body").css("background-image", "url("+ Tema +")");
+    }
     $("#fotoPerfil").attr("src",Fotosrc);
     $("#alias").text(Alias);
     $("#nomUser").text(Nombre);
@@ -61,7 +70,7 @@ $(document).ready(function(){
     });
     
     function mostrarPosts(posts){
-        if(posts[0][0] != 'undefined'){
+        if(posts[0] != 'undefined'){
             for(var i = 0 ; i < posts.length ; i++){
                 console.log(posts[i]['Foto']);
                 var html = "<div class='w-100 d-block mb-5'>";

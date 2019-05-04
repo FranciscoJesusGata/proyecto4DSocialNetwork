@@ -35,7 +35,6 @@ function getPeticiones() {
       async: true,
       dataType: "html",
       success: function(result){
-                  console.log(result);
                   var data = jQuery.parseJSON(result);
                   if (typeof data !== 'undefined' && data.length > 0) {
                     var show = "";
@@ -64,7 +63,7 @@ function getPeticiones() {
 }
 
 function tratarDatosUser(datos){
-    console.log(datos);
+    $("#auxData").val(JSON.stringify(datos));
     var Alias = datos["Alias"];
     var Nombre = datos["Nombre_Usuario"];
     var Fotosrc = datos["Foto"];
@@ -74,23 +73,68 @@ function tratarDatosUser(datos){
     var Followers = datos["Seguidores"];
     var Following = datos["Seguidos"];
 
-    if(Tema != ""){
-      $("#Tema").html('<img class="fotoComun" id="fotoPerfil" src="' + Tema + '">');
+    if (typeof Tema === "string") {
+        if(Tema != ""){
+          $("#Tema").html('<img class="fotoComun" id="fotoTema" src="' + Tema + '">');
+          $("#seccion-background").hide();
+          $("body").addClass('image-background');
+          $("body").css("background-image", "url("+ Tema +")");
+        } else {
+          $("#Tema").html('<h1 class="icono-general"><i class="fas fa-palette"></i></h1>');
+          $("#seccion-background").show();
+          $("body").addClass('no-image-background');
+          $("body").css("background-image", "");
+        }
     } else {
-      $("#Tema").html('<h1 class="icono-general"><i class="fas fa-palette"></i></h1>');
+        if (Tema.files && Tema.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $("#Tema").html('<img class="fotoComun" id="fotoTema" src="' + e.target.result + '">');
+            $("#seccion-background").hide();
+            $("body").addClass('image-background');
+            $("body").css("background-image", "url("+ e.target.result +")");
+          }
+          reader.readAsDataURL(Tema.files[0]);
+        }
+    }
+    
+    if (typeof Encabezado === "string") {
+        if(Encabezado != ""){
+          $("#Encabezado").html('<img class="fotoComun" id="fotoEncabezado" src="' + Encabezado + '">');
+        } else {
+          $("#Encabezado").html('<h1 class="icono-general"><i class="fas fa-image"></i></h1>');
+        }
+    } else {
+        if (Encabezado.files && Encabezado.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $("#Encabezado").html('<img class="fotoComun" id="fotoEncabezado" src="' + e.target.result + '">');
+          }
+          reader.readAsDataURL(Encabezado.files[0]);
+        }
+    }
+    
+    if (typeof Fotosrc === "string") {
+        if(Fotosrc != ""){
+          $("#fotoPerfil").html('<img class="fotoPerfil" id="fotoPerfil" src="' + Fotosrc + '">');
+        } else {
+          $("#fotoPerfil").html('<h1 class="icono-general"><i class="fas fa-camera"></i></h1>');
+        }
+    } else {
+        if (Fotosrc.files && Fotosrc.files[0]) {
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            $("#fotoPerfil").html('<img class="fotoPerfil" id="fotoPerfil" src="' + e.target.result + '">');
+          }
+          reader.readAsDataURL(Fotosrc.files[0]);
+        }
     }
 
-    if(Encabezado != ""){
-      $("#Encabezado").html('<img class="fotoComun" id="fotoEncabezado" src="' + Encabezado + '">');
-    } else {
-      $("#Encabezado").html('<h1 class="icono-general"><i class="fas fa-image"></i></h1>');
-    }
-
-    if(Fotosrc != ""){
+    /*if(Fotosrc != ""){
       $("#fotoPerfil").html('<img class="fotoPerfil" id="fotoPerfil" src="' + Fotosrc + '">');
     } else {
       $("#fotoPerfil").html('<h1 style="padding-top:30%"><i class="fas fa-camera"></i></h1>');
-    }
+    }*/
 
     $("#biografia").val(Biografia)
     $("#alias").val(Alias);
@@ -99,154 +143,76 @@ function tratarDatosUser(datos){
     $("#following").text(Following);
 }
 
-function denyPeticion(nomUser, nomSeguido) {
-    swal({
-      title: "Cancelar peticion de seguimiento",
-      text: "Estas seguro de que quieres cancelar la petición de" + nomUser,
-      icon: "warning",
-      buttons: true,
-      buttons: ["Cancelar", "Aceptar"],
-    })
-    .then((check) => {
-      if (check) {
-        swal("Petición de seguimiento cancelada", {
-          icon: "success",
-        });
-        loadAll();
-      } else {
-      }
-    });
-    //swal()
-}
-
-function acceptPeticion(nomUser, nomSeguido) {
-    swal({
-      title: "Aceptar peticion de seguimiento",
-      text: "Estas seguro de que quieres aceptar a " + nomUser + " como tu seguidor",
-      icon: "warning",
-      buttons: true,
-      buttons: ["Cancelar", "Aceptar"],
-    })
-    .then((check) => {
-      if (check) {
-        swal("Petición de seguimiento aceptada", {
-          icon: "success",
-        });
-        loadAll();
-      } else {
-      }
-    });
-}
-
 function loadAll() {
   getPeticiones();
   getDataFromUser();
 }
 
-function save(){
-
-}
-
-
-function change_Img_Perfil(input) {
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        $('#img_perfil').attr('src', e.target.result);
-        $('#icono').css('display','none');
-        $('#img_perfil').css('display','block');
-    }
-
-    reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function change_Img_Encabezado(input) {
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        $('#img_encabezado').attr('src', e.target.result);
-        $('#icono_e').css('display','none');
-        $('#img_encabezado').css('display','block');
-    }
-
-    reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function change_Img_Tema(input) {
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        $('#img_tema').attr('src', e.target.result);
-        $('#icono_t').css('display','none');
-        $('#img_tema').css('display','block');
-    }
-
-    reader.readAsDataURL(input.files[0]);
-    }
-}
-
-function togleTarget(target){
-    $("#com" + target).slideToggle();
-};
-
-function triggerFile(target){
-    $("#img" + target).click();
-}
-
-function change_Img(input) {
-
-    if (input.files && input.files[0]) {
-    var reader = new FileReader();
-
-    reader.onload = function(e) {
-        $('#img_display').attr('src', e.target.result);
-        $('#img_display').css('display','inline-block');
-    }
-
-    reader.readAsDataURL(input.files[0]);
-    }
-}
-
 $(document).ready(function(){
-
-    $("#input_img_perfil").change(function () {
-        change_Img_Perfil(this);
+  
+    ///////////// TEMA /////////////
+    
+    $("#File-Tema").on("change", function(){
+      var oldValue = JSON.parse($("#auxData").val());
+      oldValue['Tema'] = this;
+      $("#saveTema").val("true");
+      tratarDatosUser(oldValue)
     });
-
-    $("#clear_img_perfil").click(function(){
-        $("#input_img_perfil").val('');
-        $('#img_perfil').removeAttr('src');
-        $('#icono').css('display','block');
-        $('#img_perfil').css('display','none');
+  
+    $("#Tema").click(function(){
+      $("#File-Tema").click();
     });
-
-    $("#input_img_encabezado").change(function () {
-        change_Img_Encabezado(this);
+    
+    $("#clear-Tema").click(function(){
+      $("#File-Tema").val("");
+      var oldValue = JSON.parse($("#auxData").val());
+      oldValue['Tema'] = "";
+      $("#saveTema").val("true");
+      tratarDatosUser(oldValue);
     });
-
-    $("#clear_img_encabezado").click(function(){
-        $("#input_img_encabezado").val('');
-        $('#img_encabezado').removeAttr('src');
-        $('#icono_e').css('display','block');
-        $('#img_encabezado').css('display','none');
+    
+    ///////////// ENCABEZADO /////////////
+    
+    $("#File-Encabezado").on("change", function(){
+      var oldValue = JSON.parse($("#auxData").val());
+      oldValue['Cabecera'] = this;
+      $("#saveCab").val("true");
+      tratarDatosUser(oldValue)
     });
-
-    $("#input_img_tema").change(function () {
-        change_Img_Tema(this);
+        
+    $("#Encabezado").click(function(){
+      $("#File-Encabezado").click();
     });
-
-    $("#clear_img_tema").click(function(){
-        $("#input_img_tema").val('');
-        $('#img_tema').removeAttr('src');
-        $('#icono_t').css('display','block');
-        $('#img_tema').css('display','none');
+    
+    $("#clear-Encabezado").click(function(){
+      $("#File-Encabezado").val("");
+      var oldValue = JSON.parse($("#auxData").val());
+      oldValue['Cabecera'] = "";
+      $("#saveCab").val("true");
+      tratarDatosUser(oldValue);
     });
-
+    
+    ///////////// FOTO DE PERFIL /////////////
+    
+    $("#File-Perfil").on("change", function(){
+      var oldValue = JSON.parse($("#auxData").val());
+      oldValue['Foto'] = this;
+      $("#saveFoto").val("true");
+      tratarDatosUser(oldValue)
+    });
+    
+    $("#fotoPerfil").click(function(){
+      $("#File-Perfil").click();
+    });
+    
+    $("#clear-perfil").click(function(){
+      $("#File-Perfil").val("");
+      var oldValue = JSON.parse($("#auxData").val());
+      oldValue['Foto'] = "";
+      $("#saveFoto").val("true");
+      tratarDatosUser(oldValue);
+    });
+    
     loadAll();
     document.getElementsByTagName("html")[0].style.visibility = "visible";
 

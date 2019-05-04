@@ -45,8 +45,6 @@ function checkNotificaciones(){
     success: function(data){
                 if(data != "0"){
                   $("#msg-span").text(data);
-                } else{
-                  $("#msgNav").hide();
                 }
             },
   });
@@ -62,8 +60,6 @@ function checkPeticionesSeguimiento(){
     success: function(data){
                 if(data != "0"){
                   $("#seg-span").text(data)
-                } else{
-                  $("#segNav").hide();
                 }
             },
   });

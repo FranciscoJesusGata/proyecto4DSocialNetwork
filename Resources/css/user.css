@@ -1,6 +1,12 @@
-body{
+.no-image-background{
   background: linear-gradient(to right, #0072ff, #ff0058);
   background-size: auto;
+}
+
+.image-background{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 101% 101%;
 }
 
 section
@@ -15,10 +21,7 @@ section
 
   clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
 }
-.vertical-center{
-  margin-top: 25%;
-  margin-bottom: 25%;
-}
+
 .spacer{
   margin-right: 5px;
   margin-left: 5px;
@@ -29,82 +32,6 @@ section
 .col-border{
   border: 1px solid black;
 }
-.special-button{
-  background: none;
-  color: inherit;
-  border: none;
-  outline: inherit;
-}
-.special-button-div{
-  height: 2px
-}
-.icono-general{
-  padding-top:40px
-}
-#img_perfil_container{
-  height: 150px;
-  width: 150px;
-  border-radius: 90px;
-  -webkit-border-radius:90px;
-  -moz-border-radius:90px;
-  border: 1px solid black;
-  z-index: 2;
-}
-#img_encabezado_container, #img_tema_container{
-  height: 150px;
-  width: auto;
-  border-radius: 10px;
-  -webkit-border-radius:10px;
-  -moz-border-radius:10px;
-  border: 1px solid black;
-  z-index: 2;
-}
-#input_img_perfil{
-  opacity: 0.0;
-
-  /* IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-
-  /* IE 5-7 */
-  filter: alpha(opacity=0);
-
-  /* Netscape or and older firefox browsers */
-  -moz-opacity: 0.0;
-
-  /* older Safari browsers */
-  -khtml-opacity: 0.0;
-
-  position: absolute;
-  padding: 0px;
-  top: 29px;
-  left: 17px;
-  bottom: 0;
-  width: 150px;
-  height:150px;
-}
-#input_img_encabezado, #input_img_tema{
-  opacity: 0.0;
-
-  /* IE 8 */
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-
-  /* IE 5-7 */
-  filter: alpha(opacity=0);
-
-  /* Netscape or and older firefox browsers */
-  -moz-opacity: 0.0;
-
-  /* older Safari browsers */
-  -khtml-opacity: 0.0;
-
-  position: absolute;
-  padding: 0px;
-  top: 29px;
-  left: 17px;
-  bottom: 0;
-  width: 93%;
-  height: 150px;
-}
 .fotoPerfil{
   width: 100%;
   height: 100%;
@@ -114,29 +41,13 @@ section
 }
 .fotoComun{
   width: 100%;
-  height: 100%;
+  height: 150px;
   object-fit: cover;
   margin: auto;
   border-radius: 10px;
 }
-#clear_img_perfil{
-  background: none;
-  color: inherit;
-  border: none;
-  outline: inherit;
-  position: absolute;
-  left: 5px;
-  z-index: 3;
-}
-
-#clear_img_encabezado, #clear_img_tema{
-  background: none;
-  color: inherit;
-  border: none;
-  outline: inherit;
-  position: absolute;
-  left: -10px;
-  z-index: 3;
+.icono-general{
+  padding-top:45px
 }
 .img_adv{
   display: none;
@@ -144,18 +55,4 @@ section
   object-fit: cover;
   margin: auto;
   border-radius: 10px;
-}
-#icono{
-  font-size: 50px;
-  position: absolute;
-  top: 80px;
-  left: 65px;
-  z-index: 0;
-}
-#icono_e, #icono_t{
-  font-size: 50px;
-  position: absolute;
-  top: 80px;
-  right: 45%;
-  z-index: 0;
 }
