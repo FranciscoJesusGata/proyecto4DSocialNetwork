@@ -1,38 +1,42 @@
-<nav class="navbar navbar-expand bg-dark fixed-top">
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item mr-3">
-                <img  height="40px" width="40px" src="../img/1480688210_Hacker.ico"/>
-            </li>
-            <li class="nav-item mr-3">
-
-            </li>
-
-            <li class="nav-item dropdown conSesionIniciada mr-3">
-                <button class="btn dropdown-toggle btn-outline-light" href="#" id="navbarDropdown" data-toggle="dropdown">
-                    <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-pill badge-primary" id="count-not"></span>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="notification-list">
-                  <a href="notificaciones.html" class="dropdown-item"> Avanzado</a>
-                  <a href="messages.html" class="dropdown-item" id="msgNav"><span class="badge badge-pill badge-primary" id="msg-span"></span> Mensajes</a>
-                  <a href="user.html" class="dropdown-item" id="segNav"><span class="badge badge-pill badge-primary" id="seg-span"></span> Peticiones</a>
-                </div>
-            </li>
-        </ul>
-        <a href="login.html" class="sinSesionIniciada"><button class="btn btn-outline-light" type="button">Iniciar Sesion</button></a>
-        &nbsp;
-        <a href="register.html" class="sinSesionIniciada"><button class="btn btn-outline-light" type="button">Registrarse</button></a>
-        <!-- <button class="btn conSesionIniciada" type="button" id="cerrarSesionNavbar">Cerrar sesion</button> -->
-        <div class="dropdown conSesionIniciada">
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+  <img  height="40px" width="40px" src="../img/1480688210_Hacker.ico" class="mr-3 mb-2 mb-md-0"/>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown conSesionIniciada">
             <button class="btn dropdown-toggle btn-outline-light" href="#" id="navbarDropdown" data-toggle="dropdown">
-                <img src="" height="25px" width="25px" style="border-radius: 100%" id="img-navbar">&nbsp;<span class="" id="alias-navbar"></span>
+                <i class="fas fa-envelope"></i>&nbsp;<span class="badge badge-pill badge-primary" id="count-not"></span>
             </button>
-            <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown" id="notification-list">
-              <a href="../../PHP/Sessions/Logout.php" class="dropdown-item"><span class="badge badge-pill badge-primary" id="msg-span"></span>Cerrar sesion</a>
-              <a href="configuracion.html" class="dropdown-item"><span class="badge badge-pill badge-primary" id="seg-span"></span>Configuración</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown" id="notification-list">
+              <a href="notificaciones.html" class="dropdown-item"> Avanzado</a>
+              <a href="messages.html" class="dropdown-item" id="msgNav"><span class="badge badge-pill badge-primary" id="msg-span"></span> Mensajes</a>
+              <a href="user.html" class="dropdown-item" id="segNav"><span class="badge badge-pill badge-primary" id="seg-span"></span> Peticiones</a>
             </div>
-        </div>
+        </li>
+    </ul>
+    <div class="navbar-nav">
+      <a href="login.html" class="sinSesionIniciada"><button class="btn btn-outline-light" type="button">Iniciar Sesion</button></a>
+      &nbsp;
+      <a href="register.html" class="sinSesionIniciada"><button class="btn btn-outline-light" type="button">Registrarse</button></a>
+      <!-- <button class="btn conSesionIniciada" type="button" id="cerrarSesionNavbar">Cerrar sesion</button> -->
+      <div class="dropdown conSesionIniciada mr-2 mb-4 mb-md-0">
+          <button type="button" class="btn dropdown-toggle btn-outline-light" href="#" id="navbarDropdown" data-toggle="dropdown">
+              <img src="" height="25px" width="25px" style="border-radius: 100%" id="img-navbar">&nbsp;<span class="" id="alias-navbar"></span>
+          </button>
+          <div class="dropdown-menu  dropdown-menu-right" aria-labelledby="navbarDropdown" id="notification-list">
+            <a href="../../PHP/Sessions/Logout.php" class="dropdown-item">Cerrar sesion</a>
+            <a href="configuracion.html" class="dropdown-item">Configuración</a>
+            <a href="usuario.html" class="dropdown-item">Página de usuario</a>
+          </div>
+      </div>
+      <form class="form-inline mr-auto conSesionIniciada">
+          <input type="text" class="form-control mr-sm-2">
+          <button type="button" class="btn btn-success">Buscar</button>
+      </form>
     </div>
-    <script type="text/javascript" src="../../JQUERY/jquery-navbar.js">
-    </script>
+  </div>
+  <script type="text/javascript" src="../../JQUERY/jquery-navbar.js">
+  </script>
 </nav>
