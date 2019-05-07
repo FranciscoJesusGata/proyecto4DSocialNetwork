@@ -164,8 +164,6 @@ $(document).ready(function(){
         }
     });
 
-
-
     $("#img1").change(function () {
         change_Img(this);
         if($("#img1").attr("src") == "#"){
@@ -174,15 +172,6 @@ $(document).ready(function(){
             $("#sendPost").attr("disabled",false);
         }
     });
-
-    /*$("#img1").change(function () {
-        change_Img(this);
-        if($("#img1").attr("src") == "#"){
-        $("#sendPost").attr("disabled",true);
-        }else{
-            $("#sendPost").attr("disabled",false);
-        }
-    });*/
 
     $("#post").keyup(function () { 
         if(!$.trim($("#post").val())){

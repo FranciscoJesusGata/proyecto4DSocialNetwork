@@ -58,11 +58,9 @@
             $foto = guardarFoto($nombre);
         }
         if(isset($_FILES['encabezado']['name']) > 0){
-            echo "cabecera";
             $cabecera = guardarCabecera($nombre);
         }
         if (isset($_FILES['tema']['name'])  > 0){
-            echo "tema";
             $tema = guardarTema($nombre);
         }
 
