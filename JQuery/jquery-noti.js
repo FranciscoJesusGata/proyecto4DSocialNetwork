@@ -14,6 +14,28 @@ $.ajax({
     }
 });
 
+function tratarDatosUser(datos){
+    var Tema = datos["Tema"];
+
+    if(Tema == ""){
+      $("body").addClass('no-image-background');
+    } else {
+      $("#seccion-background").hide();
+      $("body").addClass('image-background');
+      $("body").css("background-image", "url("+ Tema +")");
+    }
+}
+
+$.ajax({
+    type: "POST",
+    url: "../../PHP/Querys/User_Data.php",
+    data: {opcion: "main"},
+    dataType: "json",
+    success: function (response) {
+        tratarDatosUser(response);
+    }
+});
+
 /* No estoy seguro de como haeclo, ya que si esta página se recarga automáticamente cada x tiempo
    al recargar por segunda vez, tomará la nueva fecha en vez de la antigua y no se mostrarán los dats*/
 function setFechaConexion() {
