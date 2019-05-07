@@ -3,7 +3,7 @@
     /*variables de configuración*/
     private $server = "127.0.0.1";
     private $user = "root";
-    private $db_passwd = "";
+    private $db_passwd = "Qr201998";
     private $database = "socialnetwork";
     public $db_conection;
 
