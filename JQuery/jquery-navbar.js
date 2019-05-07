@@ -12,12 +12,26 @@ function checkSesionNavbar (){
                 if (data == "yes"){
                   $(".sinSesionIniciada").hide();
                   $(".conSesionIniciada").show();
+                  getImgYAlias();
                 }
                 else{
                   $(".conSesionIniciada").hide();
                   $(".sinSesionIniciada").show();
                 }
             },
+  });
+}
+
+function getImgYAlias(){
+  $.ajax({
+      type: "POST",
+      url: "../../PHP/Querys/User_Data.php",
+      data: {opcion: "navbar"},
+      dataType: "json",
+      success: function (response) {
+        $("#alias-navbar").text(response[0]['Alias']);
+        $("#img-navbar").attr('src', response[0]['Foto']);
+      }
   });
 }
 
@@ -31,8 +45,6 @@ function checkNotificaciones(){
     success: function(data){
                 if(data != "0"){
                   $("#msg-span").text(data);
-                } else{
-                  $("#msgNav").hide();
                 }
             },
   });
@@ -48,8 +60,6 @@ function checkPeticionesSeguimiento(){
     success: function(data){
                 if(data != "0"){
                   $("#seg-span").text(data)
-                } else{
-                  $("#segNav").hide();
                 }
             },
   });

@@ -1,0 +1,58 @@
+.no-image-background{
+  background: linear-gradient(to right, #0072ff, #ff0058);
+  background-size: auto;
+}
+
+.image-background{
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 101% 101%;
+}
+
+section
+{
+  top: 20vh;
+  position: fixed;
+  height: 120vh;
+  width: 50vh;
+  background: white;
+
+  opacity: 0.1;
+
+  clip-path: polygon(0vh 0, 0 100vh, 100vh 100vh);
+}
+
+.spacer{
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.col-rounded{
+  border-radius: 10px;
+}
+.col-border{
+  border: 1px solid black;
+}
+.fotoPerfil{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 100%;
+}
+.fotoComun{
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 10px;
+}
+.icono-general{
+  padding-top:45px
+}
+.img_adv{
+  display: none;
+  width: 100%;
+  object-fit: cover;
+  margin: auto;
+  border-radius: 10px;
+}

@@ -20,6 +20,15 @@ function tratarDatosUser(datos){
     var Fotosrc = datos["Foto"];
     var Followers = datos["Seguidores"];
     var Following = datos["Seguidos"];
+    var Tema = datos["Tema"];
+
+    if(Tema == ""){
+      $("body").addClass('no-image-background');
+    } else {
+      $("#seccion-background").hide();
+      $("body").addClass('image-background');
+      $("body").css("background-image", "url("+ Tema +")");
+    }
     $("#fotoPerfil").attr("src",Fotosrc);
     $("#alias").text(Alias);
     $("#nomUser").text(Nombre);

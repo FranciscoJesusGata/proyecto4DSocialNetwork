@@ -2,10 +2,16 @@
     include 'Database.php';
     session_start();
 
+    function dataForNavbar($database){
+      $nombre = $_SESSION['N_Usuario'];
+      $sql = "SELECT Foto, Alias FROM usuarios where nombre_usuario = '".$nombre."'";
+      return $database->get_unknow_data($sql);
+    }
+
     function dataForMain ($conexion, $database){
         $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
-        $queryBasicData = "SELECT Nombre_Usuario, Alias, Foto
-        FROM usuarios
+        $queryBasicData = "SELECT * 
+        FROM usuarios 
         WHERE Nombre_Usuario = '".$nombre."'";
         $queryFollowers = "SELECT COUNT(Nombre_Usuario) AS Seguidores
         FROM seguir
@@ -24,7 +30,7 @@
         }else{
             $follow=array_merge($followers,$following);
             $finaldata=array_merge($datos,$follow);
-            
+
             return $finaldata;
         }
     }
@@ -51,5 +57,9 @@
             $enviar=json_encode($datos);
             echo $enviar;
         }
+    }
+    if ($opcion == "navbar") {
+        $datos = dataForNavbar($database);
+        echo json_encode($datos);
     }
 ?>

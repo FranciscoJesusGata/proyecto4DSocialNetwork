@@ -3,6 +3,8 @@
   $database = new Database;
   session_start();
 
+//----------------------------------------------------------------------------//
+
   function getLastMessages($nombre, $database){
     $return = array();
     $sql="SELECT * FROM mensajes WHERE F_Lectura IS NULL AND Id_Receptor = '".$nombre."' ORDER BY Id_Emisor desc";
