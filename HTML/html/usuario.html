@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>4D Social Network</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../../Resources/jquery-3.3.1.min.js"></script>
+    <script src="../../JQuery/jquery-usuario.js"></script>
+    <link rel="stylesheet" href="../../Resources/fontawesome-free-5.5.0-web/css/all.css">
+    <link rel="stylesheet" href="../../Resources/bootstrap-4.1.3/css/bootstrap.min.css">
+    <script src="../../Resources/bootstrap-4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="../../Resources/popper.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="../../Resources/css/usuario.css">
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <script>
+        $("#navbar").load("navbar.html");
+    </script>
+    <div class="fondo" id="fondo">
+      <div class="efecto">
+        &nbsp;
+      </div>
+    </div>
+    <section id="seccion-background">
+      &nbsp;
+    </section>
+    <div class="col-12 my-3">
+      &nbsp;
+    </div>
+    <div class="container">
+          <div class="row justify-content-center">
+              <div class="col-12 px-0 col-md-8 bg-white mt-5 col-rounded">
+                  <div class="col-12 px-0 mx-auto bg-white rounded-top" id="Encabezado">
+                    <div class="row h-100 justify-content-center align-items-center">
+                      <div class="col">
+                        <img class="rounded-circle d-block mx-auto" height="200px" width="200px" id="fotoPerfil" style="margin-top:15%">
+                      </div>
+                    </div>
+                  </div>
+                  <br>  
+                  <h4 class="text-center" id="alias"></h4>
+                  <h5 class="text-center" id="nomUser"></h5>
+                  <hr/>
+                  <p class="text-center" id ="biografia"></p>
+              </div>
+          </div>
+
+          <div class="row justify-content-center mb-5">
+              <div class="col-md-8 bg-white mt-5 col-rounded">
+                  <div class="row">
+                      <div class="col-4">
+                          <label class="ml-3 mt-3">followers: <span id="followers"></span></label>
+                      </div>
+
+                      <div class="col-4 text-center">
+                          
+                      </div>
+
+                      <div class="col-4 text-right">
+                          <label class="ml-3 mt-3">following: <span id="following"></span></label>
+                      </div>
+                  </div>
+                  <hr/>
+                  <div class="container-fluid">
+                      
+                  </div>
+              </div>
+          </div>
+    </div>
+  </body>
+</html>
