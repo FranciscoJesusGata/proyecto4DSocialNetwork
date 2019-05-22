@@ -45,7 +45,7 @@ body{
     height: 0px;
     position: absolute;
 
-    left: 21px;
+    left: 7px;
     margin-top: 0px;
 
     border-top: 5.7px solid transparent;
@@ -59,7 +59,7 @@ body{
     height: 0px;
     position: absolute;
 
-    left: 22px;
+    left: 8px;
     margin-top: -28px;
 
     border-top: 4px solid transparent;
@@ -73,7 +73,7 @@ body{
     height: 0px;
     position: absolute;
 
-    right: 21px;
+    right: 5px;
 
     border-top: 5.7px solid transparent;
     border-bottom: 5.7px solid transparent;
@@ -86,7 +86,7 @@ body{
     height: 0px;
     position: absolute;
 
-    right: 23px;
+    right: 7px;
     margin-top: -28px;
 
     border-top: 4px solid transparent;
