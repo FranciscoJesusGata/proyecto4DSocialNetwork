@@ -17,6 +17,7 @@
         return "error";
       }
       else {
+        mysqli_set_charset($this->db_conection,"utf8");
         return null;
       }
     }
