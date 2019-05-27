@@ -109,7 +109,6 @@ function tratarDatosUser(datos){
 }
 
 function loadAll() {
-  getPeticiones();
   getDataFromUser();
 }
 
