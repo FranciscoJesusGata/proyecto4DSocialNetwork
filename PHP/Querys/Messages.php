@@ -2,9 +2,11 @@
     include 'Database.php';
     session_start();
     function ultimaConversacion($conexion,$database,$nombre){
-        $sql="SELECT Id_Receptor";
+        $sql="SELECT Id_Receptor, F_Envio";
         $sql.=" FROM mensajes";
         $sql.=" WHERE Id_Emisor = '".$nombre."'";
+        $sql.=" UNION SELECT Id_Emisor, F_Envio FROM mensajes";
+        $sql.=" WHERE Id_Receptor = '".$nombre."'";
         $sql.=" ORDER BY F_Envio DESC LIMIT 1";
         $datos = $database->get_data($sql);
         if(isset($datos[0])){
@@ -18,10 +20,6 @@
         $receptor = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
         $sql="UPDATE mensajes SET F_Lectura= CURRENT_TIMESTAMP WHERE (Id_Emisor = '".$emisor."' AND Id_Receptor = '".$receptor."') AND F_Lectura IS NULL";
         $ok = $database->send_data($sql);
-    }
-
-    function updateChats(){
-
     }
 
     function chats($conexion, $database){
@@ -62,7 +60,7 @@
                 $new_msg = $database->get_data($sql_new_msg);
                 array_push($new_msg_array,$new_msg['New_Msg']);
             }
-        }else if(!isset($datos[0]['Receptor']) && $datos['Receptor'] != NULL){
+        }else if(!isset($datos[0]['Receptor']) && isset($datos['Receptor'])){
             $receptor = $datos['Receptor'];
             $sql_last_msg="SELECT Texto";
             $sql_last_msg.=" FROM mensajes";
@@ -80,6 +78,8 @@
             
             $new_msg = $database->get_data($sql_new_msg);
             array_push($new_msg_array,$new_msg['New_Msg']);
+        }else{
+            exit;
         }
         array_push($datos,$last_msg_array,$new_msg_array);
         $out = json_encode($datos);
@@ -93,7 +93,7 @@
             if($receptor == NULL){
                 exit;
             }
-        } 
+        }
         $sql="SELECT Id_M, Texto, F_Envio, F_Lectura, Id_Receptor AS Receptor, Id_Emisor AS Emisor";
         $sql.=" FROM mensajes";
         if($fecha != NULL){
@@ -165,8 +165,7 @@
         $mensaje = $_POST['message'];
         enviar_mensaje($conexion, $database, $mensaje, $receptor);
     }else if ($opcion == "chats"){
-        $receptor = $_POST['user'];
-        chats($conexion, $database, $receptor);
+        chats($conexion, $database);
     }else if ($opcion == "visto"){
         $emisor = $_POST['emisor'];
         visto($conexion, $database,$emisor);
