@@ -27,10 +27,52 @@ function mensajeVisto(){
     });
 }
 
+function cambiosChats(datos){
+    var historial = $("#chats").children().length;
+    var usuarios = datos.splice(datos-3,2);
+    var mensajes = datos.splice(0,usuarios.length);
+    var ult_mensajes = mensajes[0];
+    var notificationes = mensajes[1];
+    for(var i = 0; i < usuarios.length; i++){
+        for(var j = 0; i < historial.length; j++){
+            if((usuarios[i]['Receptor'].toLowerCase == $("#nombre"+j).text().toLowerCase) && (notificationes[i] > 0)){
+                $("#mensajes_nuevos"+j).text(mensajes[i]);
+                $("#mensajes_nuevos"+j).attr("class","m-notification bg-success float-right align-self-center mt-4 d-block text-white justify-content-center");
+            }else if(usuarios[i]['Receptor'].toLowerCase != $("#nombre"+j).text().toLowerCase){
+                var html ="<tr> <td><div class='w-100 h-100' onclick='cambiar(\""+usuarios[i]['Receptor']+"\",\""+(historial+1)+"\")'>";
+                html+="<img src='"+usuarios[i]['Foto']+"' id='foto"+i+"' class='rounded-circle mr-2 my-2 float-left d-block' width='55vh' height='55vh'>";
+                html+="<div class='d-inline float-left mb-0 mt-2'>";
+                html+="<p class='mb-1' id='nombre"+(historial+1)+"' style='font-size: 20px;'>"+usuarios[i]['Receptor']+"</p>";
+                html+="<p class='mb-0' style='max-width: 165px; text-truncate'>"+ult_mensajes[i]+"</p></div>";
+                if(parseInt(chats[chats.length-1]) > 0){
+                    html+="<div class='m-notification bg-success float-right align-self-center mt-4 d-block text-white justify-content-center'>"+notificationes[0]+"</div></div></td></tr>";
+                }else{
+                    html+="<div class='m-notification float-right align-self-center mt-4 d-block'></div></div></td></tr>";
+                }
+            }
+        }
+    }
+}
+
+
+function emptyChatHistory(num){
+    if($("#chats tbody").children().length == 0 && num == 0){
+        $("#chat_content").children().css("display", "none");
+        var html="<div id='chat-vacio' class='col-12 w-100 align-self-center' style='position: absolute;'><p class='h2 text-center text-muted w-100'>No tienes ninguna conversación</p><br><p class='text-center text-muted mt-0 w-100'>¡Empieza a hablar con otros usuarios!</p></div>"
+        $("#chat_content").append(html);
+        var html2="<div id='historial-vacio'class='w-100 align-self-center' style='position: absolute;'><p class='text-center text-muted w-100'>No has iniciado ninguna conversación</p></div>"
+        $("#chats-wrap").append(html2);
+    }
+}
+
 function mostrarMensajes(mensajes, sesion){
+    if($("#chat-content").children().css('display') == "none"){
+        $("#chat-vacio").remove();
+        $("#historial-vacio").remove();
+        $("#chat_content").children().css("display", "");
+    }
     var html ="";
     var ult_fecha ="";
-    console.log(sesion);
     if(mensajes['Id_M'] === undefined){
         for(var i = 0; (mensajes.length-1) >= i ; i++){
             html += "<tr class='row mx-1'> <td class='w-100'> <div><div class='";
@@ -89,6 +131,7 @@ function mostrarMensajes(mensajes, sesion){
     if(html != ""){
         scrollFinal();
     }
+    emptyChatHistory(mensajes.length);
 }
 
 function mostrarChats(chats){
@@ -99,20 +142,24 @@ function mostrarChats(chats){
             html+="<img src='"+chats[i]['Foto']+"' id='foto"+i+"' class='rounded-circle mr-2 my-2 float-left d-block' width='55vh' height='55vh'>";
             html+="<div class='d-inline float-left mb-0 mt-2'>";
             html+="<p class='mb-1' id='nombre"+i+"' style='font-size: 20px;'>"+chats[i]['Receptor']+"</p>";
-            html+="<p class='mb-0' style='max-width: 165px;'>"+chats[chats.length-2][i]+"</p></div>";
+            html+="<p class='mb-0' style='max-width: 165px; text-truncate'>"+chats[chats.length-2][i]+"</p></div>";
             if(parseInt(chats[chats.length-1][i]) > 0){
-                html+="<div class='m-notification bg-success float-right align-self-center mt-4 d-block text-white justify-content-center'>"+chats[chats.length-1][i]+"</div></div></td></tr>";
+                html+="<div id='mensajes_nuevos"+i+"' class='m-notification bg-success float-right align-self-center mt-4 d-block text-white justify-content-center'>"+chats[chats.length-1][i]+"</div></div></td></tr>";
             }else{
-                html+="<div class='m-notification float-right align-self-center mt-4 d-block'></div></div></td></tr>";
+                html+="<div id='mensajes_nuevos"+i+"' class='m-notification float-right align-self-center mt-4 d-block'></div></div></td></tr>";
             }
         }
     }else if(chats[0]['Receptor'] === undefined && chats['Receptor'] !== null){
-        html+="<tr> <td><div class='w-100'>";
-        html+="<img src='"+chats['Foto']+"' class='rounded-circle mr-2 my-2 float-left d-block' width='55vh' height='55vh'>";
-        html+="<div class='d-inline float-left mb-0 mt-2'>";
-        html+="<p class='mb-1' style='font-size: 20px;'>"+chats['Receptor']+"</p>";
-        html+="<p class='mb-0'>"+chats['Texto']+"</p></div>";
-        html+="<div class='m-notification bg-success float-right align-self-center mt-4 d-block text-white justify-content-center'>"+chats['mensajes_nuevos']+"</div></div></td></tr>";
+        html+="<tr> <td><div class='w-100 h-100' onclick='cambiar(\""+chats['Receptor']+"\",\""+i+"\")'>";
+            html+="<img src='"+chats['Foto']+"' id='foto"+i+"' class='rounded-circle mr-2 my-2 float-left d-block' width='55vh' height='55vh'>";
+            html+="<div class='d-inline float-left mb-0 mt-2'>";
+            html+="<p class='mb-1' id='nombre"+i+"' style='font-size: 20px;'>"+chats['Receptor']+"</p>";
+            html+="<p class='mb-0' style='max-width: 165px; text-truncate'>"+chats[chats.length-2][0]+"</p></div>";
+            if(parseInt(chats[chats.length-1]) > 0){
+                html+="<div class='m-notification bg-success float-right align-self-center mt-4 d-block text-white justify-content-center'>"+chats[chats.length-1][0]+"</div></div></td></tr>";
+            }else{
+                html+="<div class='m-notification float-right align-self-center mt-4 d-block'></div></div></td></tr>";
+            }
     }
     $("#chats").prepend(html);
 }
@@ -132,7 +179,6 @@ function recogerMensajes(fecha,user){
         dataType: "json",
         success: function (data) {
             if(data['data'] !== undefined){
-                console.log(data['data']);
                 $("#abierto-nombre").text(data['data']['Receptor']);
                 $("#abierto-img").attr("src",data['data']['Foto']);
                 $("#usuario").attr("data-usuario", data['data']['Receptor']);
@@ -140,23 +186,22 @@ function recogerMensajes(fecha,user){
             mostrarMensajes(data['mensajes'],data['sesion']);
         },
         error: function (data) {
-            if(data['responseText'] != ""){
-                console.log(data['responseText']);
-            }
         }
     });
 }
 
-function recogerChats(){
+function recogerChats(orden){
     var user = $("#usuario").attr("data-usuario");
     $.ajax({
         type: "POST",
         url: "../../PHP/Querys/Messages.php",
-        data: {opcion: "chats", user: user},
+        data: {opcion: "chats"},
         async: true,
         dataType: "json",
         success: function (data) {
+            console.log(data);
             mostrarChats(data);
+            cambiosChats(data);
         },
         error: function (data) {
             console.log(data);
@@ -176,8 +221,11 @@ function cambiar(usuario,id) {
     $("#chat tr").remove();
     var img = $("#foto"+id).attr("src");
     var nombre = $("#nombre"+id).text();
+    var notification = $("#mensajes_nuevos"+id);
     $("#abierto-img").attr("src",img);
     $("#abierto-nombre").text(nombre);
+    notification.attr("class","m-notification float-right align-self-center mt-4 d-block");
+    notification.text("");
     recogerMensajes(null,$("#usuario").attr("data-usuario"));
 }
 
