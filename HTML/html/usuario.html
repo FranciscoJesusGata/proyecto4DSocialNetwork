@@ -14,11 +14,12 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <link rel="stylesheet" href="../../Resources/css/usuario.css">
   </head>
-  <body>
+  <body class="container container-fluid">
     <div id="navbar"></div>
     <script>
         $("#navbar").load("navbar.html");
     </script>
+    <input type="hidden" id="auxData">
     <div class="fondo" id="fondo">
       <div class="efecto">
         &nbsp;
@@ -27,22 +28,22 @@
     <section id="seccion-background">
       &nbsp;
     </section>
-    <div class="col-12 my-3">
-      &nbsp;
-    </div>
-    <div class="container">
+    <br>
+    <div class="container container-fluid">
           <div class="row justify-content-center">
-              <div class="col-12 px-0 col-md-8 bg-white mt-5 col-rounded">
+              <div class="col-12 px-0 col-md-8 bg-white mt-5 col-rounded text-center">
                   <div class="col-12 px-0 mx-auto bg-white rounded-top" id="Encabezado">
                     <div class="row h-100 justify-content-center align-items-center">
                       <div class="col">
-                        <img class="rounded-circle d-block mx-auto" height="200px" width="200px" id="fotoPerfil" style="margin-top:15%">
+                        <img class="rounded-circle d-block mx-auto" height="200px" width="200px" id="fotoPerfil" style="margin-top:11vh">
                       </div>
                     </div>
                   </div>
                   <br>  
                   <h4 class="text-center" id="alias"></h4>
                   <h5 class="text-center" id="nomUser"></h5>
+                  <button type="button" class="btn btn-primary mt-3" id="seguir">Seguir</button>
+                  <button type="button" class="btn btn-primary mt-3" id="sendMessage">Enviar mensaje</button>
                   <hr/>
                   <p class="text-center" id ="biografia"></p>
               </div>
@@ -64,8 +65,7 @@
                       </div>
                   </div>
                   <hr/>
-                  <div class="container-fluid">
-                      
+                  <div class="container-fluid" id="posts">
                   </div>
               </div>
           </div>

@@ -85,6 +85,10 @@ checkNotificaciones();
 checkPeticionesSeguimiento();
 checkCountNotificaciones();
 
+$("#buscar").click(function (){
+  window.location.href = "usuario.html?name=" + $("#search").val();
+})
+
 $("#cerrarSesionNavbar").click(function (){
   window.location.href = "../../PHP/Sessions/Logout.php";
 })

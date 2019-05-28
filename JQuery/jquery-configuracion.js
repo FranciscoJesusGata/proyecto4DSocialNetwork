@@ -27,41 +27,6 @@ function getDataFromUser() {
   });
 }
 
-function getPeticiones() {
-  $.ajax({
-      type: "POST",
-      url: "../../PHP/Querys/NotificacionesAdv.php",
-      data: {type: "AdvSeg"},
-      async: true,
-      dataType: "html",
-      success: function(result){
-                  var data = jQuery.parseJSON(result);
-                  if (typeof data !== 'undefined' && data.length > 0) {
-                    var show = "";
-                      for (var i = 0; i < data.length; i++) {
-                        show += "<tr><td>";
-                        show += data[i]['Nombre_Usuario'] + " ";
-                        show += "</td><td>";
-                        show += "<div class='btn-group'><button class='btn btn-primary' onclick='acceptPeticion(";
-                        show += "\"" + data[i]['Nombre_Usuario'] + "\", \"";
-                        show += data[i]['Nombre_Seguido'];
-                        show += "\")'><i class='fas fa-check'></i></button>";
-                        show += "<button class='btn btn-danger' onclick='denyPeticion(\"";
-                        show += data[i]['Nombre_Usuario'] + "\", \"";
-                        show += data[i]['Nombre_Seguido'];
-                        show += "\")'><i class='fas fa-times'></i></button></div>";
-                        show += "</td></tr>";
-                      }
-                    $("#peticiones").html(show)
-                  }
-              },
-      error: function(){
-          swal("Error", "Se haproducido un error al tratar de obtener las peticiones de seguimiento", "error");
-          console.log("error");
-      }
-  });
-}
-
 function tratarDatosUser(datos){
     $("#auxData").val(JSON.stringify(datos));
     var Alias = datos["Alias"];
@@ -144,7 +109,6 @@ function tratarDatosUser(datos){
 }
 
 function loadAll() {
-  getPeticiones();
   getDataFromUser();
 }
 
