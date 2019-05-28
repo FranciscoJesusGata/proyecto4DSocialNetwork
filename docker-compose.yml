@@ -34,7 +34,7 @@ services:
   mysql_front:
     image: phpmyadmin/phpmyadmin:latest
     container_name: mysql_front
-    link:
+    links:
       - mysql:db
     ports:
      - "8080:8080"
