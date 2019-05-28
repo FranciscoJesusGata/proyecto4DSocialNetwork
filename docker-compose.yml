@@ -1,0 +1,40 @@
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    container_name: nginx_server
+    ports:
+      - "8080:80"
+    links:
+      - php
+      - mysql
+    depends_on:
+      - php
+      - mysql
+    volumes:
+      - ./proyecto4DSocialNetwork/:/app/
+      - ./4D-DataBase/configuration/app.conf:/etc/nginx/conf.d/app.conf
+  php:
+    image: franciscojesusgata/php-mysqli
+    container_name: php
+    links:
+      - mysql
+    depends_on:
+      - mysql
+    volumes:
+      - ./proyecto4DSocialNetwork/:/app/
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes: 
+    - ./4D-DataBase/SQL/:/docker-entrypoint-initdb.d/
+    - /mysql_backup:/var/lib/mysql
+  mysql_front:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: mysql_front
+    link:
+      - mysql:db
+    ports:
+     - "8080:8080"
