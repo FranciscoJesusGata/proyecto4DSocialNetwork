@@ -19,6 +19,21 @@ function borrarCarpetaDeUsuario($nombre){
     }
 }
 
+// $nombre, $carpeta
+function borrarContenidoCarpeta($nombre, $carpeta){
+    $archivo = '../../HTML/img/'.$nombre.'/'.$carpeta.'/';
+    $files = scandir($archivo);
+    echo json_encode($files);
+    foreach ($files as $file) {
+      $file = $archivo.$file;
+      if (file_exists($file) && $file != $archivo."." && $file != $archivo."..") {
+        unlink($file);
+      }
+      
+    }
+    
+}
+
 function guardarFoto($nombre){
     $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
     $directorio = "../../HTML/img/".$nombre."/profilepic/";

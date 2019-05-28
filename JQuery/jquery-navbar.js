@@ -30,6 +30,9 @@ function getImgYAlias(){
       dataType: "json",
       success: function (response) {
         $("#alias-navbar").text(response[0]['Alias']);
+        if(response[0]['Foto'] == "" || response[0]['Foto'] == null){
+          response[0]['Foto'] = "../img/user.jpg";
+        }
         $("#img-navbar").attr('src', response[0]['Foto']);
       }
   });

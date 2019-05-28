@@ -29,7 +29,11 @@ function tratarDatosUser(datos){
       $("body").addClass('image-background');
       $("body").css("background-image", "url("+ Tema +")");
     }
-    $("#fotoPerfil").attr("src",Fotosrc);
+    if(Fotosrc == ""){
+      $("#fotoPerfil").attr("src","../img/user.jpg");
+    } else {
+      $("#fotoPerfil").attr("src",Fotosrc);
+    }
     $("#alias").text(Alias);
     $("#nomUser").text(Nombre);
     $("#followers").text(Followers);
@@ -105,6 +109,9 @@ $(document).ready(function(){
                 var x = posts[i]["F_Publicacion"].split(/[- :]/);
                 var fecha_P_Completa = new Date(Date.UTC(x[0], x[1]-1, x[2], x[3], x[4], x[5]));
                 var html = "<div class = 'col-12 mb-3 ml-0'>";
+                if(posts[i]['Foto'] == "" || posts[i]['Foto'] == null){
+                  posts[i]['Foto'] = "../img/user.jpg";
+                }
                 html += "<img height='50px' width='50px' src='"+posts[i]['Foto']+"' class='rounded-circle mr-1'>";
                 html+="<label class='h5'>"+posts[i]["Alias"]+"</label> <label class='ml-2' style='color:#808080;font-size: 18px'>"+posts[i]["Nombre_Usuario"]+"</label></div>";
                 html+="<div class='col-1 float-right d-inline-block mb-3'>";
@@ -131,6 +138,9 @@ $(document).ready(function(){
         }else if(posts['id_P'] != undefined){
             var x = posts["F_Publicacion"].split(/[- :]/);
             var fecha_P_Completa = new Date(Date.UTC(x[0], x[1]-1, x[2], x[3], x[4], x[5]));
+            if(posts['Foto'] == "" || posts['Foto'] == null){
+              posts['Foto'] = "../img/user.jpg";
+            }
             var html = "<div class = 'col-12 mb-3 ml-0'>";
                 html += "<img height='50px' width='50px' src='"+posts['Foto']+"' class='rounded-circle mr-1'>";
                 html+="<label class='h5'>"+posts["Alias"]+"</label> <label class='ml-2' style='color:#808080;font-size: 18px'>"+posts["Nombre_Usuario"]+"</label></div>";

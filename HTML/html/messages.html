@@ -22,7 +22,7 @@
             }
         </style>
   </head>
-  <body>
+  <body class="container container-fluid">
     <div id="navbar"></div>
     <script>
         $("#navbar").load("navbar.html");
@@ -38,38 +38,36 @@
     <div class="col-12 my-3">
       &nbsp;
     </div>
-    <div class="container-fluid w-100">
-        <div class="row">
-            <div class="float-left ml-5 col-xl-3 col-lg-4 col-md-4 col-sm-2 col-xs-2 bg-white col-rounded d-block" style="height: 85vh; overflow: auto;">
-                <table class="table" id="chats">
-                    <tbody>
-                        
-                    </tbody>
-                </table>
-            </div>
-            <div class="float-right col-xl-8 col-lg-7 col-sm-7 col-xs-6 bg-white col-rounded ml-4">
-                <span class="d-none" id="usuario" data-ult_fecha="" data-usuario=""></span>
-                <div class="row h-100" style="max-height: 85vh;">
-                    <div class="col-12 w-100" style="position: absolute;">
-                        <div class="border-bottom mb-1" style="height: 10vh;">
-                            <div class="w-100">
-                                <img id="abierto-img" src="#" class="rounded-circle mr-2 my-2 float-left d-block" width="55vh" height="55vh">
-                                <div class="d-inline float-left mb-0 mt-3">
-                                    <p class="mb-1" id="abierto-nombre" style="font-size: 25px;"></p>
-                                </div>
+    <div class="row" style="height: 85vh">
+        <div class="table-wrapper-scroll-y my-custom-scrollbar float-left ml-2 col-xl-3 col-lg-4 col-md-4 col-sm-12 col-12 bg-white col-rounded h-50 mr-4">
+            <table class="table" id="chats">
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class="float-right col-xl-8 col-lg-7 col-md-7 col-sm-12 col-xs-12 bg-white col-rounded h-100">
+            <span class="d-none" id="usuario" data-ult_fecha="" data-usuario=""></span>
+            <div class="row h-100" style="max-height: 85vh;">
+                <div class="col-12 w-100">
+                    <div class="border-bottom mb-3">
+                        <div class="w-100">
+                            <img id="abierto-img" src="#" class="rounded-circle mr-2 my-2 float-left d-block" width="55vh" height="55vh">
+                            <div class="d-inline float-left mb-0 mt-3">
+                                <p class="mb-1" id="abierto-nombre" style="font-size: 25px;"></p>
                             </div>
                         </div>
-                        <div style="overflow: auto; position:relative; max-height: 63vh;" class="w-100" id="chat-container">
-                            <table class="w-100" id="chat">
-                            </table>
-                        </div>
                     </div>
-                    <div class="col-12 border-top align-self-end w-100" style="position: absolute;">
-                        <form class="form-group row  align-content-center mt-3">
-                            <input type="text" id="mensaje" autocomplete="off" name="message" class="form-control mx-2 col-10 rounded">
-                            <input type="submit" id="enviarmensaje" name="enviar" class="btn btn-primary w-10">
-                        </form>
+                    <div style="overflow: auto; position:relative; max-height: 63vh;" class="w-100 table-wrapper-scroll-y my-custom-scrollbar" id="chat-container">
+                        <table class="w-100" id="chat">
+                        </table>
                     </div>
+                </div>
+                <div class="col-12 border-top align-self-end w-100" style="position: absolute;">
+                    <form class="form-group row  align-content-center mt-3 justify-content-right">
+                        <input type="text" id="mensaje" autocomplete="off" name="message" class="form-control ml-2 my-1 col-10 rounded">
+                        <input type="submit" id="enviarmensaje" name="enviar" class="btn btn-primary w-10 ml-2 my-1">
+                    </form>
                 </div>
             </div>
         </div>

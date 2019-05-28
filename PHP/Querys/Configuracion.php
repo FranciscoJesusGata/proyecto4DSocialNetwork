@@ -10,6 +10,7 @@
     $saveCab = $_POST["saveCab"];
     $saveTema = $_POST["saveTema"];
     if ($saveFoto == "true") {
+      borrarContenidoCarpeta($nombre, "profilepic");
       if($_FILES["foto"]["error"] > 0){
         $sqlFoto = "UPDATE usuarios SET Foto = '' WHERE Nombre_Usuario = '".$nombre."'";
       } else{
@@ -21,6 +22,7 @@
     }
     
     if ($saveCab == "true") {
+      borrarContenidoCarpeta($nombre, "headerpic");
       if($_FILES["encabezado"]["error"] > 0){
         $sqlCab = "UPDATE usuarios SET Cabecera = '' WHERE Nombre_Usuario = '".$nombre."'";
       } else{
@@ -31,6 +33,7 @@
     }
     
     if ($saveTema == "true") {
+      borrarContenidoCarpeta($nombre, "themepic");
       if($_FILES["tema"]["error"] > 0){
         $sqlTema = "UPDATE usuarios SET Tema = '' WHERE Nombre_Usuario = '".$nombre."'";
       } else{

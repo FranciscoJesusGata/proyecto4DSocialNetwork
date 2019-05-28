@@ -94,3 +94,12 @@ body{
 
     border-left: 4.4px solid white;
   }
+  
+  .my-custom-scrollbar {
+    position: relative;
+    height: 30vh;
+    overflow: auto;
+  }
+  .table-wrapper-scroll-y {
+    display: block;
+  }
