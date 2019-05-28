@@ -15,7 +15,7 @@ services:
       - ./proyecto4DSocialNetwork/:/app/
       - ./4D-DataBase/configuration/app.conf:/etc/nginx/conf.d/app.conf
   php:
-    image: franciscojesusgata/php-mysqli
+    image: franciscojesusgata/php-mysqli:7-fpm
     container_name: php
     links:
       - mysql
