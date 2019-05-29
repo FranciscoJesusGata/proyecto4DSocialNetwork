@@ -85,7 +85,7 @@ function tratarPeticiones(datos){
   }
       
   for (var i = 0; i < siguen.length; i++) {
-    contentSiguen += "<tr><td>"+ siguen[i]["Nombre_Seguido"] +"</td><td><div class=\"btn-group\" style=\"margin-left: 5vw\">";
+    contentSiguen += "<tr><td>"+ siguen[i]["Nombre_Usuario"] +"</td><td><div class=\"btn-group\" style=\"margin-left: 5vw\">";
     contentSiguen += "<button class=\"btn btn-danger\" onclick=\"denyPeticion(\'"+ siguen[i]["Nombre_Usuario"] +"\', \'"+ siguen[i]["Nombre_Seguido"] +"\')\"><i class=\"fas fa-ban\"></i></button></div></td></tr>";
     if(i == (siguen.length - 1)){
       $("#siguen").html(contentSiguen);
@@ -158,7 +158,7 @@ function tratarDatosUser(datos){
     var Encabezado = datos["Cabecera"];
     var Tema = datos["Tema"];
 
-    if(Tema != ""){
+    if(Tema != "" && Tema != null){
       $("#Tema").html('<img class="fotoComun" id="fotoTema" src="' + Tema + '">');
       $("#seccion-background").hide();
       $("body").addClass('image-background');
@@ -168,17 +168,6 @@ function tratarDatosUser(datos){
       $("#seccion-background").show();
       $("body").addClass('no-image-background');
       $("body").css("background-image", "");
-    }
-    
-    if(Encabezado != ""){
-      $("#Encabezado").addClass('encabezado-background');
-      $("#Encabezado").css("background-image", "url("+ Encabezado +")");
-    }
-    
-    if(Fotosrc != ""){
-      $('#fotoPerfil').attr('src', Fotosrc);
-    } else {
-      $('#fotoPerfil').attr('src', "../img/user.jpg");
     }
 }
 

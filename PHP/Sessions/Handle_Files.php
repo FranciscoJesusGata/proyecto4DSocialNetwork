@@ -36,6 +36,9 @@ function borrarContenidoCarpeta($nombre, $carpeta){
 
 function guardarFoto($nombre){
     $ext = pathinfo($_FILES['foto']['name'], PATHINFO_EXTENSION);
+    if ($ext == null || $ext == "") {
+      return "";
+    }
     $directorio = "../../HTML/img/".$nombre."/profilepic/";
     $i = 1;
     $nombre_Foto = $directorio . $nombre . "_profilepic_".$i.".".$ext;
@@ -49,6 +52,9 @@ function guardarFoto($nombre){
 
 function guardarCabecera($nombre){
     $ext = pathinfo($_FILES['encabezado']['name'], PATHINFO_EXTENSION);
+    if ($ext == null || $ext == "") {
+      return "";
+    }
     $directorio = "../../HTML/img/".$nombre."/headerpic/";
     $i = 1;
     $nombre_Cab = $directorio . $nombre . "_headerpic_".$i.".".$ext;
@@ -62,6 +68,9 @@ function guardarCabecera($nombre){
 
 function guardarTema($nombre){
     $ext = pathinfo($_FILES['tema']['name'], PATHINFO_EXTENSION);
+    if ($ext == null || $ext == "") {
+      return "";
+    }
     $directorio = "../../HTML/img/".$nombre."/themepic/";
     $i = 1;
     $nombre_Tema = $directorio . $nombre . "_themepic_".$i.".".$ext;

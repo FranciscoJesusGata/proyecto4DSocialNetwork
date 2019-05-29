@@ -178,7 +178,7 @@ function tratarDatosUser(datos){
     var Followers = datos["Seguidores"];
     var Following = datos["Seguidos"];
 
-    if(Tema != ""){
+    if(Tema != "" && Tema != null){
       $("#Tema").html('<img class="fotoComun" id="fotoTema" src="' + Tema + '">');
       $("#seccion-background").hide();
       $("body").addClass('image-background');
@@ -190,12 +190,12 @@ function tratarDatosUser(datos){
       $("body").css("background-image", "");
     }
     
-    if(Encabezado != ""){
+    if(Encabezado != "" && Encabezado != null){
       $("#Encabezado").addClass('encabezado-background');
       $("#Encabezado").css("background-image", "url("+ Encabezado +")");
     }
     
-    if(Fotosrc != ""){
+    if(Fotosrc != "" && Fotosrc != null){
       $('#fotoPerfil').attr('src', Fotosrc);
     } else {
       $('#fotoPerfil').attr('src', "../img/user.jpg");

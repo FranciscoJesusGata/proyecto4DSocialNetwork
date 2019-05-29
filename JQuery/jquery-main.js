@@ -22,14 +22,14 @@ function tratarDatosUser(datos){
     var Following = datos["Seguidos"];
     var Tema = datos["Tema"];
 
-    if(Tema == ""){
+    if(Tema == "" && Tema == null){
       $("body").addClass('no-image-background');
     } else {
       $("#seccion-background").hide();
       $("body").addClass('image-background');
       $("body").css("background-image", "url("+ Tema +")");
     }
-    if(Fotosrc == ""){
+    if(Fotosrc == "" && Fotosrc == null){
       $("#fotoPerfil").attr("src","../img/user.jpg");
     } else {
       $("#fotoPerfil").attr("src",Fotosrc);
