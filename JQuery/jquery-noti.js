@@ -17,7 +17,7 @@ $.ajax({
 function tratarDatosUser(datos){
     var Tema = datos["Tema"];
 
-    if(Tema == "" && Tema == null){
+    if(Tema == "" || Tema == null){
       $("body").addClass('no-image-background');
     } else {
       $("#seccion-background").hide();

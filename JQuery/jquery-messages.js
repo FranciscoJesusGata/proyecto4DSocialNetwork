@@ -14,6 +14,33 @@ $.ajax({
     }
 });
 
+function tratarDatosUser(datos){
+    var Alias = datos["Alias"];
+    var Nombre = datos["Nombre_Usuario"];
+    var Fotosrc = datos["Foto"];
+    var Followers = datos["Seguidores"];
+    var Following = datos["Seguidos"];
+    var Tema = datos["Tema"];
+    console.log(Tema)
+
+    if(Tema == "" || Tema == null){
+      $("body").addClass('no-image-background');
+    } else {
+      $("#seccion-background").hide();
+      $("body").addClass('image-background');
+      $("body").css("background-image", "url("+ Tema +")");
+    }
+    if(Fotosrc == "" || Fotosrc == null){
+      $("#fotoPerfil").attr("src","../img/user.jpg");
+    } else {
+      $("#fotoPerfil").attr("src",Fotosrc);
+    }
+    $("#alias").text(Alias);
+    $("#nomUser").text(Nombre);
+    $("#followers").text(Followers);
+    $("#following").text(Following);
+}
+
 function mensajeVisto(){
     var emisor = $("#usuario").attr("data-usuario");
     $.ajax({
@@ -249,6 +276,16 @@ $(document).ready(function(){
             $("#enviarmensaje").attr("disabled",true);
         }else {
             $("#enviarmensaje").attr("disabled", false);
+        }
+    });
+    
+    $.ajax({
+        type: "POST",
+        url: "../../PHP/Querys/User_Data.php",
+        data: {opcion: "main"},
+        dataType: "json",
+        success: function (response) {
+            tratarDatosUser(response);
         }
     });
 

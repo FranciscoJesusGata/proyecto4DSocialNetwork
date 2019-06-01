@@ -30,7 +30,7 @@ function tratarDatosUser(datos){
       $("body").addClass('image-background');
       $("body").css("background-image", "url("+ Tema +")");
     }
-    if(Fotosrc == "" && Fotosrc == null){
+    if(Fotosrc == "" || Fotosrc == null){
       $("#fotoPerfil").attr("src","../img/user.jpg");
     } else {
       $("#fotoPerfil").attr("src",Fotosrc);
