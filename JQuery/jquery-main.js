@@ -21,8 +21,9 @@ function tratarDatosUser(datos){
     var Followers = datos["Seguidores"];
     var Following = datos["Seguidos"];
     var Tema = datos["Tema"];
+    console.log(Tema)
 
-    if(Tema == "" && Tema == null){
+    if(Tema == "" || Tema == null){
       $("body").addClass('no-image-background');
     } else {
       $("#seccion-background").hide();
