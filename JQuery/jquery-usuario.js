@@ -76,6 +76,27 @@ function checktratarDatosUser(datos) {
       })
       .then((send) => {
         if (send) {
+          var url = document.location.href;
+          var params = url.split('?')[1].split('&');
+          var data = {};
+          var tmp;
+          for (var i = 0, l = params.length; i < l; i++) {
+               tmp = params[i].split('=');
+               data[tmp[0]] = tmp[1];
+          }
+          $.ajax({
+              type: "POST",
+              url: "../../PHP/Querys/Seguir.php",
+              async: true,
+              data: { ejecutar: "seguir", user: data['name']},
+              dataType: "text",
+              success: function (response) {
+                  console.log(response);
+              },
+              error: function(error){
+                  console.error(error['responseText']);
+              }
+          });
           swal("Petición enviada", {
             icon: "success",
           });
@@ -103,7 +124,7 @@ function getDataFromUser() {
         type: "POST",
         url: "../../PHP/Querys/User_Data.php",
         data: {opcion: "user", user: data["name"]},
-        dataType: "json",
+        dataType: "text",
         success: function (response) {
             checktratarDatosUser(response);
             checkUser(response);
@@ -312,7 +333,7 @@ function getPosts(type, name){
         url: "../../PHP/Querys/Show_Posts.php",
         async: true,
         data: { ejecutar: type, user: name},
-        dataType: "json",
+        dataType: "text",
         success: function (response) {
             if (response[0] != undefined){
                 mostrarPosts(response);
