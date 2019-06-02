@@ -118,12 +118,12 @@ $(document).ready(function(){
                   posts[i]['Foto'] = "../img/user.jpg";
                 }
                 html += "<img height='50px' width='50px' src='"+posts[i]['Foto']+"' class='rounded-circle mr-1'>";
-                html+="<label class='h5'>"+posts[i]["Alias"]+"</label> <label class='ml-2' style='color:#808080;font-size: 18px'>"+posts[i]["Nombre_Usuario"]+"</label></div>";
+                html+="<label class='h5'>"+posts[i]["Alias"]+"</label> <label class='ml-2' style='color:#808080;font-size: 18px'>"+posts[i]["Nombre_Usuario"]+"</label> <div class='float-right'><button id='editar' onclick='editar("+posts[i]['id_P']+")' class='btn btn-outline-dark'>Editar</button> <button id='eliminar' onclick='eliminar("+posts[i]['id_P']+")' class='btn btn-outline-dark' >Eliminar</button></div></div>";
                 html+="<div class='col-1 float-right d-inline-block mb-3'>";
                 html+="<button id='like' class='btn btn btn-outline-dark float-right'> "+posts[i]['Likes']+" <i class='far fa-heart'></i></button>";
                 html+="<button id='comment' class='btn btn btn-outline-dark float-right mt-1' onclick='togleTarget("+posts[i]["id_P"]+");'> "+posts[i]['Comments']+" <i class='far fa-comment'></i></div>";
                 html+="<div class='m-3 col-10 d-inline-block'>";
-                html+="<p style='font-size: 20px;'>"+posts[i]["Texto"]+"</p>";
+                html+="<p style='font-size: 20px;' id='post"+posts[i]['id_P']+"' >"+posts[i]["Texto"]+"</p>";
                 if(posts[i]['multimedia']){
                     html+="<img class='col-rounded' width='60%' src='"+posts[i]['multimedia']+"'>";
                 }
@@ -139,6 +139,9 @@ $(document).ready(function(){
                 html+="<img id='img_d_com"+posts[i]['id_P']+"' class = 'rounded ml-1' src='#' style='display:none; height: 10vh; width: 10vh;'></form></div>";
                 html+="<hr style='width: 110%; margin-left:-5%'>";
                 $("#posts").prepend(html);
+                if(i == posts.length-1){
+                    $("#info").attr("data-ult_fecha",posts[i]["F_Publicacion"]);
+                }
             }
         }else if(posts['id_P'] != undefined){
             var x = posts["F_Publicacion"].split(/[- :]/);
@@ -147,13 +150,13 @@ $(document).ready(function(){
               posts['Foto'] = "../img/user.jpg";
             }
             var html = "<div class = 'col-12 mb-3 ml-0'>";
-                html += "<img height='50px' width='50px' src='"+posts['Foto']+"' class='rounded-circle mr-1'>";
-                html+="<label class='h5'>"+posts["Alias"]+"</label> <label class='ml-2' style='color:#808080;font-size: 18px'>"+posts["Nombre_Usuario"]+"</label></div>";
-                html+="<div class='col-1 float-right d-inline-block mb-3'>";
-                html+="<button id='like' class='btn btn btn-outline-dark float-right'> 0 <i class='far fa-heart'></i></button>";
-                html+="<button id='comment' class='btn btn btn-outline-dark float-right mt-1' onclick='togleTarget("+posts["id_P"]+");'> 0 <i class='far fa-comment'></i></div>";
-                html+="<div class='m-3 col-10 d-inline-block'>";
-                html+="<p style='font-size: 20px;'>"+posts["Texto"]+"</p>";
+            html += "<img height='50px' width='50px' src='"+posts['Foto']+"' class='rounded-circle mr-1'>";
+            html+="<label class='h5'>"+posts["Alias"]+"</label> <label class='ml-2' style='color:#808080;font-size: 18px'>"+posts["Nombre_Usuario"]+"</label> <div class='float-right'><button id='editar' onclick='editar("+posts['id_P']+")' class='btn btn-outline-dark'>Editar</button> <button id='eliminar' onclick='eliminar("+posts['id_P']+")' class='btn btn-outline-dark' >Eliminar</button></div></div>";
+            html+="<div class='col-1 float-right d-inline-block mb-3'>";
+            html+="<button id='like' class='btn btn btn-outline-dark float-right'> "+posts['Likes']+" <i class='far fa-heart'></i></button>";
+            html+="<button id='comment' class='btn btn btn-outline-dark float-right mt-1' onclick='togleTarget("+posts["id_P"]+");'> "+posts['Comments']+" <i class='far fa-comment'></i></div>";
+            html+="<div class='m-3 col-10 d-inline-block'>";
+            html+="<p style='font-size: 20px;' id='post"+posts['id_P']+"' >"+posts["Texto"]+"</p>";
                 if(posts['multimedia']){
                     html+="<img class='col-rounded' width='60%' src='"+posts['multimedia']+"'>";
                 }
@@ -168,27 +171,41 @@ $(document).ready(function(){
                 html+="<img id='img_d_com"+posts['id_P']+"' class = 'rounded ml-1' src='#' style='display:none; height: 10vh; width: 10vh;'></form></div>";
                 html+="<hr style='width: 110%; margin-left:-5%'>";
                 $("#posts").prepend(html);
+                $("#info").attr("data-ult_fecha",posts["F_Publicacion"]);
         }
-        
+
         $("#fondo").hide();
     }
 
-    $.ajax({
-        type: "POST",
-        url: "../../PHP/Querys/Show_Posts.php",
-        async: true,
-        data: { ejecutar: "onload"},
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-            if (response[1] != undefined){
-                mostrarPosts(response);
+    window.update_Posts = function (){
+        $.ajax({
+            type: "POST",
+            url: "../../PHP/Querys/Show_Posts.php",
+            async: true,
+            data: { ejecutar: "onload"},
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                if (response[1] != undefined){
+                    mostrarPosts(response);
+                }
+            },
+            error: function(error){
+                console.log(error['responseText']);
             }
-        },
-        error: function(error){
-            console.log(error['responseText']);
+        });
+    }
+
+    update_Posts();
+
+    var intervalo = setInterval(function () {
+        if($("#posts").children().length > 0){
+            $("#posts").empty();
         }
-    });
+        update_Posts();
+    },60000);
+
+    localStorage.setItem("intervalo",intervalo);
 
     $("#img1").change(function () {
         change_Img(this);

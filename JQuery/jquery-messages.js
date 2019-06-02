@@ -299,7 +299,7 @@ $(document).ready(function(){
                 data: {opcion: "enviar", user: user, message: mensaje},
                 async: true,
                 dataType: "html",
-                success: function(result){
+                success: function(){
                     ult_fecha = $("#usuario").attr("data-ult_fecha");
                     var user = $("#usuario").attr("data-usuario");
                     recogerMensajes(ult_fecha,user);

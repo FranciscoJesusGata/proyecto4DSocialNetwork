@@ -3,9 +3,9 @@
     include '../Sessions/Handle_Files.php';
     session_start();
 
-    if(!isset($_POST['post']) && !isset($_POST['comentario'])){
-        echo "No hay publicación";
+    if(!isset($_POST['post']) && !isset($_POST['comentario']) && !isset($_POST['opcion'])){
         print_r($_POST);
+        echo "No hay publicación";
         exit;
     }
 
@@ -82,6 +82,17 @@
                 exit;
             }
     }
+
+    function updatePubli($id_P, $texto, $database, $conexion){
+        $texto = mysqli_real_escape_string($conexion, $texto);
+        $sql = "UPDATE publicaciones SET Texto='".$texto."' WHERE Id_P = '".$id_P."'";
+        echo $sql;
+        $actualizado = $database->send_data($sql);
+        echo $actualizado;
+        if(!$actualizado){
+            echo "ERROR ".mysqli_errno($conexion)." ".mysqli_error($conexion);
+        }
+    }
         
     $database = new Database;
     $ok = $database->conexion();
@@ -103,5 +114,11 @@
             $foto = guardarFotoPost();
         }
         publicarComentario($comentario, $database, $conexion, $foto, $id_P);
+    }else if(isset($_POST['opcion'])){
+        if($_POST['opcion'] == "update"){
+            $id_P = $_POST['id'];
+            $texto = $_POST['texto'];
+            updatePubli($id_P, $texto, $database, $conexion);
+        }
     }
 ?>

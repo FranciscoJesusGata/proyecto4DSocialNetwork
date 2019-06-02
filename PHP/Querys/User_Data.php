@@ -115,7 +115,7 @@
                   AND F_Inicio IS NOT NULL 
                   AND F_Fin IS NULL 
               ) 
-              THEN 'YES' 
+              THEN 'YES'
               ELSE 'NO' END as existe";
             $checkSeguido = $database->get_unknow_data($queryCheck);
             if($checkSeguido[0]['existe'] == "YES"){
