@@ -16,6 +16,7 @@ $.ajax({
 
 function checktratarDatosUser(datos) {
     if (datos == "Forbidden") {
+      $("#fondo").hide();
       swal({
         title: "El usuario tieneun perfil privado",
         text: "quieres mandar una petición de seguimiento",
@@ -91,6 +92,7 @@ function tratarPeticiones(datos){
       $("#siguen").html(contentSiguen);
     }
   }
+  $("#fondo").hide();
 }
 
 function denyPeticion(usuario1, usuario2){
@@ -183,6 +185,7 @@ function loadAll() {
         },
         error: function(error){
             console.error(error['responseText']);
+            $("#fondo").hide();
         }
     });
     getDataFromUser();

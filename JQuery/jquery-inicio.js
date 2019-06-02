@@ -42,6 +42,7 @@ function send(target){
     $("#comment" + target).append(html);
 };
 $(document).ready(function(){
+    $("#fondo").hide();
 
     document.getElementsByTagName("html")[0].style.visibility = "visible";
 });

@@ -39,6 +39,7 @@ function tratarDatosUser(datos){
     $("#nomUser").text(Nombre);
     $("#followers").text(Followers);
     $("#following").text(Following);
+    $("#fondo").hide();
 }
 
 function controlCommentButton(target){
@@ -101,6 +102,9 @@ $(document).ready(function(){
         dataType: "json",
         success: function (response) {
             tratarDatosUser(response);
+        },
+        error: function(){
+          $("#fondo").hide();
         }
     });
     
@@ -165,6 +169,8 @@ $(document).ready(function(){
                 html+="<hr style='width: 110%; margin-left:-5%'>";
                 $("#posts").prepend(html);
         }
+        
+        $("#fondo").hide();
     }
 
     $.ajax({

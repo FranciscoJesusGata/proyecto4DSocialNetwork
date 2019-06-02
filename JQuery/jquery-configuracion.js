@@ -15,6 +15,7 @@ $.ajax({
 });
 
 function getDataFromUser() {
+  $("#fondo").show();
 
   $.ajax({
       type: "POST",
@@ -23,6 +24,9 @@ function getDataFromUser() {
       dataType: "json",
       success: function (response) {
           tratarDatosUser(response);
+      },
+      error: function(){
+        $("#fondo").hide();
       }
   });
 }
@@ -106,6 +110,7 @@ function tratarDatosUser(datos){
     $("#nomUser").text(Nombre);
     $("#followers").text(Followers);
     $("#following").text(Following);
+    $("#fondo").hide();
 }
 
 function loadAll() {

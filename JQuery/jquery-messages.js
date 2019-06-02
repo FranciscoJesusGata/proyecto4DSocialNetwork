@@ -259,6 +259,7 @@ function cambiar(usuario,id) {
 $("#enviarmensaje").submit(false);
 
 $(document).ready(function(){
+    $("#fondo").hide();
     document.getElementsByTagName("html")[0].style.visibility = "visible";
     $("#enviarmensaje").attr("disabled", "disabled");
 

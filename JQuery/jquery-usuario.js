@@ -68,6 +68,7 @@ function displayCommentImg(target){
 
 function checktratarDatosUser(datos) {
     if (datos == "Forbidden") {
+      $("#fondo").hide();
       swal({
         title: "El usuario tieneun perfil privado",
         text: "quieres mandar una petición de seguimiento",
@@ -109,6 +110,7 @@ function getDataFromUser() {
             checkUser(response);
         },
         error: function(response){
+            $("#fondo").hide();
             console.error(response);
             swal({
               title: "El usuario no existe",
@@ -206,6 +208,7 @@ function tratarDatosUser(datos){
     $("#nomUser").text(Nombre);
     $("#followers").text(Followers);
     $("#following").text(Following);
+    $("#fondo").hide();
 }
 
 function loadAll() {
