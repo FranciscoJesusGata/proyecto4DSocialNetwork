@@ -96,7 +96,7 @@
             header("Location: ../../HTML/html/register.html");
         }
         else {
-            //echo "<h1>HUBO UN ERROR REGISTRANDO AL USUARIO</h1>"."<br/>".mysqli_error($conexion); //<~ Solo para pruebas
+            echo "<h1>HUBO UN ERROR REGISTRANDO AL USUARIO</h1>"."<br/>".mysqli_error($conexion); //<~ Solo para pruebas
             header("Location: ../../HTML/html/register.html");
             $_SESSION['errorRegistro'] = "<h1>¡Hubo un fallo!</h1> <br/> <h3>No te preocupes, estamos trabajando en ello</h3>";
             //Mensaje de error para el usuario

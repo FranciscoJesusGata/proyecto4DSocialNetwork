@@ -22,7 +22,7 @@ function subir(e){
 }
 
 function comentar(e){
-    var formData = new FormData(document.getElementById("#comentar"+e));
+    var comentario = $("#comentar"+e).val;
     $.ajax({
         url : "../../PHP/Querys/Publish.php",
         type: "POST",
@@ -43,6 +43,53 @@ function comentar(e){
     /*$('#img_display').css('display','none');
     $('#img_display').attr('src', '#');*/
 }
+
+function updatePubli(text,id){
+    $.ajax({
+        url : "../../PHP/Querys/Publish.php",
+        type: "POST",
+        data : {opcion: "update", id: id, texto: text},
+        dataType: 'html',
+        success : function(response){
+            console.log(response);
+        },
+        error: function(obj,text,error) {
+            console.error("error",obj.responseText);
+        }
+    });
+}
+
+function crearIntervalo(){
+    intervalo = setInterval(function () {
+        if($("#posts").children().length > 0){
+            $("#posts").empty();
+        }
+        update_Posts();
+    },60000);
+
+    localStorage.setItem("intervalo",intervalo);
+}
+
+function editar(id){
+    var intervalo = localStorage.getItem("intervalo");
+    clearInterval(intervalo);
+    swal({
+        title: "Editar publicación",
+        content: {
+            element: 'input',
+            attributes: {
+                defaultValue: $("#post"+id).text()
+            }
+        },
+        onClose: crearIntervalo
+    }).then((valor) => {
+        var text = valor;
+        console.log(text);
+        updatePubli(text,id);
+        crearIntervalo();
+    });
+}
+
 
 $(document).ready(function () {
     $("#publicar").on("submit", function (e) { 

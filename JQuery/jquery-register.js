@@ -22,6 +22,8 @@ function change_Img_Perfil(input) {
         $('#img_perfil').attr('src', e.target.result);
         $('#icono').css('display','none');
         $('#img_perfil').css('display','block');
+        $('#img_perfil').css('max-height',$("#img_perfil_container").height());
+        $('#img_perfil').css('width',$("#img_perfil_container").width());
     }
 
     reader.readAsDataURL(input.files[0]);

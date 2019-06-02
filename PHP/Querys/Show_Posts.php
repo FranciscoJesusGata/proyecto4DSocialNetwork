@@ -1,7 +1,47 @@
 <?php
     include 'Database.php';
     session_start();
-    
+
+    function recopilarPosts($conexion, $database){
+        $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
+        $query = "";
+        $query .= "SELECT id_P, Alias, P.Nombre_Usuario, Texto, F_Publicacion, F_Borrado, Foto
+                FROM publicaciones P
+                INNER JOIN usuarios U
+                ON P.Nombre_Usuario = U.Nombre_Usuario
+                WHERE P.Nombre_Usuario = '".$nombre."'
+                UNION
+                SELECT id_P, Alias, Nombre_Seguido, Texto, F_Publicacion, F_Borrado, Foto
+                FROM publicaciones P
+                INNER JOIN usuarios U
+                ON P.Nombre_Usuario = U.Nombre_Usuario
+                INNER JOIN seguir S
+                ON S.Nombre_Seguido = U.Nombre_Usuario
+                WHERE S.Nombre_Usuario = '".$nombre."'
+                LIMIT 10";
+        $posts = $database->get_data($query);
+        if(!isset($posts['id_P'])){
+            for($i = 0; $i < count($posts); $i++){
+                $multimedia = recopilarMultimedia($conexion, $database, $posts[$i]['id_P'],"post");
+                $feed = recopilarFeed($conexion, $database, $posts[$i]['id_P'],"post");
+                if($multimedia){
+                    $posts[$i] += ["Multimedia" => $multimedia[0]];
+                }
+                $posts[$i] += ["Likes" => $feed['Likes']];
+                $posts[$i] += ["Comments" => $feed['Comments']];
+            }
+        }else{
+            $multimedia = recopilarMultimedia($conexion, $database, $posts['id_P'],"post");
+            $feed = recopilarFeed($conexion, $database, $posts['id_P'],"post");
+            if($multimedia){
+                $posts += ["multimedia" => $multimedia[0]];
+            }
+            $posts += ["Likes" => $feed['Likes']];
+            $posts += ["Comments" => $feed['Comments']];
+        }
+        return $posts;
+    }
+
     function recopilarPostsUser($conexion, $database, $user){
         $user = mysqli_real_escape_string($conexion, $user);
         $nombre = $_SESSION['N_Usuario'];
@@ -83,45 +123,6 @@
         return $posts;
     }
 
-    function recopilarPosts($conexion, $database){
-        $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
-        $query = "SELECT id_P, Alias, P.Nombre_Usuario, Texto, F_Publicacion, F_Borrado, Foto
-                    FROM publicaciones P
-                    INNER JOIN usuarios U
-                    ON P.Nombre_Usuario = U.Nombre_Usuario
-                    WHERE P.Nombre_Usuario = '".$nombre."'
-                    UNION
-                    SELECT id_P, Alias, Nombre_Seguido, Texto, F_Publicacion, F_Borrado, Foto
-                    FROM publicaciones P
-                    INNER JOIN usuarios U
-                    ON P.Nombre_Usuario = U.Nombre_Usuario
-                    INNER JOIN seguir S
-                    ON S.Nombre_Seguido = U.Nombre_Usuario
-                    WHERE S.Nombre_Usuario = '".$nombre."'
-                    LIMIT 10";
-        $posts = $database->get_data($query);
-        if(!isset($posts['id_P'])){
-            for($i = 0; $i < count($posts); $i++){
-                $multimedia = recopilarMultimedia($conexion, $database, $posts[$i]['id_P'],"post");
-                $feed = recopilarFeed($conexion, $database, $posts[$i]['id_P'],"post");
-                if($multimedia){
-                    $posts[$i] += ["Multimedia" => $multimedia[0]];
-                }
-                $posts[$i] += ["Likes" => $feed['Likes']];
-                $posts[$i] += ["Comments" => $feed['Comments']];
-            }
-        }else{
-            $multimedia = recopilarMultimedia($conexion, $database, $posts['id_P'],"post");
-            $feed = recopilarFeed($conexion, $database, $posts['id_P'],"post");
-            if($multimedia){
-                $posts += ["multimedia" => $multimedia[0]];
-            }
-            $posts += ["Likes" => $feed['Likes']];
-            $posts += ["Comments" => $feed['Comments']];
-        }
-        return $posts;
-    }
-
     function recopilarMultimedia($conexion,$database,$id_P,$target){
         $query_M = "SELECT Ruta AS Multimedia
                     FROM multimedia
@@ -151,16 +152,15 @@
         $posts = recopilarPosts($conexion, $database);
         $enviar = json_encode($posts);
         echo $enviar;
-    }
-    if ($ejecutar == "user") {
-      $user = utf8_encode($_POST['user']);
-      $posts = recopilarPostsUser($conexion, $database, $user);
-      if ($posts == "Forbidden" || $posts == "No Existe") {
-        echo $posts;
-      } else {
-        $enviar = json_encode($posts);
-        echo $enviar;
-      }
+    }else if ($ejecutar == "user") {
+        $user = utf8_encode($_POST['user']);
+        $posts = recopilarPostsUser($conexion, $database, $user);
+        if ($posts == "Forbidden" || $posts == "No Existe") {
+            echo $posts;
+        } else {
+            $enviar = json_encode($posts);
+            echo $enviar;
+        }
     }
     $database->end_of_connection();
 ?>
