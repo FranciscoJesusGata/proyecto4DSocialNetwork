@@ -32,7 +32,6 @@ function triggerFile(target){
 }
 
 function change_Img(input) {
-    console.log(input);
     if (input.files && input.files[0]) {
     var reader = new FileReader();
 
@@ -361,6 +360,33 @@ $(document).ready(function(){
           }
       });
     })
+    
+    $("#sendMessage").click(function(){
+      swal({
+        text: 'Enviar mensaje',
+        content: "input",
+        button: {
+          text: "Enviar",
+        },
+      })
+      .then((mensaje) => {
+        var data = JSON.parse($("#auxData").val());
+        var user = data["Nombre_Usuario"];
+        $.ajax({
+            type: "POST",
+            url: "../../PHP/Querys/Messages.php",
+            data: {opcion: "enviar", user: user, message: mensaje},
+            async: true,
+            dataType: "html",
+            success: function(result){
+                window.location.replace("../../HTML/html/messages.html")
+            },
+            error: function(data){
+                console.log(data);
+            } 
+        });
+      })
+    });
   
     $("#seguir").hide();
     $("#sendMessage").hide();

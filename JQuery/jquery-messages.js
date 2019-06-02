@@ -21,7 +21,6 @@ function tratarDatosUser(datos){
     var Followers = datos["Seguidores"];
     var Following = datos["Seguidos"];
     var Tema = datos["Tema"];
-    console.log(Tema)
 
     if(Tema == "" || Tema == null){
       $("body").addClass('no-image-background');
@@ -226,7 +225,6 @@ function recogerChats(orden){
         async: true,
         dataType: "json",
         success: function (data) {
-            console.log(data);
             mostrarChats(data);
             cambiosChats(data);
         },
@@ -294,7 +292,6 @@ $(document).ready(function(){
         e.preventDefault();
         var user = $("#usuario").attr("data-usuario");
         var mensaje = $("#mensaje").val();
-        console.log(user+" "+mensaje);
         if(mensaje.length > 0){
             $.ajax({
                 type: "POST",
@@ -303,7 +300,6 @@ $(document).ready(function(){
                 async: true,
                 dataType: "html",
                 success: function(result){
-                    console.log(result);
                     ult_fecha = $("#usuario").attr("data-ult_fecha");
                     var user = $("#usuario").attr("data-usuario");
                     recogerMensajes(ult_fecha,user);

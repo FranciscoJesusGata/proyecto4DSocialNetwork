@@ -20,7 +20,7 @@
               WHERE Nombre_Usuario = '".$nombre."' 
               AND Nombre_Seguido = '".$user."' 
               AND F_Inicio IS NOT NULL 
-              AND F_Fin IS NOT NULL 
+              AND F_Fin IS NULL 
           ) 
           THEN 'YES' 
           ELSE 'NO' END as existe";
