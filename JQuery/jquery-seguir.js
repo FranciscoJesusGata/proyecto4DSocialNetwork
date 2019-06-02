@@ -70,7 +70,7 @@ function tratarPeticiones(datos){
   $(".data").html("<tr><td class=\"text-center\">No hay peticiones de seguimiento</td></tr>");
   
   for (var i = 0; i < peticiones.length; i++) {
-    contentPeticiones += "<tr><td>"+ peticiones[i]["Nombre_Seguido"] +"</td><td><div class=\"btn-group\" style=\"margin-left: 5vw\"><button class=\"btn btn-primary\" onclick=\"acceptPeticion(\'"+ peticiones[i]["Nombre_Usuario"] +"\')\">";
+    contentPeticiones += "<tr><td>"+ peticiones[i]["Nombre_Usuario"] +"</td><td><div class=\"btn-group\" style=\"margin-left: 5vw\"><button class=\"btn btn-primary\" onclick=\"acceptPeticion(\'"+ peticiones[i]["Nombre_Usuario"] +"\')\">";
     contentPeticiones += "<i class=\"fas fa-check\"></i></button><button class=\"btn btn-danger\" onclick=\"denyPeticion(\'"+ peticiones[i]["Nombre_Usuario"] +"\', \'"+ peticiones[i]["Nombre_Seguido"] +"\')\"><i class=\"fas fa-ban\"></i></button></div></td></tr>";
     if(i == (peticiones.length - 1)){
         $("#peticiones").html(contentPeticiones);

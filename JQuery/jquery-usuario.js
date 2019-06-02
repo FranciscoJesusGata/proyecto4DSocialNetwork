@@ -66,7 +66,13 @@ function displayCommentImg(target){
 }
 
 function checktratarDatosUser(datos) {
+    console.log(datos);
     if (datos == "Forbidden") {
+      $("#Tema").html('<h1 class="icono-general"><i class="fas fa-palette"></i></h1>');
+      $("#seccion-background").show();
+      $("body").addClass('no-image-background');
+      $("body").css("background-image", "");
+      $('#fotoPerfil').attr('src', "../img/user.jpg");
       $("#fondo").hide();
       swal({
         title: "El usuario tieneun perfil privado",
@@ -105,7 +111,7 @@ function checktratarDatosUser(datos) {
         }
       });
     } else {
-      tratarDatosUser(datos);
+      tratarDatosUser(JSON.parse(datos));
     }
 }
 
@@ -131,6 +137,11 @@ function getDataFromUser() {
         },
         error: function(response){
             $("#fondo").hide();
+            $("#Tema").html('<h1 class="icono-general"><i class="fas fa-palette"></i></h1>');
+            $("#seccion-background").show();
+            $("body").addClass('no-image-background');
+            $("body").css("background-image", "");
+            $('#fotoPerfil').attr('src', "../img/user.jpg");
             console.error(response);
             swal({
               title: "El usuario no existe",
