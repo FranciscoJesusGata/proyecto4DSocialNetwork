@@ -111,7 +111,7 @@ function checktratarDatosUser(datos) {
         }
       });
     } else {
-      tratarDatosUser(JSON.parse(datos));
+      tratarDatosUser(datos);
     }
 }
 
@@ -130,8 +130,9 @@ function getDataFromUser() {
         type: "POST",
         url: "../../PHP/Querys/User_Data.php",
         data: {opcion: "user", user: data["name"]},
-        dataType: "text",
+        dataType: "json",
         success: function (response) {
+            console.log(response);
             checktratarDatosUser(response);
             checkUser(response);
         },
@@ -174,12 +175,14 @@ function getDataFromUser() {
 
 function checkUser(datos){
     var nombre = datos["Nombre_Usuario"];
+    console.log(nombre);
     $.ajax({
         type: "POST",
         url: "../../PHP/Querys/User_Data.php",
         data: {opcion: "checkUser", user: nombre},
         dataType: "text",
         success: function (response) {
+            console.log(response);
             if (response == "same user") {
                 $("#seguir").hide();
                 $("#sendMessage").hide();

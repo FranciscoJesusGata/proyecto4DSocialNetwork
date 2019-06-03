@@ -81,7 +81,7 @@
 
     function darLike($id_P, $database, $conexion){
         $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
-        $query_check = "SELECT Id_P, Nombre_Usuario WHERE Id_P = ".$id_P." AND Nombre_Usuario = '".$nombre."'":
+        $query_check = "SELECT Id_P, Nombre_Usuario WHERE Id_P = ".$id_P." AND Nombre_Usuario = '".$nombre."'";
         $check = $database->get_data($query_check);
         if(isset($check[0]) && $check[0] != NULL){
             $sql = "DELETE FROM me_gusta_p WHERE Id_P = ".$id_P." AND Nombre_Usuario = '".$nombre."'";
