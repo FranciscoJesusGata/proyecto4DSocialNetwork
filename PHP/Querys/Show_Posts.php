@@ -42,6 +42,18 @@
         return $posts;
     }
 
+    function recopilarComentarios($conexion, $database, $id_P){
+      $nombre = mysqli_real_escape_string($conexion, $_SESSION['N_Usuario']);
+      $query = "";
+      $query .= "SELECT id_C, id_P, Alias, U.Nombre_Usuario AS Nombre_Usuario, Texto, Fecha, Foto
+              FROM Comentarios C
+              INNER JOIN usuarios U
+              ON C.Nombre_Usuario = U.Nombre_Usuario
+              WHERE C.Id_P = '".$id_P."'";
+      $comentarios = $database->get_data($query);
+      return $comentarios;
+  }
+
     function recopilarPostsUser($conexion, $database, $user){
         $user = mysqli_real_escape_string($conexion, $user);
         $nombre = $_SESSION['N_Usuario'];
@@ -135,12 +147,16 @@
     }
 
     function recopilarFeed($conexion,$database,$id_P,$target){
-        $query_F = "SELECT COUNT(M.Id_P) AS Likes, COUNT(C.Id_P) AS Comments
-                    FROM me_gusta_p M
-                    INNER JOIN comentarios C 
-                    ON M.Id_P = C.Id_P
-                    WHERE M.Id_P = ".$id_P;
-        $feed = $database->get_data($query_F);
+        $feed;
+        $query_L = "SELECT COUNT(Id_P) AS Likes 
+        FROM me_gusta_p
+        WHERE Id_P = ".$id_P;
+        $query_C = "SELECT COUNT(Id_P) AS Comments
+        FROM comentarios
+        WHERE Id_P = ".$id_P;
+        $likes = $database->get_data($query_L);
+        $comments = $database->get_data($query_C);
+        $feed = array("Likes" => $likes['Likes'], "Comments" => $comments['Comments']);
         return $feed;
     }
 
@@ -161,6 +177,11 @@
             $enviar = json_encode($posts);
             echo $enviar;
         }
+    }else if ($ejecutar == "comentarios"){
+        $id_P = $_POST['id'];
+        $comentarios = recopilarComentarios($conexion, $database, $id_P);
+        $enviar = json_encode($comentarios);
+        echo $enviar;
     }
     $database->end_of_connection();
 ?>

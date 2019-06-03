@@ -83,9 +83,9 @@ function cambiosChats(datos){
 
 function emptyChatHistory(num){
     if($("#chats tbody").children().length == 0 && num == 0){
-        $("#chat_content").children().css("display", "none");
+        $("#chat_container").children().css("display", "none");
         var html="<div id='chat-vacio' class='col-12 w-100 align-self-center' style='position: absolute;'><p class='h2 text-center text-muted w-100'>No tienes ninguna conversación</p><br><p class='text-center text-muted mt-0 w-100'>¡Empieza a hablar con otros usuarios!</p></div>"
-        $("#chat_content").append(html);
+        $("#chat-container").append(html);
         var html2="<div id='historial-vacio'class='w-100 align-self-center' style='position: absolute;'><p class='text-center text-muted w-100'>No has iniciado ninguna conversación</p></div>"
         $("#chats-wrap").append(html2);
     }
@@ -230,6 +230,7 @@ function recogerChats(orden){
         },
         error: function (data) {
             console.log(data);
+            emptyChatHistory(0);
         }
     });
 }

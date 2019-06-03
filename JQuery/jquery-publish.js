@@ -21,16 +21,13 @@ function subir(e){
     $('#img_display').attr('src', '#');
 }
 
-function comentar(e){
-    var comentario = $("#comentar"+e).val;
+function comentar(id){
+    var comentario = $("#textarea"+id).val();
     $.ajax({
         url : "../../PHP/Querys/Publish.php",
         type: "POST",
-        data : formData,
-        async: false,
-                contentType: false,
-                cache: false,
-                processData: false,
+        data: {comentario: comentario, id: id},
+        dataType: 'html',
         success : function(response){
             console.log(response);
         },
@@ -38,10 +35,6 @@ function comentar(e){
             console.error("error",obj.responseText);
         }
     });
-    $("#comentar"+e).trigger("reset");
-    $("#button"+e).attr("disabled",true);
-    /*$('#img_display').css('display','none');
-    $('#img_display').attr('src', '#');*/
 }
 
 function updatePubli(text,id){
@@ -49,6 +42,18 @@ function updatePubli(text,id){
         url : "../../PHP/Querys/Publish.php",
         type: "POST",
         data : {opcion: "update", id: id, texto: text},
+        dataType: 'html',
+        error: function(obj,text,error) {
+            console.error("error",obj.responseText);
+        }
+    });
+}
+
+function deletePubli(id){
+    $.ajax({
+        url : "../../PHP/Querys/Publish.php",
+        type: "POST",
+        data : {opcion: "delete", id: id},
         dataType: 'html',
         success : function(response){
             console.log(response);
@@ -84,9 +89,21 @@ function editar(id){
         onClose: crearIntervalo
     }).then((valor) => {
         var text = valor;
-        console.log(text);
         updatePubli(text,id);
         crearIntervalo();
+    });
+}
+
+function eliminar(id){
+    swal({
+        title: "¿Desead eliminar esta publicación?",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            deletePubli(id);
+        }
     });
 }
 
