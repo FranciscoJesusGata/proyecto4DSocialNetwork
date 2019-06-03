@@ -37,6 +37,21 @@ function comentar(id){
     });
 }
 
+function like(id){
+    $.ajax({
+        url : "../../PHP/Querys/Publish.php",
+        type: "POST",
+        data: {opcion: 'like', id: id},
+        dataType: 'html',
+        success : function(response){
+            console.log(response);
+        },
+        error: function(obj,text,error) {
+            console.error("error",obj.responseText);
+        }
+    });
+}
+
 function updatePubli(text,id){
     $.ajax({
         url : "../../PHP/Querys/Publish.php",

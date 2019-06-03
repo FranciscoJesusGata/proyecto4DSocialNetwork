@@ -178,7 +178,7 @@ $(document).ready(function(){
                 }
                 html+="</div>";
                 html+="<div class='col-1 float-right d-inline-block mb-3'>";
-                html+="<button id='like' class='btn btn btn-outline-dark float-right'> "+posts[i]['Likes']+" <i class='far fa-heart'></i></button>";
+                html+="<button id='like' class='btn btn btn-outline-dark float-right' onclick='like("+posts[i]["id_P"]+")'> "+posts[i]['Likes']+" <i class='far fa-heart'></i></button>";
                 html+="<button id='comment' class='btn btn btn-outline-dark float-right mt-1' onclick='togleTarget("+posts[i]["id_P"]+");'> "+posts[i]['Comments']+" <i class='far fa-comment'></i></div>";
                 html+="<div class='m-3 col-10 d-inline-block'>";
                 html+="<p style='font-size: 20px;' id='post"+posts[i]['id_P']+"' >"+posts[i]["Texto"]+"</p>";
